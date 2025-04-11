@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    const  trader=`
+    <div class="modal fade" id="verticalCenter2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="verticalCenterTitle">Broker Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button> 
+            </div>
+            <div class="card card-statistics widget-social-box3 px-2">
+                <div class="card-body pb-3 pt-4 p-0">
+                    <div class="text-center">
+                        <div class="pt-1 bg-img m-auto"><img class="img-fluid" src="${element.photo}" alt="socialwidget-img"></div>
+                        <div class="mt-3">
+                            <h4 class="mb-1"><a href="javascript:void(0)" class="dot" style="background-color: #26de81;">${element.name}</a> </h4>
+                            <p class="mb-0 text-muted"><a href="javascript:void(0)">Long Term Trade</a></p>
+                            <ul class="nav justify-content-between mt-4 px-3 py-2">
+                                <li class="flex-fill">
+                                    <h3 class="mb-0">${element.profit}</h3>
+                                    <p>Profit Rate</p>
+                                </li>
+                                <li class="flex-fill">
+                                    <h3 class="mb-0">${element.trades}</h3>
+                                    <p>Trades</p>
+                                </li>
+                                <li class="flex-fill">
+                                    <h3 class="mb-0">${element.confidence}</h3>
+                                    <p>Confidence Level</p>
+                                </li>
+                            </ul>
+                            <hr>
+                            <ul class="nav justify-content-between mt-4 px-3 py-2">
+                                <li class="flex-fill">
+                                <h4 class="mb-0">${element.country}</h4>
+                                    <p><i class="dripicons dripicons-location"></i> Location</p>
+                                </li> |
+                                <li class="flex-fill">
+                                <h4 class="mb-0"> ${element.membership}</h4><i class="dripicons dripicons-card"></i> Member Since<p></p>
+                                </li> |
+                                <li class="flex-fill">
+                                <h4 class="mb-0">${element.return}</h4>
+                                    <p><i class="fas fa-money"></i> Return per Capital</p>
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <ul class="nav d-block">
+                <li class="nav-item">
+                    <a class="media nav-link align-items-center justify-content-between" href="javascript:void(0)">
+                        <h5 class="mb-0">Trade Range:</h5>
+                        <span class="badge badge-pill badge-success px-3 py-2">${element.range}</span>
+                    </a>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="media nav-link align-items-center justify-content-between" href="javascript:void(0)">
+                        <h5 class="mb-0">Max Earn:</h5>
+                        <span class="badge badge-pill badge-primary px-3 py-2">${element.maxEarn}</span>
+                    </a>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="media nav-link align-items-center justify-content-between" href="javascript:void(0)">
+                        <h5 class="mb-0">Followers:</h5>
+                        <span class="badge badge-pill badge-warning px-3 py-2">${element.followers}</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="media nav-link align-items-center justify-content-between" href="javascript:void(0)">
+                        <h5 class="mb-0">Capital Return:</h5>
+                        <span class="badge badge-pill badge-info px-3 py-2">Profit (100) End of Term</span>
+                    </a>
+                </li>
+    
+                <li class="nav-item">
+                    <a class="media nav-link align-items-center justify-content-between" href="javascript:void(0)">
+                        <h5 class="mb-0">Risk Score:</h5>
+                        <span class="badge badge-pill badge-danger px-3 py-2">${element.risk}</span>
+                    </a>
+                </li>
+                <br>
+            </ul>
+
+        </div>
+    </div>                          
+</div>
+    
+    
+    `
+    
+</body>
+</html>
