@@ -1747,8 +1747,9 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
               var row = $('<tr>').appendTo(tbl);
               $('<td>').text(`${index}`).appendTo(row);
                 $('<td>').text(`${transaction._id}`).appendTo(row);
-                  $('<td>').text(`$${transaction.method}`).appendTo(row);
-                    $('<td>').text(`${transaction.amount}`).appendTo(row);
+                  $('<td>').text(`${transaction.timestamp}`).appendTo(row);
+                  $('<td>').text(`${transaction.method}`).appendTo(row);
+                    $('<td>').text(`$${transaction.amount}`).appendTo(row);
                       $('<td>').text(`${transaction.status}`).appendTo(row);
            
 
