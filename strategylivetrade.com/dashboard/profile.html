@@ -1315,7 +1315,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `https://global-render.onrender.com/users/${userFromLS.email}`,
+                                   url: `https://strategylive-server.onrender.com/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -1331,11 +1331,12 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                            }
                    
                            $(document).ready(async function () {
-                               let sum;
-                   
-                               
-                                  
-                               $("#username").html(userInfo.firstName + " " + userInfo.lastName);
+                                let sum;
+    
+        const userInfo=await fetchUserInfo()
+           console.log(userInfo);
+           
+        $("#username").html(userInfo.firstName + " " + userInfo.lastName);
                                $("#captionUsername").html(userInfo.firstName + " " + userInfo.lastName);
                                $("#headerUsername").html(userInfo.firstName + " " + userInfo.lastName);
                    
@@ -1543,7 +1544,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
   
     const response = await $.ajax({
       type: "GET",
-      url: ` https://global-render.onrender.com/users/${userFromLS.email}`,
+      url: ` https://strategylive-server.onrender.com/users/${userFromLS.email}`,
       dataType: "json",
       timeout: 30000,
       success: async function (data) {
@@ -1582,7 +1583,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
    const parseUser=JSON.parse(user)
     const response = await $.ajax({
       type: "PUT",
-      url: ` https://global-render.onrender.com/users/${parseUser._id}/profile/update`,
+      url: ` https://strategylive-server.onrender.com/users/${parseUser._id}/profile/update`,
       dataType: "json",
       data: { firstName, lastName, email },
       timeout: 30000,

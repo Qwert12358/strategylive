@@ -1317,12 +1317,12 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `https://global-render.onrender.com/users/${userFromLS.email}`,
+                                   url: `https://strategylive-server.onrender.com/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
                                        Object.assign(currentUser, data.data)
-                                       await localStorage.setItem("user", JSON.stringify(data.data))
+                                        localStorage.setItem("user", JSON.stringify(data.data))
                                    },
                                    error: function () {
                                        alert(error)
@@ -1333,11 +1333,12 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                            }
                    
                            $(document).ready(async function () {
-                               let sum;
-                   
-                               
-                                  
-                               $("#username").html(userInfo.firstName + " " + userInfo.lastName);
+                                let sum;
+    
+        const userInfo=await fetchUserInfo()
+           console.log(userInfo);
+           
+        $("#username").html(userInfo.firstName + " " + userInfo.lastName);
                                $("#captionUsername").html(userInfo.firstName + " " + userInfo.lastName);
                                $("#headerUsername").html(userInfo.firstName + " " + userInfo.lastName);
                    
@@ -1485,7 +1486,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                                                     </p>
                                                                     <ul class="nav justify-content-between mt-4 px-3 py-2">
                                                                         <li class="flex-fill">
-                                                                            <h3 class="mb-0" id="profit"></h3>
+                                                                            <h3 class="mb-0" id="profitRate"></h3>
                                                                             <p>Profit Rate</p>
                                                                         </li>
                                                                         <li class="flex-fill">
@@ -1508,7 +1509,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                                                             <p><i class="dripicons dripicons-card"></i> Member Since</p>
                                                                         </li> |
                                                                         <li class="flex-fill">
-                                                                            <h4 class="mb-0" id="return"></h4>
+                                                                            <h4 class="mb-0" id="returnCapital"></h4>
                                                                             <p><i class="fas fa-money"></i> Return per Capital</p>
                                                                         </li>
                                                                     </ul>
@@ -1592,7 +1593,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 
 async function fetchTrader() {
   try {
-    const response = await fetch('https://global-render.onrender.com/auth/trader/fetch-trader');
+    const response = await fetch('https://strategylive-server.onrender.com/auth/trader/fetch-trader');
     
     if (response.ok) {
       const traders = await response.json(); // Parse the JSON response
@@ -1614,10 +1615,10 @@ function populateModal(element) {
     // document.getElementById("name").textContent = btn.dataset.name;
     document.getElementById("photo").src = btn.dataset.photo;
     document.getElementById("trades").textContent = btn.dataset.trades;
-    document.getElementById("profit").textContent = btn.dataset.profit;
+    document.getElementById("profitRate").textContent = btn.dataset.profit;
     document.getElementById("confidence").textContent = btn.dataset.confidence;
     document.getElementById("membership").textContent = btn.dataset.membership;
-    document.getElementById("return").textContent = btn.dataset.return;
+    document.getElementById("returnCapital").textContent = btn.dataset.returns;
     document.getElementById("country").textContent = btn.dataset.country;
     document.getElementById("maxEarn").textContent = btn.dataset.maxearn;
     document.getElementById("followers").textContent = btn.dataset.followers;
@@ -1650,7 +1651,7 @@ $(document).ready(async function () {
                 <td>${element.range}</td>
                 <td>Long Term Trade</td>
                 <td>100%</td>
-                <td>${element.return}</td>
+                <td>${element.returns}</td>
                 <td>
                     <button 
                         class="btn btn-block btn-round btn-info mr-2 mb-2 mb-sm-0 view-user-btn"
@@ -1689,7 +1690,8 @@ $(document).ready(async function () {
     $(document).on('click', '.copy-trade-btn', async function () {
         const index = $(this).data('index');
         const element = traders[index]; // Access the corresponding trader
-        const user = JSON.parse(localStorage.getItem("user"));
+        const pickUser=localStorage.getItem("user")
+        const user = JSON.parse(pickUser);
         const traderName = element.name;
 
         localStorage.setItem("traderName", traderName);
@@ -1750,7 +1752,7 @@ $(document).ready(async function () {
             try {
                 await $.ajax({
                     type: "POST",
-                    url: ` https://global-render.onrender.com/transactions/${dataObj.userId}/auto`,
+                    url: ` https://strategylive-server.onrender.com/transactions/${dataObj.userId}/auto`,
                     dataType: "json",
                     data: dataObj,
                     timeout: 30000,
