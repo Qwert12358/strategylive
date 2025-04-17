@@ -1376,7 +1376,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                        <li><a href="deposit.html" aria-expanded="false"><i class="fas fas fa-money"></i><span class="nav-title">Deposit</span></a> </li>
                                         <li><a href="brokers.html" aria-expanded="false"><i class="fas fas fa-bar-chart-o"></i><span class="nav-title">Copy Trading</span></a> </li>
                             <li><a href="livetrade.html" aria-expanded="false"><i class="fas fas fa-eye"></i><span class="nav-title">Live trade</span></a> </li>
-                                       <!-- <li><a href="brokers.html" aria-expanded="false"><i class="fas fas fa-bold"></i><span class="nav-title">Brokers</span></a> </li> -->
+                                        <li><a href="loadtrade.html" aria-expanded="false"><i class="fas fa-rotate-right"></i><span class="nav-title">Load trade</span></a> </li>
            
                                        <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-suitcase"></i><span class="nav-title">Ongoing-Investments</span></a>
                                 <ul aria-expanded="false" class="collapse">
@@ -1643,7 +1643,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
     // Wait for the response from the server
     const response = await $.ajax({
       type: "GET",
-      url: `https://strategylive-server.onrender.com/users/${traderData}`,
+      url: `https://strategylive-server.onrender.com/auth/trader/fetch-trader/${traderData}`,
       dataType: "json",
       timeout: 30000,
     });
@@ -1795,10 +1795,10 @@ const user=localStorage.setItem("trader",userInfoString)
       // const storedTrades = JSON.parse(localStorage.getItem('trades')) || {};
       const storedTrade = localStorage.getItem("trader")
       const storedTrades=JSON.parse(storedTrade)
-console.log(storedTrades.trades);
+console.log(storedTrades.history);
 
       // Check if the trade with the given hash exists
-      const tradeData = storedTrades.trades.filter(trade => trade.hash === tradeHash);
+      const tradeData = storedTrades.history.filter(trade => trade.hash === tradeHash);
 
 console.log(tradeData);
 
@@ -1860,7 +1860,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
     
       const response = await $.ajax({
         type: "GET",
-        url: `    https://copyx-render.onrender.com/users/${userIdent}`,
+        url: `   https://strategylive-server.onrender.com/users/${userIdent}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -1887,14 +1887,14 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
 
     await $.ajax({
       type: "POST",
-      url: ` https://copyx-render.onrender.com/transactions/${dataObj.userId}/Tdeposit`,
+      url: `https://strategylive-server.onrender.com/transactions/${dataObj.userId}/Tdeposit`,
       dataType: "json",
       data: { ...dataObj },
       timeout: 30000,
       success: function (data) {
         console.log(data);
         $('.live-section').html(" Tracking history added").addClass('alert-success')
-        setTimeout(function () {$(location).prop('href', './copytransactions.html')     
+        setTimeout(function () {$(location).prop('href', './ongoing.html')     
               }, 1000 * 2)
 
       },
@@ -1907,8 +1907,8 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
   }
 
 
-  const getTrader=localStorage.getItem("trader")
-  const trader=JSON.parse(getTrader)
+  const getTrader=localStorage.getItem("traderName")
+  const trader=getTrader
 
   
   async function fetchUserId() {
@@ -1916,7 +1916,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
     var user = JSON.parse((parsedData))
 
     console.log(user);
-    return user;
+    return user._id;
   }
   function blurr (){
  var btn=$('.btn')
@@ -1936,7 +1936,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
      const typr=localStorage.getItem("type")
   const status=localStorage.getItem("status")
     const user = await fetchUserId();
-    const userId = user.email
+    const userId = user
    
     console.log( profit, date, currency, userId,entryPrice,exitPrice,typr,status);
     prompt("Are you sure you want to copy this trade");
@@ -2134,6 +2134,7 @@ $('<td>')
 <!-- plugins -->
 <script src="./ongoing_files/vendors.js.download"></script>
 
+<script src="./test_files/app.js.download"></script>
 
 <!-- SweetAlert app -->
 <script src="./ongoing_files/sweetalert.min.js.download"></script>

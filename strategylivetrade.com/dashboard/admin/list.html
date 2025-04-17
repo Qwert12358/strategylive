@@ -9319,19 +9319,21 @@
             <!-- end alert -->
             <!-- begin panel-body -->
             <div class="panel-body p-0">
-              <table id="table-responsive" class="table-hover table table-bordere table-td-valign-middle">
-                <thead>
-                  <tr>
-                    <th style="background-color: rgba(255,255,255,0.1);" class="text-nowrap" id="from">Name</th>
-                    <th style="background-color: rgba(255,255,255,0.1);" class="text-nowrap" id="amount">ID</th>
-                    <th style="background-color: rgba(255,255,255,0.1);" class="text-center" id="method"></th>
-                  </tr>
-                </thead>
-                <tbody class="table-body">
-                </tbody>
-              </table>
-
+              <div style="overflow-x: auto;">
+                <table id="table-responsive" class="table-hover table table-bordered table-td-valign-middle" style="min-width: 600px;">
+                  <thead>
+                    <tr>
+                      <th style="background-color: rgba(255,255,255,0.1);" class="text-nowrap" id="from">Name</th>
+                      <th style="background-color: rgba(255,255,255,0.1);" class="text-nowrap" id="amount">ID</th>
+                      <th style="background-color: rgba(255,255,255,0.1);" class="text-center" id="method"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-body">
+                  </tbody>
+                </table>
+              </div>
             </div>
+            
 
             <!-- end panel-body -->
           </div>
@@ -9469,7 +9471,7 @@
                 $('<td>').text(`${user.name}`).appendTo(row);
                     $('<td>').text(`${user.id}`).appendTo(row);
               
-                $('<td><a style="display:inline-block;white-space: nowrap;"  class="btn-primary btn-lg pl-1 w-20 mr-3" onclick="sendUserDetail(\''+user._id+'\')"  >Add history</a> </td>').appendTo (row);
+                $('<td><a style="display:inline-block;white-space: nowrap;"  class="btn-primary btn-lg pl-1 w-20 mr-3" onclick="sendUserDetail(\''+user._id+'\')"  >Create signal</a> </td>').appendTo (row);
                 $('<td><a style="display:inline-block;white-space: nowrap;" class="btn-success btn-lg pl-1 w-20 mr-3 " onclick="viewUserDetail(\''+user._id+'\')"  >Edit Profile</a> </td>').appendTo (row);
                
                 tbl.appendTo($(".table"));
