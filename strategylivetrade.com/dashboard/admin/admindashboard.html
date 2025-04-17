@@ -9476,7 +9476,7 @@
                   <!-- end title -->
                   <!-- begin conversion-rate -->
                   <div class="d-flex align-items-center mb-3">
-                    <h2 class="text-white mb-1">$<span data-animation="number" id="amountDeposited">0.00</span>
+                    <h2 class="text-white mb-1"><span data-animation="number" id=""></span>
                     </h2>
                     <div class="ml-auto">
                       <style>
@@ -9561,11 +9561,11 @@
                   <div class="d-flex mb-2">
                     <div class="d-flex align-items-center">
                       <i class="fa fa-circle text-red f-s-8 mr-2" aria-hidden="true"></i>
-                      Last Deposit
+                      Pending
                     </div>
                     <div class="d-flex align-items-center ml-auto">
                       <div class="f-s-12 f-w-600">
-                        $<span data-animation="number" data-value="0.00">0.00</span>
+                        <span data-animation="number" data-value="0.00" id="pendingDeposits"></span>
                       </div>
                     </div>
                   </div>
@@ -9577,13 +9577,13 @@
                   <div class="d-flex">
                     <div class="d-flex align-items-center">
                       <i class="fa fa-circle text-lime f-s-8 mr-2" aria-hidden="true"></i>
-                      Total Deposited
+                      Approved 
                     </div>
                     <div class="d-flex align-items-center ml-auto">
                       <div class="d-flex align-items-center ml-auto">
                         <div class="f-s-12 f-w-600">
-                          $
-                          <span data-animation="number" data-value="0.00">0.00</span>
+                          
+                          <span data-animation="number" data-value="0.00" id="approvedDeposits"></span>
                         </div>
                       </div>
                     </div>
@@ -9603,13 +9603,13 @@
                 <div class="card-body">
                   <!-- begin title -->
                   <div class="mb-3 text-grey">
-                    <b class="mb-3">TOTAL EARNINGS</b>
+                    <b class="mb-3">WITHDRAWALS</b>
                     <span class="ml-2"></span>
                   </div>
                   <!-- end title -->
                   <!-- begin store-session -->
                   <div class="d-flex align-items-center mb-3">
-                    <h2 class="text-white mb-1">$<span data-animation="number" id="totalEarnings">0.00</span>
+                    <h2 class="text-white mb-1"><span data-animation="number" id=""></span>
                     </h2>
                     <div class="ml-auto">
                       <div class="dots">
@@ -9626,12 +9626,12 @@
                   <div class="d-flex mb-2">
                     <div class="d-flex align-items-center">
                       <i class="fa fa-circle text-red f-s-8 mr-2" aria-hidden="true"></i>
-                      Last Withdrawal
+                      
                     </div>
                     <div class="d-flex align-items-center ml-auto">
                       <div class="f-s-12 f-w-600">
-                        $
-                        <span data-animation="number" data-value="0.00">0.00</span>
+                        
+                        <span data-animation="number" data-value="0.00"></span>
                       </div>
                     </div>
                   </div>
@@ -9640,12 +9640,12 @@
                   <div class="d-flex mb-2">
                     <div class="d-flex align-items-center">
                       <i class="fa fa-circle text-warning f-s-8 mr-2" aria-hidden="true"></i>
-                      Pending Withdrawals
+                      Pending
                     </div>
                     <div class="d-flex align-items-center ml-auto">
                       <div class="f-s-12 f-w-600">
-                        $
-                        <span data-animation="number" data-value="0.00">0.00</span>
+                        
+                        <span data-animation="number" data-value="0.00" id="pendingWithdrawals"></span>
                       </div>
                     </div>
                   </div>
@@ -9654,12 +9654,12 @@
                   <div class="d-flex">
                     <div class="d-flex align-items-center">
                       <i class="fa fa-circle text-lime f-s-8 mr-2" aria-hidden="true"></i>
-                      Total Withdrawn
+                      Approved
                     </div>
                     <div class="d-flex align-items-center ml-auto">
                       <div class="f-s-12 f-w-600">
-                        $
-                        <span data-animation="number" data-value="0.00">0.00</span>
+                        
+                        <span data-animation="number" data-value="0.00" id="approvedWithdrawals"></span>
                       </div>
                     </div>
                   </div>
@@ -10410,28 +10410,54 @@ console.log(userInfo)
     }
     
         
-        $(document).ready(async function () {
-          const users = await fetchUser();
-           var registeredUsers=users.length;
-  
-           $('#registered').html(registeredUsers);
-    
-         
-          
-         
-        
-        });
-    
-    
-        
-    
-    
-       
-    
-       
-    
-       
-    
+    $(document).ready(async function () {
+  const users = await fetchUser();
+
+  // Total registered users
+  const registeredUsers = users.length;
+  $('#registered').html(registeredUsers);
+
+  // Initialize all counters
+  let approvedDeposits = 0;
+  let pendingDeposits = 0;
+  let approvedWithdrawals = 0;
+  let pendingWithdrawals = 0;
+
+  let totalDeposited = 0;
+  let withdrawnTotal = 0;
+  let withdrawnAmount = 0;
+
+  // Loop through all users
+  users.forEach(user => {
+    // Process transactions
+    user.transactions.forEach(tx => {
+      if (tx.status === "Approved") {
+        approvedDeposits += 1;
+        totalDeposited += Number(tx.amount || 0);
+      } else if (tx.status === "pending") {
+        pendingDeposits += 1;
+      }
+    });
+
+    // Process withdrawals
+    user.withdrawals.forEach(wd => {
+      if (wd.status === "Approved") {
+        approvedWithdrawals += 1;
+        withdrawnTotal += Number(wd.amount || 0);
+      } else if (wd.status === "pending") {
+        pendingWithdrawals += 1;
+      }
+    });
+  });
+
+  // Update HTML
+  $('#totalDeposited').html("$" + totalDeposited);
+  $('#approvedDeposits').html(approvedDeposits);
+  $('#pendingDeposits').html(pendingDeposits);
+  $('#approvedWithdrawals').html(approvedWithdrawals);
+  $('#pendingWithdrawals').html(pendingWithdrawals);
+});
+
     
       </script>
     
