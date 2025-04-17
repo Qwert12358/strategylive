@@ -5,7 +5,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-  <title>GlobalTradePlus</title>
+  <title>Strategylivetrade</title>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   <meta content="" name="description">
   <meta content="" name="author"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -9117,7 +9117,7 @@
     <div id="header" class="header navbar-default">
       <!-- begin navbar-header -->
       <div class="navbar-header">
-        <h3>GlobalTradePlus</h3>      
+        <h3>Strategylivetrade</h3>      
        
         <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
           <span class="icon-bar"></span>
@@ -9228,57 +9228,39 @@
           </ul>
           <!-- end sidebar user -->
           <!-- begin sidebar nav -->
-           <ul class="nav">
+          <ul class="nav">
             <li class="nav-header">Navigation</li>
-            <li>
-              <a href="dashboard.html"> <i class="fa fa-th-large" aria-hidden="true"></i> <span>Dashboard</span> </a>
+              <li>
+              <a href="admindashboard.html"> <i class="fa fa-th-large" aria-hidden="true"></i> <span>Dashboard</span> </a>
             </li>
-            <li>
-              <a href="make_deposit.html"> <i class="fas fa-donate" aria-hidden="true"></i> <span>Make a Deposit</span>
-              </a>
-            </li> <li>
-              <a href="watch-trade.html"> <i class="fas fa-eye" aria-hidden="true"></i> <span>Watch Live Trade</span>
-              </a>
-            </li>
-           
-            <li>
-              <a href="withdrawal.html"> <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                <span>Withdrawal</span> </a>
-            </li>
-
+            
+            <ul>
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle text-white" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="text-decoration: none;">
+                      <i class="fas fa-donate" aria-hidden="true"></i><span>Traders</span>
+                      <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu mb-2" style="padding: 10px; background: #000;color: #fff;" >
+                      <li><a href="list.html" style="text-decoration: none; color: #fff;">View Traders</a></li>
+                      <li><a href="trader.html"  style="text-decoration: none; color: #fff;">Add Trader</a></li>
+                  </ul>
+              </li>
+            </ul>
+            
             <li class="has-sub">
-              <a href="javascript:;"> <i class="fas fa-search-dollar" aria-hidden="true"></i> <span>Account
-                  History</span> </a>
-              <ul class="sub-menu">
-                <li>
-                  <a href="deposits.html"> <span>Deposits History</span> </a>
-                </li>
-
-                <li>
-                  <a href="withdrawalhistory.html"> <span>Withdrawal History</span> </a>
-                </li>
-
-              </ul>
-            </li>
-
-             <li>
-              <a href="adminkyc.html"> <i class="far fa-question-circle" aria-hidden="true"></i> <span>KYC</span> </a>
-            </li>
-          <li>
-              <a href="faq.html"> <i class="far fa-question-circle" aria-hidden="true"></i> <span>FAQ</span> </a>
-            </li>
-          
-          
-            <li>
-              <a href="support.html"> <i class="fas fa-headset" aria-hidden="true"></i> <span>Support</span> </a>
-            </li>
-            <li>
-              <a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i
-                  class="fa fa-angle-double-left" aria-hidden="true"></i></a>
-            </li>
-            <!-- end sidebar minify button -->
-          </ul>
-         
+              <li>
+                <a href="activeusers.html"> <i class="fas fa-search-dollar" aria-hidden="true"></i><span> Users</span> </a>
+              </li>
+              <li>
+                <a href="depositshistory.html"> <i class="fas fa-donate" aria-hidden="true"></i><span>All Deposits</span> </a>
+              </li>
+               <li>
+                <a href="withdrawalrequests.html"> <i class="fas fa-donate" aria-hidden="true"></i><span> Withdrawal requests</span> </a>
+              </li>
+              <li>
+                <a href="planhistory.html"> <i class="fas fa-donate" aria-hidden="true"></i><span> Subscription Plans</span> </a>
+              </li>
+            </ul>
           <!-- end sidebar nav -->
         </div>
         <div class="slimScrollBar"
