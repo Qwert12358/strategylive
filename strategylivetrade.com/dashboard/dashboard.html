@@ -3381,13 +3381,7 @@
                             src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
                         <style>
-                            body {
-                                font-family: 'Segoe UI', sans-serif;
-                                background-color: #f4f6f8;
-                                margin: 0;
-                                padding: 2rem;
-                            }
-
+                          
                             .financial-widget-card {
                                 background: #fff;
                                 margin-bottom: 20px;
@@ -3417,6 +3411,48 @@
                         <div class="financial-widget-card" style="margin-bottom: 20px;">
 
                             <!-- TradingView Widget Carousel BEGIN -->
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                  // 1. Log scroll height vs client height
+                                  console.log("Document height:", document.documentElement.scrollHeight);
+                                  console.log("Viewport height:", window.innerHeight);
+                              
+                                  // 2. Remove overflow: hidden if it's preventing scroll
+                                  ['html', 'body'].forEach(tag => {
+                                    const el = document.querySelector(tag);
+                                    const style = getComputedStyle(el);
+                              
+                                    if (style.overflow === "hidden") {
+                                      el.style.overflow = "auto";
+                                      console.warn(`${tag} had overflow:hidden — set to auto.`);
+                                    }
+                                  });
+                              
+                                  // 3. Detect full-height containers with 100vh and override them
+                                  const allElements = document.querySelectorAll('*');
+                              
+                                  allElements.forEach(el => {
+                                    const style = getComputedStyle(el);
+                              
+                                    if (style.height === '100vh') {
+                                      el.style.minHeight = '100%';
+                                      console.warn('Element with 100vh height adjusted:', el);
+                                    }
+                              
+                                    if (style.overflow === 'hidden') {
+                                      el.style.overflow = 'visible';
+                                      console.warn('Element with overflow:hidden adjusted:', el);
+                                    }
+                                  });
+                                });
+                              </script>
+<style>
+    html, body {
+  overflow: auto !important;
+  height: auto !important;
+}
+
+</style>                              
 <div class="stock-carousel-container">
     <div class="stock-carousel">
       <!-- Stock 1 -->
