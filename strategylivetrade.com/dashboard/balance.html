@@ -1568,7 +1568,14 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                         <!-- <td></td> -->
                     </tbody>
                 </table>
-
+                <style>
+                  .breadcrumb-item + .breadcrumb-item::before {
+                content: ">";
+                margin: 0 5px;
+                color: #6c757d;
+              }
+              
+              </style>
                 <table class="table table-xs">
                     <thead>
                         <tr>

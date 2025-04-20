@@ -12,6 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="shortcut icon" href="./test_files/favicon.png">  
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/0.1.2/css/themify-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <!-- google fonts -->
     <link href="./test_files/css" rel="stylesheet">
     <!-- plugin stylesheets -->
@@ -21,18 +23,22 @@
     <link rel="stylesheet" type="text/css" href="./test_files/style.css">
     <!-- stylesheet style -->
     <link rel="stylesheet" type="text/css" href="./test_files/sweetalert.css">
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ApexCharts CDN -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <!-- app favicon -->
     <link rel="shortcut icon" href="assets/img/favicon.png">  
     <!-- google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <!-- plugin stylesheets -->
-    <link rel="stylesheet" type="text/css" href="assets/css/vendors.css" />
+    <link rel="stylesheet" type="text/css" href="./test_files/vendors.css">
     <!-- app style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./test_files/style.css">
     <!-- stylesheet style -->
-    <link rel="stylesheet" type="text/css" href="css/lib/sweetalert/sweetalert.css" />
-    
+    <link rel="stylesheet" type="text/css" href="./test_files/sweetalert.css">
+   
 </head>
 
 <body> 
@@ -45,23 +51,23 @@
             <!-- end pre-loader -->
            
 
-             <!-- begin app-header -->
- <header class="app-header top-bar">
-                <!-- begin navbar -->
-                <nav class="navbar navbar-expand-md">
-
-                    <!-- begin navbar-header -->
-                    <div class="navbar-header d-flex align-items-center">
-                        <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
-                        <a class="navbar-brand" href="index-2.html">
-                            <img src="assets/img/logo.png" class="img-fluid logo-desktop" alt="logo" />
-                            <img src="assets/img/logo-icon.png" class="img-fluid logo-mobile" alt="logo" />
-                        </a>
-                    </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="ti ti-align-left"></i>
-                    </button>
-                    <!-- end navbar-header -->
+                     <!-- begin app-header -->
+                     <header class="app-header top-bar" id="highest">
+                        <!-- begin navbar -->
+                        <nav class="navbar navbar-expand-md">
+        
+                            <!-- begin navbar-header -->
+                            <div class="navbar-header d-flex align-items-center">
+                                <a href="javascript:void:(0)" class="mobile-toggle"><i class="fas fa-align-right"></i></a>
+                                <a class="navbar-brand" href="dashboard.html">
+                                    <img src="./dashboard_files/logo.png" class="img-fluid logo-desktop" alt="logo">
+                                    <img src="./dashboard_files/logo-icon.png" class="img-fluid logo-mobile" alt="logo">
+                                </a>
+                            </div>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-align-left"></i>
+                            </button>
+                            <!-- end navbar-header -->
                     <!-- begin navigation -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="navigation d-flex">
@@ -180,7 +186,7 @@
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fe fe-bell"></i>
+                                        <i class="fas fa-bell"></i>
                                         <span class="notify">
                                                     <span class="blink"></span>
                                         <span class="dot"></span>
@@ -280,16 +286,16 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link search" href="javascript:void(0)">
-                                        <i class="ti ti-search"></i>
+                                        <i class="fas fa-search"></i>
                                     </a>
                                     <div class="search-wrapper">
                                         <div class="close-btn">
-                                            <i class="ti ti-close"></i>
+                                            <i class="fas fa-close"></i>
                                         </div>
                                         <div class="search-content">
                                             <form>
                                                 <div class="form-group">
-                                                    <i class="ti ti-search magnifier"></i>
+                                                    <i class="fas fa-search magnifier"></i>
                                                     <input type="text" class="form-control autocomplete" placeholder="Search Here" id="autocomplete-ajax" autofocus="autofocus">
                                                 </div>
                                             </form>
@@ -297,51 +303,53 @@
                                     </div>
                                 </li>
                                 <li class="nav-ite">
-                                <a class="nav-link " href="javascript:void(0)" ><h4 style="font-weight: 500;">Anthony Grey</h4></a>
+                                <a class="nav-link " href="javascript:void(0)"><h4 style="font-weight: 500;" id="captionUsername"></h4></a>
                                     
                                 </li>
                                 
                                 <li class="nav-item dropdown user-profile">
-                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="assets/img/favicon.png" alt="avtar-img">
+                                    <a href="javascript:void(0)" class="nav-link dropdown-toggle" id="navbarDropdown4" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src="./dashboard_files/favicon.png" alt="avatar-img">
                                         <span class="bg-success user-status"></span>
                                     </a> 
-                                    <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
+                                    <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown4">
                                         <div class="bg-gradient px-4 py-3">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="mr-1">
-                                                    <h4 class="text-white mb-0">Anthony Grey</h4>
-                                                    <small class="text-white">ag@gmail.com</small>
+                                                    <h4 class="text-white mb-0" id="headerUsername">
+                                                        </h4>
+                                                    <small class="text-white" id="email"></small>
                                                 </div>
-                                                <a href="./logout" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Logout"> <i
-                                                                class="zmdi zmdi-power"></i></a>
+                                                <a href="../login.html" class="text-white font-20 tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="Logout"> 
+                                                    <i class="fas fa-power"></i>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="p-4">
-                                            <a class="dropdown-item d-flex nav-link" href="./profile">
-                                                <i class="fa fa-user pr-2 text-success"></i> Profile</a>
+                                            <a class="dropdown-item d-flex nav-link" href="profile.html">
+                                                <i class="fas fa-user pr-2 text-success"></i> Profile
+                                            </a>
                                             <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
-                                                <i class="fa fa-envelope pr-2 text-primary"></i> Inbox
+                                                <i class="fas fa-envelope pr-2 text-primary"></i> Inbox
                                                 <span class="badge badge-primary ml-auto">0</span>
                                             </a>
-                                            <a class="dropdown-item d-flex nav-link" href="./deposit">
-                                                <i class=" ti ti-settings pr-2 text-info"></i> Deposit
+                                            <a class="dropdown-item d-flex nav-link" href="deposit.html">
+                                                <i class=" fas fa-settings pr-2 text-info"></i> Deposit
                                             </a>
                                             <a class="dropdown-item d-flex nav-link" href="javascript:void(0)">
-                                                <i class="fa fa-compass pr-2 text-warning"></i> Need help?
-                                                <span class="badge badge-success ml-auto">support@Strategylivetrade.org</span> 
-
+                                                <i class="fas fa-compass pr-2 text-warning"></i> Need help?
+                                                <span class="badge badge-success ml-auto">support@Strategylivetrade.com</span> 
                                             </a>
                                             <div class="row mt-2">
                                                 <div class="col">
-                                                    <a class="bg-light p-3 text-center d-block" href="#">
-                                                        <i class="font-27 text-primary"> $8,969</i> 
+                                                    <a class="bg-light p-3 text-center d-block" href="dashboard.html">
+                                                        <i class="font-27 text-primary" id="balance"></i> 
                                                         <span class="d-block font-15 mt-2">My Balance</span>
                                                     </a>
                                                 </div>
                                                 <div class="col">
-                                                    <a class="bg-light p-3 text-center d-block" href="#">
-                                                        <i class="font-27 text-primary"> $38</i>
+                                                    <a class="bg-light p-3 text-center d-block" href="dashboard.html">
+                                                        <i class="font-27 text-primary" id="profit"></i>
                                                         <span class="d-block font-15 mt-2">My Profit</span> 
                                                     </a>
                                                 </div>  
@@ -357,46 +365,76 @@
                 <!-- end navbar -->
             </header>
             <!-- end app-header -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
             <!-- begin app-container -->
             <div class="app-container">
                
-             <!-- begin app-nabar -->
+ <!-- begin app-nabar -->
  <aside class="app-navbar">
-                    <!-- begin sidebar-nav -->
-                    <div class="sidebar-nav scrollbar scroll_light">
-                        <ul class="metismenu " id="sidebarNav">
-                            <li class="nav-static-title">Personal</li>
-                            <li class="active">
-                                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-                                    <i class="nav-icon ti ti-rocket"></i>
-                                    <span class="nav-title">Dashboards</span>
-                                    <span class="nav-label label label-danger">Welcome</span>
-                                </a> 
-                                <ul aria-expanded="false">
-                                    <li class="active"> <a href='home'>Home</a> </li>
-                                </ul>
-                            </li>
-                            <li><a href="./deposit" aria-expanded="false"><i class="nav-icon fa fa-money"></i><span class="nav-title">Deposit</span></a> </li>
-                            <li><a href="./copy-trading" aria-expanded="false"><i class="nav-icon fa fa-bar-chart-o"></i><span class="nav-title">Copy Trading</span></a> </li>
-                            <li><a href="./brokers" aria-expanded="false"><i class="nav-icon fa fa-bold"></i><span class="nav-title">Brokers</span></a> </li>
+    <!-- begin sidebar-nav -->
+    <div class="sidebar-nav scrollbar scroll_light mCustomScrollbar _mCS_3 mCS-autoHide mCS_no_scrollbar" style="position: relative; overflow: visible;"><div id="mCSB_3" class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" tabindex="0" style="max-height: none;"><div id="mCSB_3_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+        <ul class="metismenu " id="sidebarNav">
+            <li class="nav-static-title">Personal</li>
+            <li class="active">
+                <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
+                    <i class="nav-icon fas fa-rocket"></i>
+                    <span class="nav-title">Dashboards</span>
+                    <span class="nav-label label label-danger">Welcome</span>
+                </a> 
+                <ul aria-expanded="false" class="collapse in">
+                    <li class="active"> <a href="dashboard.html">Home</a> </li>
+                </ul>
+            </li>
+            <li><a href="deposit.html" aria-expanded="false"><i class="fas fas fa-money"></i><span class="nav-title">Deposit</span></a> </li>
+             <li><a href="brokers.html" aria-expanded="false"><i class="fas fas fa-bar-chart-o"></i><span class="nav-title">Copy Trading</span></a> </li>
+           
+            <li><a href="livetrade.html" aria-expanded="false"><i class="fas fas fa-eye"></i><span class="nav-title">Live trade</span></a> </li>
+            <li><a href="loadtrade.html" aria-expanded="false"><i class="fas fa-rotate-right"></i><span class="nav-title">Load trade</span></a> </li>
 
-                            <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="nav-icon dripicons dripicons-suitcase"></i><span class="nav-title">Ongoing-Investments</span></a>
-                                <ul aria-expanded="false">
-                                    <li> <a href='./ongoing-investment'>Ongoing-Investment</a> </li>
-                                    <li> <a href='./balance'>Balance</a> </li>
-                                </ul>
-                            </li> 
-                            <li><a href="./profile" aria-expanded="false"><i class="nav-icon dripicons dripicons-user"></i><span class="nav-title">Profile</span></a> </li>
-                           
-                       
-                    
-                        </ul>
-                    </div>
-                    <!-- end sidebar-nav -->
-                </aside>
+            <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-suitcase"></i><span class="nav-title">Ongoing-Investments</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li> <a href="ongoing.html">Ongoing-Investment</a> </li>
+                    <li> <a href="balance.html">Balance</a> </li>
+                </ul>
+            </li> 
+            <style>
+                .collapse {
+display: none;
+}
+.collapse.show {
+display: block;
+}
+
+            </style>
+            <script>
+                document.querySelectorAll('.has-arrow').forEach(function(toggle) {
+                  toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const submenu = this.nextElementSibling;
+              
+                    // Toggle aria-expanded
+                    const expanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', !expanded);
+                    submenu.setAttribute('aria-expanded', !expanded);
+              
+                    // Toggle show/hide class
+                    submenu.classList.toggle('show');
+                  });
+                });
+              </script>
+              
+            <li><a href="profile.html" aria-expanded="false"><i class="fas fa-user"></i><span class="nav-title">Profile</span></a> </li>
+           
+       
+    
+        </ul>
+    </div></div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 50px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div>
+    <!-- end sidebar-nav -->
+</aside>
                 <!-- end app-navbar -->
                 <!-- begin app-main -->
+               
                 <div class="app-main" id="main">
                     <!-- begin container-fluid -->
                     <div class="container-fluid">
@@ -412,7 +450,7 @@
                                         <nav>
                                             <ol class="breadcrumb p-0 m-b-0">
                                                 <li class="breadcrumb-item">
-                                                    <a href="index-2.html"><i class="ti ti-home"></i></a>
+                                                    <a href="dashboard.html"><i class="fas fa-home"></i></a>
                                                 </li>
                                                 <li class="breadcrumb-item">
                                                     Dashboard
@@ -423,19 +461,19 @@
                                     </div>
                                     <div class="ml-auto d-flex align-items-center secondary-menu text-center">
                                         <a href="javascript:void(0);" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Todo list">
-                                            <i class="fe fe-edit btn btn-icon text-primary"></i>
+                                            <i class="fas fa-edit btn btn-icon text-primary"></i>
                                         </a>
                                         <a href="javascript:void(0);" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Projects">
-                                            <i class="fa fa-lightbulb-o btn btn-icon text-success"></i>
+                                            <i class="fas fa-lightbulb-o btn btn-icon text-success"></i>
                                         </a>
                                         <a href="javascript:void(0);" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Task">
-                                            <i class="fa fa-check btn btn-icon text-warning"></i>
+                                            <i class="fas fa-check btn btn-icon text-warning"></i>
                                         </a>
                                         <a href="javascript:void(0);" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Calendar">
-                                            <i class="fa fa-calendar-o btn btn-icon text-cyan"></i>
+                                            <i class="fas fa-calendar-o btn btn-icon text-cyan"></i>
                                         </a>
                                         <a href="javascript:void(0);" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Analytics">
-                                            <i class="fa fa-bar-chart-o btn btn-icon text-danger"></i>
+                                            <i class="fas fa-bar-chart-o btn btn-icon text-danger"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -446,657 +484,741 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="alert border-0 alert-primary bg-gradient m-b-30 alert-dismissible fade show border-radius-none" role="alert">
-                                    <strong>Welcome Back, Anthony Grey!</strong> Happy Stock Trading, feel free to reach out to us for assistance if you need any. 
+                                    <strong>Welcome Back, <span><strong id="username"></strong></span></strong> Happy Stock Trading, feel free to reach out to us for assistance if you need any. 
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <i class="ti ti-close"></i>
+                                        <i class="fas fa-close"></i>
                                     </button>
                                 </div>
                             </div>
                         </div>
+                        
                         <!-- end row -->
 
 
 
-<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-        <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div> -->
-                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                        {
-                        "symbols": [
-                            {
-                            "description": "NVIDIA",
-                            "proName": "NASDAQ:NVDA"
-                            },
-                            {
-                            "description": "TESLA",
-                            "proName": "NASDAQ:TSLA"
-                            },
-                            {
-                            "description": "APPLE",
-                            "proName": "NASDAQ:AAPL"
-                            },
-                            {
-                            "description": "AMD",
-                            "proName": "NASDAQ:AMD"
-                            },
-                            {
-                            "description": "AMAZON",
-                            "proName": "NASDAQ:AMZN"
-                            },
-                            {
-                            "description": "META",
-                            "proName": "NASDAQ:META"
-                            },
-                            {
-                            "description": "MICROSOFT",
-                            "proName": "NASDAQ:MSFT"
-                            },
-                            {
-                            "description": "GOOGLE",
-                            "proName": "NASDAQ:GOOGL"
-                            },
-                            {
-                            "description": "PALANTIR",
-                            "proName": "NYSE:PLTR"
-                            },
-                            {
-                            "description": "COINBASE",
-                            "proName": "NASDAQ:COIN"
-                            },
-                            {
-                            "description": "NETFLIX",
-                            "proName": "NASDAQ:NFLX"
-                            },
-                            {
-                            "description": "SUPER MICRO COMPUTERS",
-                            "proName": "NASDAQ:SMCI"
-                            },
-                            {
-                            "description": "ALPHABET INC.",
-                            "proName": "NASDAQ:GOOG"
-                            },
-                            {
-                            "description": "INTEL CORPORATION ",
-                            "proName": "NASDAQ:INTC"
-                            },
-                            {
-                            "description": "MICROSTRATEGY INCORPORATED ",
-                            "proName": "NASDAQ:MSTR"
-                            },
-                            {
-                            "description": "Marathon Digital Holdings Inc",
-                            "proName": "NASDAQ:MARA"
-                            },
-                            {
-                            "description": "PAYPAL HOLDINGS INC.",
-                            "proName": "NASDAQ:PYPL"
-                            },
-                            {
-                            "description": "GAMESTOP CORPORATION ",
-                            "proName": "NYSE:GME"
-                            },
-                            {
-                            "description": "ALIBABA GROUP HOLDING LIMITED",
-                            "proName": "NYSE:BABA"
-                            },
-                            {
-                            "description": "SNOWFLAKE INC.",
-                            "proName": "NYSE:SNOW"
-                            },
-                            {
-                            "description": "BROADCOM INC.",
-                            "proName": "NASDAQ:AVGO"
-                            },
-                            {
-                            "description": "CROWDSTRIKE HOLDINGS INC.",
-                            "proName": "NASDAQ:CRWD"
-                            }
-                        ],
-                        "showSymbolLogo": true,
-                        "isTransparent": false,
-                        "displayMode": "adaptive",
-                        "colorTheme": "light",
-                        "locale": "en"
-                        }
-                    </script>
-</div>
 
+
+
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" >
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/"
+        rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on
+            TradingView</span></a></div>
+    <script type="text/javascript"
+        src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+            {
+                "symbols": [
+                    {
+                        "proName": "FOREXCOM:SPXUSD",
+                        "title": "S&P 500 Index"
+                    },
+                    {
+                        "proName": "FOREXCOM:NSXUSD",
+                        "title": "US 100 Cash CFD"
+                    },
+                    {
+                        "proName": "FX_IDC:EURUSD",
+                        "title": "EUR to USD"
+                    },
+                    {
+                        "proName": "BITSTAMP:BTCUSD",
+                        "title": "Bitcoin"
+                    },
+                    {
+                        "proName": "BITSTAMP:ETHUSD",
+                        "title": "Ethereum"
+                    }
+                ],
+                    "showSymbolLogo": true,
+                        "isTransparent": false,
+                            "displayMode": "adaptive",
+                                "colorTheme": "light",
+                                    "locale": "en"
+            }
+        </script>
+</div>
 <!-- TradingView Widget END -->
 
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card card-statistics">
-                                    <div class="card-body">
-                                        <div class="owl-wrapper">
-                                            <div class="owl-carousel owl-theme" data-nav-dots="false" data-items="5" data-xl-items="5" data-lg-items="5" data-md-items="5" data-sm-items="3" data-xs-items="2" data-xx-items="2">
-                                               
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:SHOP",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:WMT",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:JPM",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:DIS",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                <!-- TradingView Widget END -->
 
+
+
+
+                        <!-- Owl Carousel CSS -->
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+                        <!-- jQuery -->
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                        <!-- Owl Carousel JS -->
+                        <script
+                            src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
+                        <style>
+                            body {
+                                font-family: 'Segoe UI', sans-serif;
+                                background-color: #f4f6f8;
+                                margin: 0;
+                                padding: 2rem;
+                            }
+
+                            .financial-widget-card {
+                                background: #fff;
+                                margin-bottom: 20px;
+                                max-width: 100%;
+                                overflow: hidden;
+                            }
+
+                            .financial-carousel .item {
+                                padding: 10px;
+                            }
+
+                            .financial-carousel iframe {
+                                width: 100%;
+                                height: 120px;
+                                border: none;
+                                border-radius: 8px;
+                                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+                            }
+
+                            .owl-nav,
+                            .owl-dots {
+                                display: none;
+                                /* Hide navigation for simplicity */
+                            }
+                        </style>
+
+                        <div class="financial-widget-card" style="margin-bottom: 20px;">
+
+                            <!-- TradingView Widget Carousel BEGIN -->
+<div class="stock-carousel-container">
+    <div class="stock-carousel">
+      <!-- Stock 1 -->
+      <div class="stock-item">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+              <span class="blue-text">Track EUR/USD</span>
+            </a>
+          </div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+          "symbol": "FX:EURUSD",
+          "width": 350,
+          "isTransparent": false,
+          "colorTheme": "light",
+          "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <!-- Stock 2 -->
+      <div class="stock-item">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+              <span class="blue-text">Track AAPL</span>
+            </a>
+          </div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+          "symbol": "NASDAQ:AAPL",
+          "width": 350,
+          "isTransparent": false,
+          "colorTheme": "light",
+          "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <!-- Stock 3 -->
+      <div class="stock-item">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+              <span class="blue-text">Track TSLA</span>
+            </a>
+          </div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+          "symbol": "NASDAQ:TSLA",
+          "width": 350,
+          "isTransparent": false,
+          "colorTheme": "light",
+          "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <!-- Stock 4 -->
+      <div class="stock-item">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+              <span class="blue-text">Track GOOGL</span>
+            </a>
+          </div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+          "symbol": "NASDAQ:GOOGL",
+          "width": 350,
+          "isTransparent": false,
+          "colorTheme": "light",
+          "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <!-- Stock 5 -->
+      <div class="stock-item">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+              <span class="blue-text">Track MSFT</span>
+            </a>
+          </div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+          "symbol": "NASDAQ:MSFT",
+          "width": 350,
+          "isTransparent": false,
+          "colorTheme": "light",
+          "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <!-- Stock 6 -->
+      <div class="stock-item">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+              <span class="blue-text">Track AMZN</span>
+            </a>
+          </div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+          "symbol": "NASDAQ:AMZN",
+          "width": 350,
+          "isTransparent": false,
+          "colorTheme": "light",
+          "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+      <!-- Stock 7 -->
+      <div class="stock-item">
+        <div class="tradingview-widget-container">
+          <div class="tradingview-widget-container__widget"></div>
+          <div class="tradingview-widget-copyright">
+            <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+              <span class="blue-text">Track FB</span>
+            </a>
+          </div>
+          <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
+          {
+          "symbol": "NASDAQ:FB",
+          "width": 350,
+          "isTransparent": false,
+          "colorTheme": "light",
+          "locale": "en"
+          }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- TradingView Widget Carousel END -->
+  
+  <!-- Add this for carousel scrolling -->
+  <style>
+    .stock-carousel-container {
+      width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 0;
+    }
+  
+    .stock-carousel {
+      display: inline-flex;
+      gap: 20px;
+    }
+  
+    .stock-item {
+      display: inline-block;
+      width: 350px;
+      margin-right: 10px;
+    }
+  
+    /* Optional - Add some styling for a nicer scroll effect */
+    .stock-carousel-container::-webkit-scrollbar {
+      height: 8px;
+    }
+  
+    .stock-carousel-container::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+  
+    .stock-carousel-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+  
+  <!-- Add JS for automatic scrolling -->
+  <script>
+    const carousel = document.querySelector('.stock-carousel');
+    setInterval(function() {
+      carousel.scrollBy({
+        left: 370, // Change the number based on the width of your items
+        behavior: 'smooth'
+      });
+    }, 3000); // Scroll every 3 seconds
+  </script>
+  
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card card-statistics">
+                                        <div class="ro no-gutters">
+                                            <div class="tradingview-widget-container">
+                                                <div class="tradingview-widget-container__widget"></div>
+                                                <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div> -->
+                                                <script type="text/javascript"
+                                                    src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js"
+                                                    async>
+                                                        {
+                                                            "colorTheme": "light",
+                                                                "dateRange": "12M",
+                                                                    "exchange": "US",
+                                                                        "showChart": true,
+                                                                            "locale": "en",
+                                                                                "largeChartUrl": "",
+                                                                                    "isTransparent": false,
+                                                                                        "showSymbolLogo": false,
+                                                                                            "showFloatingTooltip": false,
+                                                                                                "height": "550",
+                                                                                                    "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+                                                                                                        "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                                                                                                            "gridLineColor": "rgba(42, 46, 57, 0)",
+                                                                                                                "scaleFontColor": "rgba(209, 212, 220, 1)",
+                                                                                                                    "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                                                                                                                        "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+                                                                                                                            "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                                                                                                                                "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                                                                                                                                    "symbolActiveColor": "rgba(41, 98, 255, 0.12)"
+                                                        }
+                                                    </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+    
+                            <!-- begin row -->
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card card-statistics">
+                                        <div class="row no-gutters">
+                                            <div class="col-xxl-9 col-lg-6">
                                                 <!-- TradingView Widget BEGIN -->
                                                 <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:XOM",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
+                                                    <div class="tradingview-widget-container__widget"></div>
+                                                    <script type="text/javascript"
+                                                        src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js"
+                                                        async>
+                                                            {
+                                                                "exchanges": [],
+                                                                    "dataSource": "SPX500",
+                                                                        "grouping": "sector",
+                                                                            "blockSize": "market_cap_basic",
+                                                                                "blockColor": "change",
+                                                                                    "locale": "en",
+                                                                                        "symbolUrl": "",
+                                                                                            "colorTheme": "light",
+                                                                                                "hasTopBar": false,
+                                                                                                    "isDataSetEnabled": false,
+                                                                                                        "isZoomEnabled": true,
+                                                                                                            "hasSymbolTooltip": true,
+                                                                                                                "isMonoSize": false,
+                                                                                                                    "width": "100%",
+                                                                                                                        "height": "100%"
+                                                            }
+                                                        </script>
                                                 </div>
-                                                
+                                                <!-- TradingView Widget END -->
+                                            </div>
+    
+    
+    
+                                            <div class="col-xxl-3 col-lg-6">
+    
+                                                <!-- TradingView Widget BEGIN -->
                                                 <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:AMC",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
+                                                    <div class="tradingview-widget-container__widget"></div>
+                                                    <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div> -->
+                                                    <script type="text/javascript"
+                                                        src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js"
+                                                        async>
+                                                            {
+                                                                "symbols": [
+                                                                    [
+                                                                        "Google",
+                                                                        "GOOGL|1D"
+                                                                    ],
+                                                                    [
+                                                                        "Microsoft",
+                                                                        "MSFT|1D"
+                                                                    ],
+                                                                    [
+                                                                        "Apple",
+                                                                        "AAPL|1D"
+                                                                    ]
+                                                                ],
+                                                                    "chartOnly": false,
+                                                                        "width": "100%",
+                                                                            "locale": "en",
+                                                                                "colorTheme": "light",
+                                                                                    "autosize": true,
+                                                                                        "showVolume": false,
+                                                                                            "showMA": false,
+                                                                                                "hideDateRanges": false,
+                                                                                                    "hideMarketStatus": false,
+                                                                                                        "hideSymbolLogo": false,
+                                                                                                            "scalePosition": "right",
+                                                                                                                "scaleMode": "Normal",
+                                                                                                                    "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
+                                                                                                                        "fontSize": "10",
+                                                                                                                            "noTimeScale": false,
+                                                                                                                                "valuesTracking": "1",
+                                                                                                                                    "changeMode": "price-and-percent",
+                                                                                                                                        "chartType": "area",
+                                                                                                                                            "maLineColor": "#2962FF",
+                                                                                                                                                "maLineWidth": 1,
+                                                                                                                                                    "maLength": 9,
+                                                                                                                                                        "headerFontSize": "medium",
+                                                                                                                                                            "lineWidth": 2,
+                                                                                                                                                                "lineType": 0,
+                                                                                                                                                                    "dateRanges": [
+                                                                                                                                                                        "1d|1",
+                                                                                                                                                                        "1m|30",
+                                                                                                                                                                        "3m|60",
+                                                                                                                                                                        "12m|1D",
+                                                                                                                                                                        "60m|1W",
+                                                                                                                                                                        "all|1M"
+                                                                                                                                                                    ]
+                                                            }
+                                                        </script>
                                                 </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NASDAQ:ABNB",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:KO",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:T",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                               
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:BA",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NASDAQ:SBUX",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div> 
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:DELL",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
-                                                
-                                                <div class="tradingview-widget-container">
-                                                <div class="tradingview-widget-container__widget"></div>
-                                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                                                {
-                                                "symbol": "NYSE:NKE",
-                                                "width": "350",
-                                                "isTransparent": false,
-                                                "colorTheme": "light",
-                                                "locale": "en"
-                                                }
-                                                </script>
-                                                </div>
- 
+                                                <!-- TradingView Widget END -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+    
+    
+    
 
-                        <!-- begin row -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card card-statistics">
-                                    <div class="ro no-gutters">
-                                        <div class="tradingview-widget-container">
-                                            <div class="tradingview-widget-container__widget"></div>
-                                            <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div> -->
-                                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-hotlists.js" async>
-                                            {
-                                            "colorTheme": "light",
-                                            "dateRange": "12M",
-                                            "exchange": "US",
-                                            "showChart": true,
-                                            "locale": "en",
-                                            "largeChartUrl": "",
-                                            "isTransparent": false,
-                                            "showSymbolLogo": false,
-                                            "showFloatingTooltip": false,
-                                            "height": "550",
-                                            "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
-                                            "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-                                            "gridLineColor": "rgba(42, 46, 57, 0)",
-                                            "scaleFontColor": "rgba(209, 212, 220, 1)",
-                                            "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-                                            "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-                                            "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-                                            "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-                                            "symbolActiveColor": "rgba(41, 98, 255, 0.12)"
-                                            }
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    <!-- begin row -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card card-statistics">
-                                    <div class="row no-gutters">
-                                        <div class="col-xxl-9 col-lg-6">
-                                            <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-stock-heatmap.js" async>
-  {
-  "exchanges": [],
-  "dataSource": "SPX500",
-  "grouping": "sector",
-  "blockSize": "market_cap_basic",
-  "blockColor": "change",
-  "locale": "en",
-  "symbolUrl": "",
-  "colorTheme": "light",
-  "hasTopBar": false,
-  "isDataSetEnabled": false,
-  "isZoomEnabled": true,
-  "hasSymbolTooltip": true,
-  "isMonoSize": false,
-  "width": "100%",
-  "height": "100%"
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-                                        </div>
-       
-                                        
-
-                                        <div class="col-xxl-3 col-lg-6">
-
-                                        <!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <!-- <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div> -->
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
-  {
-  "symbols": [ 
-    [
-      "Google",
-      "GOOGL|1D"
-    ],
-    [
-      "Microsoft",
-      "MSFT|1D"
-    ],
-    [
-      "Apple",
-      "AAPL|1D"
-    ]
-  ],
-  "chartOnly": false,
-  "width": "100%",
-  "locale": "en",
-  "colorTheme": "light",
-  "autosize": true,
-  "showVolume": false,
-  "showMA": false,
-  "hideDateRanges": false,
-  "hideMarketStatus": false,
-  "hideSymbolLogo": false,
-  "scalePosition": "right",
-  "scaleMode": "Normal",
-  "fontFamily": "-apple-system, BlinkMacSystemFont, Trebuchet MS, Roboto, Ubuntu, sans-serif",
-  "fontSize": "10",
-  "noTimeScale": false,
-  "valuesTracking": "1",
-  "changeMode": "price-and-percent",
-  "chartType": "area",
-  "maLineColor": "#2962FF",
-  "maLineWidth": 1,
-  "maLength": 9,
-  "headerFontSize": "medium",
-  "lineWidth": 2,
-  "lineType": 0,
-  "dateRanges": [
-    "1d|1",
-    "1m|30",
-    "3m|60",
-    "12m|1D",
-    "60m|1W",
-    "all|1M"
-  ]
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="row">
-                            <div class="col-xxl-7 m-b-30">
-                                <div class="card card-statistics h-100 mb-0 apexchart-tool-force-top">
-                                    <div class="card-header d-flex justify-content-between">
-                                        <div class="card-heading">
-                                            <h4 class="card-title">Site activity</h4>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-6 col-xs-6 col-lg-3">
-                                                <div class="row mb-2 pb-3 align-items-end">
-                                                    <div class="col">
-                                                        <p>Users</p>
-                                                        <h3 class="tex-dark mb-0">8.6K</h3>
-                                                    </div>
-                                                    <div class="col ml-auto">
-                                                        <span><i class="fa fa-arrow-down"></i> 2.5%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xs-6 col-lg-3">
-                                                <div class="row mb-2 pb-3 align-items-end">
-                                                    <div class="col">
-                                                        <p>Revenue</p>
-                                                        <h3 class="tex-dark mb-0">176K</h3>
-                                                    </div>
-                                                    <div class="col ml-auto">
-                                                        <span><i class="fa fa-arrow-up"></i> 15%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xs-6 col-lg-3">
-                                                <div class="row mb-2 pb-3 align-items-end">
-                                                    <div class="col">
-                                                        <p>Rate</p>
-                                                        <h3 class="tex-dark mb-0">6.2K</h3>
-                                                    </div>
-                                                    <div class="col ml-auto">
-                                                        <span><i class="fa fa-arrow-down"></i> 6.5%</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-6 col-xs-6 col-lg-3">
-                                                <div class="row mb-2 pb-3 align-items-end">
-                                                    <div class="col">
-                                                        <p>Sessions</p>
-                                                        <h3 class="tex-dark mb-0">44K</h3>
-                                                    </div>
-                                                    <div class="col ml-auto">
-                                                        <span><i class="fa fa-arrow-down"></i> 1.8%</span>
-                                                    </div>
-                                                </div>
+                            <div class="row">
+                                <div class="col-xxl-7 m-b-30">
+                                    <div class="card card-statistics h-100 mb-0 apexchart-tool-force-top">
+                                        <div class="card-header d-flex justify-content-between">
+                                            <div class="card-heading">
+                                                <h4 class="card-title">Site activity</h4>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-12 px-0">
-                                                <div class="apexchart-wrapper p-inherit">
-                                                    <div id="analytics1"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xxl-5 m-b-30">
-                                <div class="card card-statistics h-100 mb-0">
-                                    <div class="card-header d-flex justify-content-between">
-                                        <div class="card-heading">
-                                            <h4 class="card-title">Income Analysis</h4>
-                                        </div>
-                                        <div class="dropdown">
-                                            <a class="p-2" href="#!" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fe fe-circle"></i>
-                                            </a>
-                                            <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
-                                                <h6 class="mb-1">Action</h6>
-                                                <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-o pr-2"></i>View reports</a>
-                                                <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-edit pr-2"></i>Edit reports</a>
-                                                <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-bar-chart-o pr-2"></i>Statistics</a>
-                                                <h6 class="mb-1 mt-3">Export</h6>
-                                                <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-pdf-o pr-2"></i>Export to PDF</a>
-                                                <a class="dropdown-item" href="#!"><i class="fa-fw fa fa-file-excel-o pr-2"></i>Export to CSV</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-xs-6">
-                                                <h2>3.8k</h2>
-                                                <span class="d-block mb-2 font-16">AVG sessions</span>
-                                                <span class="d-block mb-2 mb-sm-5"><b class="text-primary">-65.88%</b> vs last 1 months</span>
-                                                <p class="mb-3">Sapiente corporis fugiat, doloremque eveniet nostrum id molestiae quaerat!</p>
-                                                <a class="btn btn-round btn-inverse-primary mb-3 mb-sm-0" href="#"><b>View details </b></a>
-                                            </div>
-                                            <div class="col-xs-6">
-                                                <div class="apexchart-wrapper">
-                                                    <div id="analytics2" class="chart-fit"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="border-top my-4"></div>
-                                        <h4 class="card-title">Income by department</h4>
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <span>FCBK: <b>$1,475</b></span>
-                                                <div class="progress my-3" style="height: 4px;">
-                                                    <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <span>GGL: <b>$23,475</b></span>
-                                                <div class="progress my-3" style="height: 4px;">
-                                                    <div class="progress-bar bg-success" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <span>APL: <b>$1,658</b></span>
-                                                <div class="progress my-3" style="height: 4px;">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <span>SMG: <b>$12,489</b></span>
-                                                <div class="progress my-3" style="height: 4px;">
-                                                    <div class="progress-bar bg-info" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-xxl-8 m-b-30">
-                                <div class="card card-statistics mb-0 h-100">
-                                    <div class="card-header">
-                                        <h4 class="card-title">Our Investment Trend</h4>
-                                    </div>
-                                    <div class="card-body pt-0">
-                                        <div class="apexchart-wrapper">
-                                            <div id="stockmarketdemo8" class="chart-fit"></div>
-                                        </div>
-                                        <div class="apexchart-wrapper">
-                                            <div id="stockmarketdemo8bottom" class="chart-fit"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            <div class="col-xxl-4 m-b-30">
-                                <div class="card card-statistics h-100 mb-0">
-                                    <div class="card-header d-flex justify-content-between">
-                                        <div class="card-heading">
-                                            <h4 class="card-title">Investments</h4>
-                                        </div>
-                                        <div class="dropdown">
-                                            <select class="custom-select custom-select-sm" id="inputGroupSelect01">
-                                                <option selected>Last 24hr</option>
-                                                <option value="1">Last week</option>
-                                                <option value="2">Last 6 month</option>
-                                                <option value="3">Last year</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="border-bottom pb-2 pb-xxs-4">
+                                        <div class="card-body">
                                             <div class="row">
-                                                <div class="col-xxs-6 mb-3 mb-xxs-0">
-                                                    <span class="font-17">Total revenue</span>
-                                                    <h3 class="mt-1 mb-1">$45,541</h3>
-                                                    <span class="d-block"> <i class="fa fa-arrow-up text-primary"></i> <b class="text-primary">+23%</b> Vs last months </span>
+                                                <div class="col-6 col-xs-6 col-lg-3">
+                                                    <div class="row mb-2 pb-3 align-items-end">
+                                                        <div class="col">
+                                                            <p>Users</p>
+                                                            <h3 class="tex-dark mb-0">8.6K</h3>
+                                                        </div>
+                                                        <div class="col ml-auto">
+                                                            <span><i class="fa fa-arrow-down"></i> 2.5%</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-xxs-6 mb-3 mb-xxs-0">
-                                                    <span class="font-17">Total cost</span>
-                                                    <h3 class="mt-1 mb-1">$6,456</h3>
-                                                    <span class="d-block"> <i class="fa fa-arrow-down text-cyan"></i> <b class="text-cyan">+65%</b> Vs last months </span>
+                                                <div class="col-6 col-xs-6 col-lg-3">
+                                                    <div class="row mb-2 pb-3 align-items-end">
+                                                        <div class="col">
+                                                            <p>Revenue</p>
+                                                            <h3 class="tex-dark mb-0">176K</h3>
+                                                        </div>
+                                                        <div class="col ml-auto">
+                                                            <span><i class="fa fa-arrow-up"></i> 15%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-xs-6 col-lg-3">
+                                                    <div class="row mb-2 pb-3 align-items-end">
+                                                        <div class="col">
+                                                            <p>Rate</p>
+                                                            <h3 class="tex-dark mb-0">6.2K</h3>
+                                                        </div>
+                                                        <div class="col ml-auto">
+                                                            <span><i class="fa fa-arrow-down"></i> 6.5%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-6 col-xs-6 col-lg-3">
+                                                    <div class="row mb-2 pb-3 align-items-end">
+                                                        <div class="col">
+                                                            <p>Sessions</p>
+                                                            <h3 class="tex-dark mb-0">44K</h3>
+                                                        </div>
+                                                        <div class="col ml-auto">
+                                                            <span><i class="fa fa-arrow-down"></i> 1.8%</span>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xxs-6 pt-2 pt-xxs-4">
-                                                <div class="d-flex justify-content-between">
-                                                    <span class="font-16"><b>86</b> Deals added</span>
-                                                    <span class="font-16"><b>65%</b> of goal</span>
-                                                </div>
-                                                <div class="progress my-3" style="height: 6px;">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="row">
+                                                <div class="col-12 px-0">
+                                                    <div class="apexchart-wrapper p-inherit">
+                                                        <div id="analytics1"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="col-xxs-6 pt-2 pt-xxs-4">
-                                                <div class="d-flex justify-content-between">
-                                                    <span class="font-16"><b>78</b> Project closed</span>
-                                                    <span class="font-16"><b>45%</b> of goal</span>
-                                                </div>
-                                                <div class="progress my-3" style="height: 6px;">
-                                                    <div class="progress-bar bg-cyan" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="apexchart-wrapper">
-                                            <div id="analytics3" class="chart-fit"></div>
                                         </div>
                                     </div>
                                 </div>
+                                <script>
+                                    var options = {
+                                      series: [{
+                                        name: 'Users',
+                                        data: [450, 560, 610, 780, 740, 850, 900]
+                                      }, {
+                                        name: 'Sessions',
+                                        data: [320, 420, 520, 600, 630, 700, 780]
+                                      }],
+                                      chart: {
+                                        height: 300,
+                                        type: 'area',
+                                        toolbar: {
+                                          show: false
+                                        }
+                                      },
+                                      colors: ['#3f51b5', '#e91e63'],
+                                      dataLabels: {
+                                        enabled: false
+                                      },
+                                      stroke: {
+                                        curve: 'smooth'
+                                      },
+                                      xaxis: {
+                                        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                                      },
+                                      legend: {
+                                        position: 'top'
+                                      },
+                                      fill: {
+                                        type: 'gradient',
+                                        gradient: {
+                                          shadeIntensity: 1,
+                                          opacityFrom: 0.4,
+                                          opacityTo: 0.1
+                                        }
+                                      }
+                                    };
+                                    
+                                    var chart = new ApexCharts(document.querySelector("#analytics1"), options);
+                                    chart.render();
+                                    </script>
+                           
+                           <div class="col-xxl-5 m-b-30">
+                            <div class="card card-statistics h-100 mb-0">
+                              <div class="card-header d-flex justify-content-between">
+                                <div class="card-heading">
+                                  <h4 class="card-title">Income Analysis</h4>
+                                </div>
+                                <div class="dropdown">
+                                  <a class="p-2" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fe fe-circle"></i>
+                                  </a>
+                                  <div class="dropdown-menu custom-dropdown dropdown-menu-right p-4">
+                                    <h6 class="mb-1">Action</h6>
+                                    <a class="dropdown-item" href="#"><i class="fa-fw fa fa-file-o pr-2"></i>View reports</a>
+                                    <a class="dropdown-item" href="#"><i class="fa-fw fa fa-edit pr-2"></i>Edit reports</a>
+                                    <a class="dropdown-item" href="#"><i class="fa-fw fa fa-bar-chart-o pr-2"></i>Statistics</a>
+                                    <h6 class="mb-1 mt-3">Export</h6>
+                                    <a class="dropdown-item" href="#"><i class="fa-fw fa fa-file-pdf-o pr-2"></i>Export to PDF</a>
+                                    <a class="dropdown-item" href="#"><i class="fa-fw fa fa-file-excel-o pr-2"></i>Export to CSV</a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-xs-6">
+                                    <h2>3.8k</h2>
+                                    <span class="d-block mb-2 font-16">AVG sessions</span>
+                                    <span class="d-block mb-2 mb-sm-5"><b class="text-primary">-65.88%</b> vs last 1 months</span>
+                                    <p class="mb-3">Sapiente corporis fugiat, doloremque eveniet nostrum id molestiae quaerat!</p>
+                                    <a class="btn btn-round btn-inverse-primary mb-3 mb-sm-0" href="#"><b>View details </b></a>
+                                  </div>
+                                  <div class="col-xs-6">
+                                    <div class="apexchart-wrapper">
+                                      <div id="analytics2" class="chart-fit"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="border-top my-4"></div>
+                                <h4 class="card-title">Income by department</h4>
+                                <div class="row">
+                                  <div class="col-12 col-md-3">
+                                    <span>FCBK: <b>$1,475</b></span>
+                                    <div class="progress my-3" style="height: 4px;">
+                                      <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-3">
+                                    <span>GGL: <b>$23,475</b></span>
+                                    <div class="progress my-3" style="height: 4px;">
+                                      <div class="progress-bar bg-success" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-3">
+                                    <span>APL: <b>$1,658</b></span>
+                                    <div class="progress my-3" style="height: 4px;">
+                                      <div class="progress-bar bg-danger" role="progressbar" style="width: 78%;" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+                                  <div class="col-12 col-md-3">
+                                    <span>SMG: <b>$12,489</b></span>
+                                    <div class="progress my-3" style="height: 4px;">
+                                      <div class="progress-bar bg-info" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-
-                        </div>
+                          </div>
+                            </div>
+                          <div class="row">
+                            <div class="col-xxl-8 m-b-30">
+                              <div class="card card-statistics mb-0 h-100">
+                                <div class="card-header">
+                                  <h4 class="card-title">Our Investment Trend</h4>
+                                </div>
+                                <div class="card-body pt-0">
+                                  <div class="apexchart-wrapper">
+                                    <div id="stockmarketdemo8" class="chart-fit"></div>
+                                  </div>
+                                  <div class="apexchart-wrapper">
+                                    <div id="stockmarketdemo8bottom" class="chart-fit"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          
+                            <div class="col-xxl-4 m-b-30">
+                              <div class="card card-statistics h-100 mb-0">
+                                <div class="card-header d-flex justify-content-between">
+                                  <div class="card-heading">
+                                    <h4 class="card-title">Investments</h4>
+                                  </div>
+                                  <div class="dropdown">
+                                    <select class="custom-select custom-select-sm" id="inputGroupSelect01">
+                                      <option selected>Last 24hr</option>
+                                      <option value="1">Last week</option>
+                                      <option value="2">Last 6 month</option>
+                                      <option value="3">Last year</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="card-body">
+                                  <div class="border-bottom pb-2 pb-xxs-4">
+                                    <div class="row">
+                                      <div class="col-xxs-6 mb-3 mb-xxs-0">
+                                        <span class="font-17">Total revenue</span>
+                                        <h3 class="mt-1 mb-1">$45,541</h3>
+                                        <span class="d-block"> <i class="fa fa-arrow-up text-primary"></i> <b class="text-primary">+23%</b> Vs last months </span>
+                                      </div>
+                                      <div class="col-xxs-6 mb-3 mb-xxs-0">
+                                        <span class="font-17">Total cost</span>
+                                        <h3 class="mt-1 mb-1">$6,456</h3>
+                                        <span class="d-block"> <i class="fa fa-arrow-down text-cyan"></i> <b class="text-cyan">+65%</b> Vs last months </span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-xxs-6 pt-2 pt-xxs-4">
+                                      <div class="d-flex justify-content-between">
+                                        <span class="font-16"><b>86</b> Deals added</span>
+                                        <span class="font-16"><b>65%</b> of goal</span>
+                                      </div>
+                                      <div class="progress my-3" style="height: 6px;">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-xxs-6 pt-2 pt-xxs-4">
+                                      <div class="d-flex justify-content-between">
+                                        <span class="font-16"><b>78</b> Project closed</span>
+                                        <span class="font-16"><b>45%</b> of goal</span>
+                                      </div>
+                                      <div class="progress my-3" style="height: 6px;">
+                                        <div class="progress-bar bg-cyan" role="progressbar" style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="apexchart-wrapper">
+                                    <div id="analytics3" class="chart-fit"></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <!-- Chart Scripts -->
+                          <script>
+                            // Income Analysis Bar Chart
+                            new ApexCharts(document.querySelector("#analytics2"), {
+                              chart: { type: 'bar', height: 180 },
+                              series: [{ name: 'Sessions', data: [300, 400, 300, 500, 490, 600, 700] }],
+                              xaxis: { categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] },
+                              colors: ['#556ee6']
+                            }).render();
+                          
+                            // Investment Trend Line Chart
+                            new ApexCharts(document.querySelector("#stockmarketdemo8"), {
+                              chart: { type: 'line', height: 200 },
+                              series: [{ name: 'Investment', data: [10, 41, 35, 51, 49, 62, 69] }],
+                              xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'] },
+                              colors: ['#34c38f']
+                            }).render();
+                          
+                            // Investment Trend Area Chart
+                            new ApexCharts(document.querySelector("#stockmarketdemo8bottom"), {
+                              chart: { type: 'area', height: 200 },
+                              series: [{ name: 'Growth', data: [20, 35, 50, 30, 60, 70, 90] }],
+                              xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'] },
+                              colors: ['#f46a6a']
+                            }).render();
+                          
+                            // Investments Radial Chart
+                            new ApexCharts(document.querySelector("#analytics3"), {
+                              chart: { type: 'radialBar', height: 280 },
+                              series: [65, 45],
+                              labels: ['Deals Added', 'Projects Closed'],
+                              colors: ['#556ee6', '#34c38f']
+                            }).render();
+                          </script>
+                        
                         <div class="row">
                         <div class="col-xxl-8 m-b-30">
                                 <div class="card card-statistics h-100 mb-0">
@@ -1171,6 +1293,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            
                             <div class="col-xxl-4 m-b-30">
                                 <div class="card card-statistics h-100 mb-0 o-hidden">
                                     <div class="card-header">
@@ -1192,7 +1316,7 @@
                                             </div>
                                         </div>
                                         <div class="mt-2 mt-xxs-4">
-                                            <p>Projections <span class="badge  badge-success-inverse">+23% today</span></p>
+                                            <p>Projections <span class="badge badge-success-inverse">+23% today</span></p>
                                         </div>
                                     </div>
                                     <div class="mt-3">
@@ -1203,7 +1327,7 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link py-2" id="profile-02-tab" data-toggle="tab" href="#profile-02" role="tab" aria-controls="profile-02" aria-selected="false">Last week </a>
-                                                </li> 
+                                                </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link py-2" id="portfolio-02-tab" data-toggle="tab" href="#portfolio-02" role="tab" aria-controls="portfolio-02" aria-selected="false">Last month </a>
                                                 </li>
@@ -1229,8 +1353,65 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
+
+                            <script>
+                                // Chart for "Last 24hr"
+                                var options4 = {
+                                    chart: {
+                                        type: 'line', // Or choose the appropriate chart type
+                                        height: 350
+                                    },
+                                    series: [{
+                                        name: 'Data Series 1',
+                                        data: [10, 20, 15, 30, 40, 35, 50]
+                                    }],
+                                    xaxis: {
+                                        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                                    }
+                                };
+                            
+                                var chart4 = new ApexCharts(document.querySelector("#analytics4"), options4);
+                                chart4.render();
+                            
+                                // Chart for "Last week"
+                                var options5 = {
+                                    chart: {
+                                        type: 'bar', // Example bar chart
+                                        height: 350
+                                    },
+                                    series: [{
+                                        name: 'Revenue',
+                                        data: [400, 500, 300, 700, 600, 800, 950]
+                                    }],
+                                    xaxis: {
+                                        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                                    }
+                                };
+                            
+                                var chart5 = new ApexCharts(document.querySelector("#analytics5"), options5);
+                                chart5.render();
+                            
+                                // Chart for "Last month"
+                                var options6 = {
+                                    chart: {
+                                        type: 'area', // Example area chart
+                                        height: 350
+                                    },
+                                    series: [{
+                                        name: 'Total Sales',
+                                        data: [1500, 1200, 1800, 2000, 2500, 2200, 2700, 3000, 3200, 2900, 2800, 3500]
+                                    }],
+                                    xaxis: {
+                                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                                    }
+                                };
+                            
+                                var chart6 = new ApexCharts(document.querySelector("#analytics6"), options6);
+                                chart6.render();
+                            </script>
+
+
+                        <!-- <div class="row">
                             <div class="col-lg-12">
                                 <div class="card card-statistics">
                                     <div class="card-header">
@@ -1262,7 +1443,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- end row -->
                         <!-- event Modal -->
                         <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="verticalCenterTitle" aria-hidden="true">
@@ -1341,7 +1522,8 @@ window.smartsupp||(function(d) {
 <script src="assets/js/vendors.js"></script>
 
 <!-- custom app -->
-<script src="assets/js/app.js"></script>
+<script src="./test_files/app.js.download"></script>
+
 
 <!-- SweetAlert app -->
 <script src="js/lib/sweetalert/sweetalert.min.js"></script>

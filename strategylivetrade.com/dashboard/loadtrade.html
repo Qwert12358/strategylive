@@ -1439,7 +1439,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                                 <li class="breadcrumb-item">
                                                     Dashboard
                                                 </li>
-                                                <li class="breadcrumb-item active text-primary" aria-current="page">Default</li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Load Trade</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -1590,7 +1590,8 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                               <label for="tradeHash">Trade Hash:</label>
                               <input type="text" id="tradeHash" placeholder="Enter trade hash to load" required>
                           
-                              <button onclick="loadTrade()" class="btn btn-primary form-control" id="confirmPayment">Load Trade</button>
+                              <button onclick="loadTrade()" class="btn btn-primary form-control" >Load Trade</button>
+                              <button id="confirmPayment" class="btn btn-primary form-control" style="display: none;" >Copy Trade</button>
                             </div>
                           
 
@@ -1600,7 +1601,14 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
             </div>
             </div>
             </div>
-
+            <style>
+              .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            margin: 0 5px;
+            color: #6c757d;
+          }
+          
+          </style>
             <script>
                  $(document).ready(async function () {
 
@@ -1846,6 +1854,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
 
       // Show the result
       document.getElementById('result').textContent = resultText;
+      $("#confirmPayment").show()
     }
   </script>
 

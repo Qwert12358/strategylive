@@ -1576,7 +1576,14 @@ $("#cl").text(user.firstName + " " + user.lastName)
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
-
+    <style>
+      .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+    margin: 0 5px;
+    color: #6c757d;
+  }
+  
+  </style>
 <!-- plugins -->
 <script src="./ongoing_files/vendors.js.download"></script>
 <!-- custom app -->
