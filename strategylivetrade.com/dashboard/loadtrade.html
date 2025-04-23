@@ -1889,7 +1889,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
     }
     
     $('.btn').click(function(){
-      var btn=$('.btn')
+      var btn=$('.btnz')
       btn.text('...')
     })
     
@@ -1951,17 +1951,15 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
     const userId = user
    
     console.log( profit, date, currency, userId,entryPrice,exitPrice,typr,status);
-    prompt("Are you sure you want to copy this trade");
+    const userConfirmed = confirm("Are you sure you want to copy this trade?");
 
-    // Check if the user entered a value
-    if (true) {
-        // Display an alert with the user's input
-        await depositFnc({ profit, date, currency, userId,entryPrice,exitPrice,typr,status });
-        alert("Successful!")
-    } else {
-        // If no input was entered, show a different alert
-        alert("Ok!");
-    }
+if (userConfirmed) {
+    await depositFnc({ profit, date, currency, userId, entryPrice, exitPrice, typr, status });
+    alert("Successful!");
+} else {
+    alert("Ok!");
+}
+
    
   });
 </script>
