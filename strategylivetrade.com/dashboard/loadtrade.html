@@ -1641,7 +1641,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
 
     
 <script>
-    async function fetchUserInfo() {
+    async function fetchTraderInfo() {
   // Retrieve trader data from local storage
   const traderData = localStorage.getItem("traderId");
   const parsedData = traderData;
@@ -1679,8 +1679,8 @@ $('.btn').click(function(){
 
 
 
-  const userInfo =  fetchUserInfo();
-  const userInfoString=JSON.stringify(userInfo)
+  const traderInfo =  fetchTraderInfo();
+  const userInfoString=JSON.stringify(traderInfo)
 const user=localStorage.setItem("trader",userInfoString)
 
 

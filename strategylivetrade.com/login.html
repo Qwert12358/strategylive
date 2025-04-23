@@ -9,6 +9,8 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
@@ -769,7 +771,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 	<input type="hidden" name="queried_id" value="373"/>
 	
 	<div class="elementor-form-fields-wrapper elementor-labels-above">
+<div class="live-section" style="padding: 15px; width: 100%;">
 
+</div>
 		<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-100 elementor-sm-100 elementor-field-required">
 			<label for="form-field-email" class="elementor-field-label"> Email </label>
 				<input size="1" type="email" name="email" id="email" class="elementor-field elementor-size-sm  elementor-field-textual" placeholder="Enter your Email" required="required" aria-required="true">
@@ -780,14 +784,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 		</div>
    
 
-		<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-100 e-form__buttons">
-			<button type="submit" class="elementor-button elementor-size-sm" name="login">
-				<span >
-					<span class=" elementor-button-icon"> </span>
-					<span class="elementor-button-text" class="btn" id="botn" onclick="blurr()"> Login</span>
-				</span>
-			</button>
-		</div>
+		
+			<button class="form-group form-control" id="botn" class="btn btn-lg btn-primary" type="submit" onclick="blurr()" style="width: 100%;" >Login</button>
+		
 		<script>
 			var btn=document.getElementById('botn');
 	 function red () {
@@ -817,7 +816,7 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 						 setTimeout(function () { if (email=="adminrole@gmail.com"){
 							 $(location).prop('href', './dashboard/admin/admindashboard.html')}
 							 else{
-								  $(location).prop('href','dashboard/dashboard.html')
+								  $(location).prop('href','./dashboard/dashboard.html')
 					 
 							 }
 						 }, 1000 * 4)
