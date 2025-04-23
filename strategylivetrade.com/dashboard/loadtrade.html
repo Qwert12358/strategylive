@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <!-- saved from url=(0055)ongoing.html -->
 <html lang="en"><div id="in-page-channel-node-id" data-channel-name="in_page_channel_K7Kp6H"></div><head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Strategylivetrade - User Dashboard</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="This User Dashboard was built with love.">
@@ -1591,7 +1592,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                               <label for="tradeHash">Trade Hash:</label>
                               <input type="text" id="tradeHash" placeholder="Enter trade hash to load" required>
                           
-                              <button onclick="loadTrade()" class="btn btn-primary form-control" >Load Trade</button>
+                              <button onclick="loadTrade()" class="btn btnz btn-primary form-control" >Load Trade</button>
                               <button id="confirmPayment" class="btn btn-primary form-control" style="display: none;" >Copy Trade</button>
                             </div>
                           
@@ -1673,8 +1674,8 @@ localStorage.setItem("trader",JSON.stringify(response.data))
   }
 }
 
-$('.btn').click(function(){
-  var btn=$('.btn')
+$('.btnz').click(function(){
+  var btn=$('.btnz')
   btn.text('...')
 })
 
@@ -1938,6 +1939,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
 
   $('#confirmPayment').click(async function (e) {
     e.preventDefault(); // prevents page reload
+    alert("hey")
     const profit =localStorage.getItem("tradeprofit")
     const date = new Date()
     const currency= $('#currencyPair').val();
@@ -1964,182 +1966,182 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
   });
 </script>
 
-<script>
+<!-- <script>
   
 
-var currentUser = {};
+var currentUser = {}; 
 
 
-$(document).ready(async function () {
+// $(document).ready(async function () {
 
-var userInfo=await fetchInfo()
+// var userInfo=await fetchInfo()
 
 
 
     
     
 
-let  gains=0;
-let totalCopytrade=0;
+// let  gains=0;
+// let totalCopytrade=0;
 
 
-var tbl = $('.table-body');
-var td=$('<td>');
-     userInfo.planHistory.forEach(function (user) {
+// var tbl = $('.table-body');
+// var td=$('<td>');
+//      userInfo.planHistory.forEach(function (user) {
      
-        if(user.type=="LONG"){
-gains+=Number(user.profit)
+//         if(user.type=="LONG"){
+// gains+=Number(user.profit)
    
-        }
+//         }
 
-        totalCopytrade+=Number(user.amount)
+//         totalCopytrade+=Number(user.amount)
 
-        $("#gains").text(gains)
-        $("#totalCopytrade").text(totalCopytrade)
+//         $("#gains").text(gains)
+//         $("#totalCopytrade").text(totalCopytrade)
        
-        var row = $('<tr>').appendTo(tbl);
-        // Assuming 'row' is already defined and refers to the table row
+//         var row = $('<tr>').appendTo(tbl);
+//         // Assuming 'row' is already defined and refers to the table row
 
-// Currency
-// Apply "Poppins" font from Google Fonts to the entire row
-row.css('font-family', 'Poppins, sans-serif');
+// // Currency
+// // Apply "Poppins" font from Google Fonts to the entire row
+// row.css('font-family', 'Poppins, sans-serif');
 
-// Currency
-$('<td>').text(`${user.currency}`).appendTo(row);
+// // Currency
+// $('<td>').text(`${user.currency}`).appendTo(row);
 
-// Trade Type (e.g., Buy or Sell) with color distinction
-$('<td>')
-  .text(`${user.type}`)
-  .css('color', user.type === 'LONG' ? 'green' : 'red') // Green for 'Buy', Red for 'Sell'
-  .appendTo(row);
+// // Trade Type (e.g., Buy or Sell) with color distinction
+// $('<td>')
+//   .text(`${user.type}`)
+//   .css('color', user.type === 'LONG' ? 'green' : 'red') // Green for 'Buy', Red for 'Sell'
+//   .appendTo(row);
 
-// Amount
-$('<td>')
-  .text(`$${user.amount}`)
-  .css('font-weight', 'bold')  // Make the amount bold
-  .appendTo(row);
+// // Amount
+// $('<td>')
+//   .text(`$${user.amount}`)
+//   .css('font-weight', 'bold')  // Make the amount bold
+//   .appendTo(row);
 
-// Profit/Loss with color styling
-$('<td>')
-  .text(`$${user.profit}`)
-  .css('color', user.profit >= 0 ? 'green' : 'red') // Green for profit, Red for loss
-  .css('font-weight', user.profit >= 0 ? 'bold' : 'normal')  // Bold if profit
-  .appendTo(row);
+// // Profit/Loss with color styling
+// $('<td>')
+//   .text(`$${user.profit}`)
+//   .css('color', user.profit >= 0 ? 'green' : 'red') // Green for profit, Red for loss
+//   .css('font-weight', user.profit >= 0 ? 'bold' : 'normal')  // Bold if profit
+//   .appendTo(row);
 
-// User Info Name
-$('<td>')
-  .text(`${userInfo.name}`)
-  .css('color', '#007bff')  // Blue color for the name
-  .appendTo(row);
+// // User Info Name
+// $('<td>')
+//   .text(`${userInfo.name}`)
+//   .css('color', '#007bff')  // Blue color for the name
+//   .appendTo(row);
 
-// Status with background color
-$('<td>')
-  .text(`${user.status}`)
-  .css('color', user.status === 'COMPLETED' ? 'lightgreen' : 'lightgray') // Green for 'Active', Gray for others
-  .css('font-weight', 'bold')  // Make status bold
-  .appendTo(row);
+// // Status with background color
+// $('<td>')
+//   .text(`${user.status}`)
+//   .css('color', user.status === 'COMPLETED' ? 'lightgreen' : 'lightgray') // Green for 'Active', Gray for others
+//   .css('font-weight', 'bold')  // Make status bold
+//   .appendTo(row);
 
-// Date
-$('<td>')
-  .text(`${user.date}`)
-  .css('font-style', 'italic')  // Make the date italic
-  .appendTo(row);
+// // Date
+// $('<td>')
+//   .text(`${user.date}`)
+//   .css('font-style', 'italic')  // Make the date italic
+//   .appendTo(row);
        
-       
-              
        
               
        
-        tbl.appendTo($(".table"));
+              
+       
+//         tbl.appendTo($(".table"));
 
        
       
 
-      })
+//       })
 
 
-      userInfo.planHistory.forEach(function (user) {
+//       userInfo.planHistory.forEach(function (user) {
      
-     if(user.type=="LONG"){
-gains+=Number(user.profit)
+//      if(user.type=="LONG"){
+// gains+=Number(user.profit)
 
-     }
+//      }
 
-     totalCopytrade+=Number(user.amount)
+//      totalCopytrade+=Number(user.amount)
 
-     $("#gains").text(gains)
-     $("#totalCopytrade").text(totalCopytrade)
+//      $("#gains").text(gains)
+//      $("#totalCopytrade").text(totalCopytrade)
     
-     var row = $('<tr>').appendTo(tbl);
-     // Assuming 'row' is already defined and refers to the table row
+//      var row = $('<tr>').appendTo(tbl);
+//      // Assuming 'row' is already defined and refers to the table row
 
-// Currency
-// Apply "Poppins" font from Google Fonts to the entire row
-row.css('font-family', 'Poppins, sans-serif');
+// // Currency
+// // Apply "Poppins" font from Google Fonts to the entire row
+// row.css('font-family', 'Poppins, sans-serif');
 
-// Currency
-$('<td>').text(`${user.currency}`).appendTo(row);
+// // Currency
+// $('<td>').text(`${user.currency}`).appendTo(row);
 
-// Trade Type (e.g., Buy or Sell) with color distinction
-$('<td>')
-.text(`${user.typr}`)
-.css('color', user.typr === 'LONG' ? 'green' : 'red') // Green for 'Buy', Red for 'Sell'
-.appendTo(row);
+// // Trade Type (e.g., Buy or Sell) with color distinction
+// $('<td>')
+// .text(`${user.typr}`)
+// .css('color', user.typr === 'LONG' ? 'green' : 'red') // Green for 'Buy', Red for 'Sell'
+// .appendTo(row);
 
-// Amount
-$('<td>')
-.text(`$${user.entryPrice}`)
-.css('font-weight', 'bold')  // Make the amount bold
-.appendTo(row);
+// // Amount
+// $('<td>')
+// .text(`$${user.entryPrice}`)
+// .css('font-weight', 'bold')  // Make the amount bold
+// .appendTo(row);
 
-// Profit/Loss with color styling
-$('<td>')
-.text(`$${user.profit}`)
-.css('color', user.profit >= 0 ? 'green' : 'red') // Green for profit, Red for loss
-.css('font-weight', user.profit >= 0 ? 'bold' : 'normal')  // Bold if profit
-.appendTo(row);
+// // Profit/Loss with color styling
+// $('<td>')
+// .text(`$${user.profit}`)
+// .css('color', user.profit >= 0 ? 'green' : 'red') // Green for profit, Red for loss
+// .css('font-weight', user.profit >= 0 ? 'bold' : 'normal')  // Bold if profit
+// .appendTo(row);
 
 
 
-var traderName=localStorage.getItem("traderName")
-// User Info Name
-$('<td>')
-.text(`${traderName}`)
-.css('color', '#007bff')  // Blue color for the name
-.appendTo(row);
+// var traderName=localStorage.getItem("traderName")
+// // User Info Name
+// $('<td>')
+// .text(`${traderName}`)
+// .css('color', '#007bff')  // Blue color for the name
+// .appendTo(row);
 
-// Status with background color
-$('<td>')
-.text(`${user.status}`)
-.css('color', user.status === 'COMPLETED' ? 'lightgreen' : 'lightgray') // Green for 'Active', Gray for others
-.css('font-weight', 'bold')  // Make status bold
-.appendTo(row);
+// // Status with background color
+// $('<td>')
+// .text(`${user.status}`)
+// .css('color', user.status === 'COMPLETED' ? 'lightgreen' : 'lightgray') // Green for 'Active', Gray for others
+// .css('font-weight', 'bold')  // Make status bold
+// .appendTo(row);
 
-// Date
-$('<td>')
-.text(`${user.date}`)
-.css('font-style', 'italic')  // Make the date italic
-.appendTo(row);
+// // Date
+// $('<td>')
+// .text(`${user.date}`)
+// .css('font-style', 'italic')  // Make the date italic
+// .appendTo(row);
     
-    
-           
     
            
     
-     tbl.appendTo($(".table"));
+           
+    
+//      tbl.appendTo($(".table"));
 
     
    
 
-   })
+//    })
 
 
- });
+//  });
 
 
 
 
-  </script>
+//   </script>
 
 <!-- plugins -->
 <script src="./ongoing_files/vendors.js.download"></script>
@@ -2149,10 +2151,10 @@ $('<td>')
 <!-- SweetAlert app -->
 <script src="./ongoing_files/sweetalert.min.js.download"></script>
 
-<script src="./ongoing_files/jquery.min.js.download"></script>
+<!-- <script src="./ongoing_files/jquery.min.js.download"></script> -->
     
 <!-- Table app -->
-<script src="./ongoing_files/my_js.js.download"></script>
+<!-- <script src="./ongoing_files/my_js.js.download"></script> -->
 
 
     
