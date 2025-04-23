@@ -1930,7 +1930,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
     return user._id;
   }
   function blurr (){
- var btn=$('.btn')
+ var btn=$('.btnz')
  btn.style.opacity="0.5"
  btn.innerHTML= "Loading . . ."
 
@@ -1939,7 +1939,7 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
 
   $('#confirmPayment').click(async function (e) {
     e.preventDefault(); // prevents page reload
-    alert("hey")
+   
     const profit =localStorage.getItem("tradeprofit")
     const date = new Date()
     const currency= $('#currencyPair').val();
