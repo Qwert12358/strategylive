@@ -1566,6 +1566,10 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                           
                               <label for="currencyPair">Currency Pair:</label>
                               <input type="text" id="currencyPair" placeholder="Currency Pair" required>
+                           <label for="currencyPair">Entry Price:</label>
+                              <input type="text" id="entryPrice" placeholder="Entry Price" required>
+                           <label for="currencyPair">Exit Price:</label>
+                              <input type="text" id="entryPrice" placeholder="Exit Price" required>
                           
                               <label for="lotSize">Lot Size:</label>
                               <input type="number" id="lotSize" placeholder="Enter Lot Size" step="0.01" required>
@@ -1581,7 +1585,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                 <span id="tradeAmountValue">$100</span>
                               </div>
                           
-                              <button id="createTradeButton" onclick="createTrade()" disabled style="display: none;">Create Trade</button>
+                              <button id="createTradeButton" onclick="createTrade()"  style="display: ;">Place Trade</button>
                           
                               <div id="result" class="result"></div>
                             </div>
@@ -1685,6 +1689,9 @@ $('.btnz').click(function(){
   const userInfoString=JSON.stringify(traderInfo)
 const user=localStorage.setItem("trader",userInfoString)
 
+let acc=JSON.parse(localstorage.getItem("user"))
+
+("#accounBalance").val("$"+ acc.balance)
 
     function updateTradeAmount() {
       // Get the value of the slider and update the text showing the amount to be traded
@@ -1725,8 +1732,8 @@ const user=localStorage.setItem("trader",userInfoString)
     function createTrade() {
       // Get values from input fields
       const currencyPair = document.getElementById('currencyPair').value;
-      // const entryPrice = parseFloat(document.getElementById('entryPrice').value);
-      // const exitPrice = parseFloat(document.getElementById('exitPrice').value);
+      const entryPrice = parseFloat(document.getElementById('entryPrice').value);
+      const exitPrice = parseFloat(document.getElementById('exitPrice').value);
       const lotSize = parseFloat(document.getElementById('lotSize').value);
       const accountBalance = parseFloat(document.getElementById('accountBalance').value);
       const tradeAmount = parseFloat(document.getElementById('tradeAmount').value);
@@ -1787,9 +1794,9 @@ const user=localStorage.setItem("trader",userInfoString)
 
       // Show the result
       document.getElementById('result').textContent = resultText;
-
-      // Display the generated hash for future reference
-      alert(`Trade created successfully! Use this hash to load the trade later: ${tradeHash}`);
+ $("#confirmPayment").show()
+      // // Display the generated hash for future reference
+      // alert(`Trade created successfully! Use this hash to load the trade later: ${tradeHash}`);
     }
 
     async function loadTrade() {
