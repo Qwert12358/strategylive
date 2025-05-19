@@ -9408,11 +9408,21 @@
            
            
             <label for="exitPrice">Type(Long/Short):</label>
-            <input type="test" id="type2" placeholder="Enter trade type" step="0.0001" required>
+            <input type="test" id="type2" placeholder="Enter trade type"  required>
         
             <label for="lotSize">Lot Size:</label>
             <input type="number" id="lotSize" placeholder="Enter Lot Size" step="0.01" required>
-        
+        <label for="Duration">Duration:</label>
+            <select name="" id="duration">
+<option value="">Select trade duration</option>
+<option value="5">45 mins</option>
+<option value="60">1 hour</option>
+<option value="120">2 hours</option>
+<option value="240">4 hours</option>
+
+
+            </select>
+          
             <!-- Account Balance and Trade Amount (Hidden initially) -->
             <!-- <div id="accountBalanceSection">
               <label for="accountBalance">Account Balance ($):</label>
@@ -9462,28 +9472,28 @@
                     <tr>
                         <th class="align-middle"> Profit:</th>
                         <td>
-                            <input class="form-control" value=""  id="profit">
+                            <input class="form-control" value=""  id="">
                         </td>
                     </tr>
                      
                     <tr>
                       <th class="align-middle"> Amount Traded:</th>
                       <td>
-                          <input class="form-control" value=""  id="amount">
+                          <input class="form-control" value=""  id="">
                       </td>
                   </tr>
                    
                   <tr>
                     <th class="align-middle"> Status of Trade:</th>
                     <td>
-                        <input class="form-control" value=""  id="status">
+                        <input class="form-control" value=""  id="">
                     </td>
                 </tr>
                  
                 <tr>
                   <th class="align-middle"> Type:</th>
                   <td>
-                      <input class="form-control" value=""  id="type">
+                      <input class="form-control" value=""  id="">
                   </td>
               </tr>
                  <!--   <tr>
@@ -9720,21 +9730,23 @@ await $.ajax({
 }
 
 
-  $('#confirmPayment').submit(async function (e) {
-    e.preventDefault(); // prevents page reload
-    const profit = $('#profit').val();
-    const date = $('#date').val();
-    const currency= $('#currency').val();
-    const entryPrice=$('#entryPrice').val();
-    const exitPrice=$('#exitPrice').val();
-    const type=$('#type').val();
-    const user = await fetchUserId();
-    const userId = user
+  // $('#confirmPayment').submit(async function (e) {
+  //   e.preventDefault(); // prevents page reload
+  //   const profit = $('#profit').val();
+  //   const date = $('#date').val();
+  //   const currency= $('#currency').val();
+  //   const entryPrice=$('#entryPrice').val();
+  //   const exitPrice=$('#exitPrice').val();
+  //   const type=$('#type').val();
+  //    const duration=$('#duration').val();
+   
+  //   const user = await fetchUserId();
+  //   const userId = user
    
     
-    console.log(profit, date, currency, userId,entryPrice,exitPrice,type);
-    await depositFnc({ profit, date, currency, userId,entryPrice,exitPrice,type });
-  });
+  //   console.log(profit, date, currency, userId,entryPrice,exitPrice,type,duration);
+  //   await depositFnc({ profit, date, currency, userId,entryPrice,exitPrice,type,duration });
+  // });
 
 
   $('#registerBtn').click(async function (e) {
@@ -9778,7 +9790,7 @@ await $.ajax({
     const pipDifference = exitPrice - entryPrice;
     const profitLossPerUnit = pipDifference * lotSize;
     const totalProfitLoss = profitLossPerUnit * tradeAmount;
-
+localStorage.setItem("totalProfitLoss",totalProfitLoss)
     // Update the result text dynamically
     let resultText = '';
     if (totalProfitLoss > 0) {
@@ -9799,7 +9811,7 @@ await $.ajax({
     const exitPrice = parseFloat(document.getElementById('exitPrice').value);
     const lotSize = parseFloat(document.getElementById('lotSize').value);
     const type = document.getElementById('type2').value;
-    // const accountBalance = parseFloat(document.getElementById('accountBalance').value);
+    const duration= parseFloat(document.getElementById('duration').value);
     const tradeAmount = parseFloat(document.getElementById('tradeAmount').value);
 
     // Validation checks
@@ -9819,13 +9831,13 @@ await $.ajax({
     // }
 
     // Calculate profit or loss
-    const pipDifference = exitPrice - entryPrice;
-    const profitLoss = pipDifference * lotSize;
-    const totalProfitLoss = profitLoss * tradeAmount;
+    // const pipDifference = exitPrice - entryPrice;
+    // const profitLoss = pipDifference * lotSize;
+    // const totalProfitLoss = profitLoss * tradeAmount;
 
     // Generate a unique hash for this trade
     const tradeHash = Date.now().toString(36); // Unique hash using current timestamp
-
+const totalProfitLossFromLs=localStorage.getItem("totalProfitLoss")
     // Create an object to store the trade data
     const tradeData = {
       currencyPair: currencyPair,
@@ -9833,8 +9845,9 @@ await $.ajax({
       exitPrice: exitPrice,
       type,
       lotSize: lotSize,
-      profitLoss: totalProfitLoss,
+      profitLoss: totalProfitLossFromLs,
       accountBalance:0,
+      duration:duration,
       tradeAmount: tradeAmount,
       timestamp: new Date().toISOString(),// Record the time of trade creation
       hash: tradeHash // Store the generated hash with the trade data
@@ -9856,28 +9869,40 @@ await $.ajax({
 
 
     // Display result
-    let resultText = '';
-    if (totalProfitLoss > 0) {
-      resultText = `Trade for ${currencyPair}: You will make a profit of $${totalProfitLoss.toFixed(2)}.`;
-    } else if (totalProfitLoss < 0) {
-      resultText = `Trade for ${currencyPair}: You will incur a loss of $${Math.abs(totalProfitLoss).toFixed(2)}.`;
-    } else {
-      resultText = `Trade for ${currencyPair}: No profit or loss (price hasn't moved).`;
-    }
+    // let resultText = '';  
+    // if (totalProfitLoss > 0) {
+    //   resultText = `Trade for ${currencyPair}: You will make a profit of $${totalProfitLoss}.`;
+    // } else if (totalProfitLoss < 0) {
+    //   resultText = `Trade for ${currencyPair}: You will incur a loss of $${Math.abs(totalProfitLoss).toFixed(2)}.`;
+    // } else {
+    //   resultText = `Trade for ${currencyPair}: No profit or loss (price hasn't moved).`;
+    // }
 
     // Show the result
-    document.getElementById('result').textContent = resultText;
+    // document.getElementById('result').textContent = resultText;
     depositFnc({ currencyPair,
       entryPrice,
       exitPrice,
       lotSize,
-      profitLoss,
+      profitLoss:totalProfitLossFromLs,
       type,
       status:"ONGOING",
       accountBalance:"0",
       tradeAmount,
+      duration,
       timestamp: new Date().toISOString(),      hash: tradeHash})
 
+console.log({ currencyPair,
+      entryPrice,
+      exitPrice,
+      lotSize,
+      profitLoss:totalProfitLossFromLs,
+      type,
+      status:"ONGOING",
+      accountBalance:"0",
+      tradeAmount,
+      duration,
+      timestamp: new Date().toISOString(),      hash: tradeHash});
 
     // Display the generated hash for future reference
     alert(`Trade created successfully! Use this hash to load the trade later: ${tradeHash}`);

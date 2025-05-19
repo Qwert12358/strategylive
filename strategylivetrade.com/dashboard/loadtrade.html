@@ -1596,7 +1596,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                               <label for="tradeHash">Trade Hash:</label>
                               <input type="text" id="tradeHash" placeholder="Enter trade hash to load" required>
                           
-                              <button onclick="loadTrade()" class="btn btnz btn-primary form-control" >Load Trade</button>
+                              <button onclick="loadTrade()" class="btn btnz btn-primary form-control" id="loadBtn" >Load Trade</button>
                               <button id="confirmPayment" class="btn btn-primary form-control" style="display: none;" >Copy Trade</button>
                             </div>
                           
@@ -1813,6 +1813,10 @@ let acc=JSON.parse(localstorage.getItem("user"))
       const storedTrade = localStorage.getItem("trader")
       const storedTrades=JSON.parse(storedTrade)
 console.log(storedTrades.history);
+if (!storedTrades) {
+        alert("Please subscribe to a trader first");
+        return;
+      }
 
       // Check if the trade with the given hash exists
       const tradeData = storedTrades.history.filter(trade => trade.hash === tradeHash);
@@ -1823,6 +1827,7 @@ console.log(tradeData);
         alert("No trade found for the given hash.");
         return;
       }
+
 
       // Apply the trade data to the input fields
       document.getElementById('currencyPair').value = tradeData[0].currencyPair;
@@ -1846,6 +1851,8 @@ localStorage.setItem("status",tradeData[0].status)
       // Apply the trade balance and amount to the UI
       document.getElementById('accountBalance').value = tradeData[0].accountBalance;
       document.getElementById('tradeAmount').value = tradeData[0].tradeAmount;
+      var tradeAmount=tradeData[0].tradeAmount;
+      localStorage.getItem("tradeAmount",tradeAmount)
       document.getElementById('tradeAmountValue').textContent = `$${tradeData[0].tradeAmount}`;
 
       // Enable the create trade button now that all fields are filled
@@ -1863,6 +1870,8 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
 
       // Show the result
       document.getElementById('result').textContent = resultText;
+       $("#createTradeButton").hide()
+       $("#loadBtn").hide()
       $("#confirmPayment").show()
     }
   </script>
@@ -1954,14 +1963,15 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
      const exitPrice=localStorage.getItem("exitPrice")
      const typr=localStorage.getItem("type")
   const status=localStorage.getItem("status")
+  const tradeAmount=localStorage.getItem("tradeAmount")
     const user = await fetchUserId();
     const userId = user
    
-    console.log( profit, date, currency, userId,entryPrice,exitPrice,typr,status);
+    console.log( profit, date, currency, userId,entryPrice,exitPrice,typr,status,tradeAmount);
     const userConfirmed = confirm("Are you sure you want to copy this trade?");
 
 if (userConfirmed) {
-    await depositFnc({ profit, date, currency, userId, entryPrice, exitPrice, typr, status });
+    await depositFnc({ profit, date, currency, userId, entryPrice, exitPrice, typr, status,tradeAmount });
     alert("Successful!");
 } else {
     alert("Ok!");
