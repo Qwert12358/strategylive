@@ -1852,7 +1852,7 @@ localStorage.setItem("status",tradeData[0].status)
       document.getElementById('accountBalance').value = tradeData[0].accountBalance;
       document.getElementById('tradeAmount').value = tradeData[0].tradeAmount;
       var tradeAmount=tradeData[0].tradeAmount;
-      localStorage.getItem("tradeAmount",tradeAmount)
+      localStorage.setItem("tradeAmount",tradeAmount)
       document.getElementById('tradeAmountValue').textContent = `$${tradeData[0].tradeAmount}`;
 
       // Enable the create trade button now that all fields are filled
