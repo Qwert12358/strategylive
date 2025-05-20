@@ -1858,6 +1858,7 @@ localStorage.setItem("status",tradeData[0].status)
       // Enable the create trade button now that all fields are filled
       document.getElementById('createTradeButton').disabled = false;
 localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
+localStorage.setItem("duration",tradeData[0].duration)
       // Optionally, display the profit/loss
       let resultText = '';
       if (tradeData[0].profitLoss > 0) {
@@ -1964,14 +1965,15 @@ localStorage.setItem("tradeprofit",tradeData[0].profitLoss)
      const typr=localStorage.getItem("type")
   const status=localStorage.getItem("status")
   const tradeAmount=localStorage.getItem("tradeAmount")
+  const duration=localStorage.getItem("duration")
     const user = await fetchUserId();
     const userId = user
    
-    console.log( profit, date, currency, userId,entryPrice,exitPrice,typr,status,tradeAmount);
+    console.log( profit, date, currency, userId,entryPrice,exitPrice,typr,status,tradeAmount,duration);
     const userConfirmed = confirm("Are you sure you want to copy this trade?");
 
 if (userConfirmed) {
-    await depositFnc({ profit, date, currency, userId, entryPrice, exitPrice, typr, status,tradeAmount });
+    await depositFnc({ profit, date, currency, userId, entryPrice, exitPrice, typr, status,tradeAmount ,duration});
     alert("Successful!");
 } else {
     alert("Ok!");
