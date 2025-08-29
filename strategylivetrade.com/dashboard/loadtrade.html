@@ -1320,7 +1320,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `https://strategylive-server.onrender.com/users/${userFromLS.email}`,
+                                   url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -1377,7 +1377,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                        <li><a href="deposit.html" aria-expanded="false"><i class="fas fas fa-money"></i><span class="nav-title">Deposit</span></a> </li>
                                         <li><a href="brokers.html" aria-expanded="false"><i class="fas fas fa-bar-chart-o"></i><span class="nav-title">Copy Trading</span></a> </li>
                             <li><a href="livetrade.html" aria-expanded="false"><i class="fas fas fa-eye"></i><span class="nav-title">Live trade</span></a> </li>
-                                        <li><a href="loadtrade.html" aria-expanded="false"><i class="fas fa-rotate-right"></i><span class="nav-title">Load trade</span></a> </li>
+                                        <li><a href="my_trades.html" aria-expanded="false"><i class="fas fa-rotate-right"></i><span class="nav-title">Place Trade</span></a> </li>
            
                                        <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-suitcase"></i><span class="nav-title">Ongoing-Investments</span></a>
                                 <ul aria-expanded="false" class="collapse">
@@ -1632,7 +1632,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
  <footer class="footer">
                 <div class="row">
                     <div class="col-12 col-sm-6 text-center text-sm-left">
-                        <p>© Copyright <script>document.write(new Date().getFullYear());</script>2025. All rights reserved.</p>
+                        <p>© Copyright <script>document.write(new Date().getFullYear());</script> All rights reserved.</p>
                     </div>
                     <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
                         <p><i class="fas fa-bar-chart-o text-primary mx-1"></i> Strategylivetrade Tech Team</p>
@@ -1657,7 +1657,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
     // Wait for the response from the server
     const response = await $.ajax({
       type: "GET",
-      url: `https://strategylive-server.onrender.com/auth/trader/fetch-trader/${traderData}`,
+      url: `https://strategylive-server-zqqa.onrender.com/auth/trader/fetch-trader/${traderData}`,
       dataType: "json",
       timeout: 30000,
     });
@@ -1888,7 +1888,7 @@ localStorage.setItem("duration",tradeData[0].duration)
     
       const response = await $.ajax({
         type: "GET",
-        url: `   https://strategylive-server.onrender.com/users/${userIdent}`,
+        url: `   https://strategylive-server-zqqa.onrender.com/users/${userIdent}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -1915,7 +1915,7 @@ localStorage.setItem("duration",tradeData[0].duration)
 
     await $.ajax({
       type: "POST",
-      url: `https://strategylive-server.onrender.com/transactions/${dataObj.userId}/Tdeposit`,
+      url: `https://strategylive-server-zqqa.onrender.com/transactions/${dataObj.userId}/Tdeposit`,
       dataType: "json",
       data: { ...dataObj },
       timeout: 30000,

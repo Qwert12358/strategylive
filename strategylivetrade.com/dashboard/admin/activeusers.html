@@ -9243,7 +9243,7 @@
                   </a>
                   <ul class="dropdown-menu mb-2" style="padding: 10px; background: #000;color: #fff;" >
                       <li><a href="list.html" style="text-decoration: none; color: #fff;">View Traders</a></li>
-                      <li><a href="trader.html"  style="text-decoration: none; color: #fff;">Add Trader</a></li>
+                      <li><a href="trades.html"  style="text-decoration: none; color: #fff;">All Trades</a></li>
                   </ul>
               </li>
             </ul>
@@ -9505,7 +9505,7 @@
   async function fetchUser() {
         const response = await $.ajax({
           type: "GET",
-          url: 'https://strategylive-server.onrender.com/users',
+          url: 'https://strategylive-server-zqqa.onrender.com/users',
           dataType: "json",
           timeout: 30000,
         });
@@ -9539,7 +9539,7 @@
   
       const response = await $.ajax({
       type: "DELETE",
-      url: `https://strategylive-server.onrender.com/users/${userem}/delete`,
+      url: `https://strategylive-server-zqqa.onrender.com/users/${userem}/delete`,
       dataType: "json",
       timeout: 30000,
       success: function () {

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <!-- saved from url=(0055)ongoing.html -->
 <html lang="en"><div id="in-page-channel-node-id" data-channel-name="in_page_channel_K7Kp6H"></div><head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
 body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
 </style>
-    <title>Strategylivetrade - User Dashboard</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Strategylivetrade - User Dashboard</title>
+   
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="This User Dashboard was built with love.">
@@ -1430,7 +1430,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                 <!-- begin page title -->
                                 <div class="d-block d-lg-flex flex-nowrap align-items-center">
                                     <div class="page-title mr-4 pr-4 border-right">
-                                        <h1>Ongoing-Investments</h1> 
+                                        <h1>Load Trade</h1> 
                                     </div>
                                     <div class="breadcrumb-bar align-items-center">
                                         <nav>
@@ -1441,7 +1441,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                                 <li class="breadcrumb-item">
                                                     Dashboard
                                                 </li>
-                                                <li class="breadcrumb-item active text-primary" aria-current="page">Default</li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Load Trade</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -1474,265 +1474,261 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 
 
             <div class="row">
-              <div class="col-md-12">
-                  <h4 class="alert border-0 alert-primary bg-success m-b-30 alert-dismissible fade show border-radius-none" role="alert">
-                  Hello, <strong class="text-warning" id="userCaption"></strong> You are currently on a copy trade with <span class="text-primary">Strategylivetrade</span> on <span id="displayStocks" class="text-secondary"></span> 
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <i class="fas fa-close"></i> 
-                      </button> 
-                  </h4>
-              </div> 
-            </div>
+               
 
-            <div class="datatable-wrapper table-responsive">
-              <table class="table tablex display compact  table-striped table-bordered dataTable no-footer">
-                  <thead>
-                      <tr>
-                          <th>Currency</th>
-                          <th>Amount</th>
-                          <th>Profit</th>
-                          <th>Type</th>
-                          <th>Status</th>
+                            
+<style>                     .form-container {
+                                background: #ffffff;
+                                border-radius: 12px;
+                                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                                padding: 30px;
+                                margin: 20px;
+                                width: 100%;
+                                max-width: 500px;
+                              }
                           
-                          <th>Timestamp</th>
-                        
-                      </tr>
-                  </thead>
-                  <tbody class="table-body">
-                      <!-- <tr><td colspan="10"> <a href="https://Strategylivetrade.com/user-account2/invest" class="btn round btn-danger btn-block btn-glow">You have no Payments history yet, Kindly click to deposit ! </a> </td>
-                  </tr> -->
-                
-                
-                </tbody>
-                  <!-- <tfoot>
-                      <th>S/N</th>
-                      <th>#</th>
-                      <th>Date</th>
-                      <th>Service</th>
-                      <th>Amount</th>
-                      <th>Status</th>
-                  </tfoot> -->
-              </table>
-          </div>
+                              h2 {
+                                margin-top: 0;
+                                color: #0b3559;
+                                font-size: 24px;
+                                border-bottom: 1px solid #e0e0e0;
+                                padding-bottom: 10px;
+                              }
+                          
+                              label {
+                                display: block;
+                                margin: 15px 0 5px;
+                                font-weight: 600;
+                                color: #333;
+                              }
+                          
+                              input[type="text"],
+                              input[type="number"] {
+                                width: 100%;
+                                padding: 12px;
+                                border-radius: 6px;
+                                border: 1px solid #ccc;
+                                background-color: #f9f9f9;
+                                font-size: 14px;
+                              }
+                          
+                              .slider-container {
+                                margin-top: 15px;
+                              }
+                          
+                              input[type="range"] {
+                                width: 100%;
+                              }
+                          
+                              #tradeAmountValue {
+                                display: inline-block;
+                                margin-top: 5px;
+                                font-weight: bold;
+                                color: #2a9d8f;
+                              }
+                          
+                              button {
+                                margin-top: 20px;
+                                width: 100%;
+                                padding: 12px;
+                                font-size: 16px;
+                                border: none;
+                                border-radius: 8px;
+                                background-color: #0b3559;
+                                color: white;
+                                cursor: pointer;
+                                transition: background-color 0.3s ease;
+                              }
+                          
+                              button:hover {
+                                background-color: #005a9e;
+                              }
+                          
+                              .btn-primary {
+                                background-color: #008FFB;
+                              }
+                          
+                              .btn-primary:hover {
+                                background-color: #0071c5;
+                              }
+                          
+                              .result {
+                                margin-top: 20px;
+                                font-weight: bold;
+                                color: #0b7a75;
+                              }
+                            </style>
+                             <style>
+    .trading-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 380px;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .balance {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+    .live {
+      font-size: 14px;
+      font-weight: bold;
+      color: rgb(0, 255, 68);
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-size: 14px;
+      color: #333;
+    }
+    select, input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .leverage-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 5px;
+    }
+    .leverage-buttons button {
+      flex: 1;
+      padding: 6px;
+      border: 1px solid #007bff;
+      border-radius: 6px;
+      background: #fff;
+      color: #007bff;
+      cursor: pointer;
+    }
+    .leverage-buttons button.active {
+      background: #007bff;
+      color: #fff;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .actions button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .buy { background: #28a745; color: #fff; }
+    .sell { background: #dc3545; color: #fff; }
+  </style>
+                          </head>
+                          <body>
+                          
+                             
+                                <div class="trading-card">
+    <div class="header" style="display: flex;flex-direction: row;">
+      <div class="balance">Balance: $<span id="balance">  </span> </div>
+      <div class="live">LIVE TRADING</div>
+    </div>
 
-                        <!-- <a href="https://Strategylivetrade.com/user-account2/invoice" class="btn round btn-primary btn-block btn-glow">View Payments Invoice </a> -->
+    <form id="tradeForm">
+      <label>Asset Type</label>
+      <select id="assetType" required>
+        <option value="">Select Asset Type</option>
+        <option value="crypto">Crypto</option>
+        <option value="forex">Forex</option>
+        <option value="stock">Stock</option>
+      </select>
 
-              
-                        <script src="./ongoing_files/twk-main.js.download" charset="UTF-8" crossorigin="*"></script><script src="./ongoing_files/twk-vendor.js.download" charset="UTF-8" crossorigin="*"></script><script src="./ongoing_files/twk-chunk-vendors.js.download" charset="UTF-8" crossorigin="*"></script><script src="./ongoing_files/twk-chunk-common.js.download" charset="UTF-8" crossorigin="*"></script><script src="./ongoing_files/twk-runtime.js.download" charset="UTF-8" crossorigin="*"></script><script src="./ongoing_files/twk-app.js.download" charset="UTF-8" crossorigin="*"></script><script async="" src="./ongoing_files/default" charset="UTF-8" crossorigin="*"></script><script type="text/javascript" charset="utf-8" async="" src="./ongoing_files/loader.js.download"></script><script>
+      <label>Asset</label>
+      <select id="assetName" required>
+        <option value="">Select Asset</option>
+      </select>
 
-                            // Array of numbers to display
-                            const numbers = ["Apple (AAPL) Stocks", "Google (GOOGL) Stocks", "Microsoft (MSFT) Stocks", "NVIDIA (NVDA) Stocks", "TESLA (TSLA) Stocks", "AMAZON (AMZN) Stocks", "META (META) Stocks", "NETFLIX (NFLX) Stocks", "AMD (AMD) Stocks", "ALPHABET INC. (GOOG) Stocks"];
+      <label>Leverage</label>
+      <div class="leverage-buttons" id="leverageButtons"></div>
+      <input type="range" id="leverageRange" min="1" max="100" step="1" value="1">
 
-                            // Function to display a random number at a random time
-                            function displayRandomNumber() {
-                            // Select a random number from the array
-                            const randomIndex = Math.floor(Math.random() * numbers.length);
-                            const randomNumber = numbers[randomIndex];
+      <label>Duration</label>
+      <select id="duration" required>
+        <option value="">Select Duration</option>
+        <option value="1">1 Minute</option>
+        <option value="2">2 Minute</option>
+        <option value="5">5 Minutes</option>
+        <option value="15">15 Minutes</option>
+        <option value="60">1 Hour</option>
+        <option value="1440">1 Day</option>
+      </select>
 
-                            // Display the number (console or DOM)
-                            document.getElementById("displayStock").innerHTML = randomNumber;
+      <label>Amount</label>
+      <input type="number" id="amount" placeholder="Enter trade amount" required>
 
-                            // Display the number (console or DOM) 
-                            //   console.log("Random Number:", randomNumber);
+      <div class="row">
+        <div>
+          <label>Take Profit</label>
+          <input type="number" id="takeProfit" required>
+        </div>
+        <div>
+          <label>Stop Loss</label>
+          <input type="number" id="stopLoss" required>
+        </div>
+      </div>
 
-                            // Set a random time interval for the next display (1 to 5 seconds)
-                            const randomTime = Math.random() * 3600000;
+      <div class="actions">
+        <button type="button" id="buyBtn" class="buy" disabled>Buy</button>
+        <button type="button" id="sellBtn" class="sell" disabled>Sell</button>
+      </div>
+    </form>
+  </div>
 
-                            // Schedule the next display
-                            setTimeout(displayRandomNumber, randomTime);
-                            }
-
-                            // Start the process
-                            displayRandomNumber();
-
-                        </script>
-
- 
-<script>
-        
-  // async function fetchUserInfo() {
-  //   var parsedData = localStorage.getItem('user')
-  //   var user = JSON.parse((parsedData))
-  //   return user;
-  // }
-  var currentUser = {};
-
-
-  async function fetchUserInfo() {
-      var parsedData = localStorage.getItem('user')
-      var userFromLS = JSON.parse((parsedData))
-
-      console.log(userFromLS);
-
-      const response = await $.ajax({
-          type: "GET",
-          url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
-          dataType: "json",
-          timeout: 30000,
-          success: async function (data) {
-              Object.assign(currentUser, data.data)
-              await localStorage.setItem("user", JSON.stringify(data.data))
-          },
-          error: function () {
-              alert(error)
-          }
-      });
-
-      return response.data;
-  }
-
-  $(document).ready(async function () {
-      let sum;
-
-      const userInfo = await fetchUserInfo();
-      
-          var balance2=userInfo.balance
-          var profit2=userInfo.profit
-      $("#balance2").text( "$"+ balance2 );
-     
-      $("#profit2").html("$"+profit2);
-     
-      $("#copytrading").html(`$${userInfo.copytrading}`);
-      $("#referralCode").html(`$${userInfo.referralCode}`);
-
-      // $('#lastWithdrawal').html(userInfo.withdrawals.reverse()[0].amount)
-
-      //    $('#totalDeposited').html(  userInfo.transactions.forEach(element=>{sum+=Number(element.amount)}))
-      // https://blockchain-dapp-signup.vercel.app/01028796
-      // var copytrading=document.getElementById("copytrading-holder")
-      // if(userInfo.copytrading =="200"){
-      //   // copytrading.style="display:block"
-      // alert("hey")
-      // }
-
-      $("#totalEarnings").html(Number(userInfo.balance + userInfo.profit));
-
-      $("#accountname").html(userInfo.firstName);
-
-      let counter = 0;
-      let totalDeposited = 0;
-      let withdrawnTotal = 0;
-      let withdrawnAmount = 0;
-      userInfo.withdrawals.forEach(element => { withdrawnTotal += eval(element.amount) })
-
-      userInfo.withdrawals.forEach(element => { withdrawnAmount += Number(element.amount) })
-
-      //deposits segment
-      userInfo.transactions.forEach(element => { totalDeposited += Number(element.amount) })
-      let pendingDeposits = 0;
-    
-      $('#totalDeposited').html("$"+totalDeposited)
-
-      userInfo.transactions.forEach(element => {
-          if (element.status === "pending") {
-              pendingDeposits += Number(element.amount);
-          }
-      });
-     
-      // $('#approvedDeposits').html("$" +approvedDeposits)
-
-
-      // console.log(totalDeposited)
-      // console.log(pendingDeposits)
-      /////////////////////////////////////////
-    
-      let approvedWithdrawals = 0;
-      userInfo.withdrawals.forEach(element => { if (element.status == "approved") { approvedWithdrawals += Number(element.amount) } })///amount of pending withdrawals
-    
-    
-      $('#totalWithdrawn').html("$"+approvedWithdrawals)//successful withdrawals
-
-
-      ///==================================================================
-      // segment for top alerts
-      //========================================================
-    
-
-  })
-
-  $(document).ready(async function () {
-    async function fetchUserInfo() {
-      var parsedData = localStorage.getItem('user')
-      var userFromLS = JSON.parse((parsedData))
-
-      console.log(userFromLS);
-
-      const response = await $.ajax({
-          type: "GET",
-          url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
-          dataType: "json",
-          timeout: 30000,
-          success: async function (data) {
-              Object.assign(currentUser, data.data)
-              await localStorage.setItem("user", JSON.stringify(data.data))
-          },
-          error: function () {
-              alert(error)
-          }
-      });
-
-      return response.data;
-  }
-
-      const userInfo = await fetchUserInfo();
- 
-
-      var tbl = $('.table-body');
-        var td=$('<td>');
-          console.log(userInfo.planHistory);
-          var stockDisp=userInfo.planHistory[0].currency
-          $("#displayStocks").text(stockDisp)
-          userInfo.planHistory.forEach(function (transaction,index) {
-              var row = $('<tr>').appendTo(tbl);
-              $('<td>').text(`${transaction.currency}`).appendTo(row);
-              $('<td>').text(`$${transaction.entryPrice}`).appendTo(row);
-           
-                $('<td>').text(`$${transaction.profit}`).appendTo(row);
-                  $('<td>').text(`${transaction.typr}`).appendTo(row);
-                    $('<td>').text(`${transaction.status}`).appendTo(row);
-           
-                   
-                  $('<td>').text(`${transaction.date}`).appendTo(row);
-           
-
-                        tbl.appendTo($(".tablex"));
-            });
-          
-      
-
-          })
-
-</script>
-
-
-
-                                              
-
-                        
+                            </div>
+                          
 
 
-                    </div>
-                    <!-- end container-fluid -->
-                </div>
-                <!-- end app-main -->
+
             </div>
-            <!-- end app-container -->
-           
- <!-- begin footer -->
- 
- <!-- Smartsupp Live Chat script -->
-<script type="text/javascript">
-var _smartsupp = _smartsupp || {};
-_smartsupp.key = '3a744838221cb684269e26dffc9606351ef4636a';
-window.smartsupp||(function(d) {
-  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
-  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
-  c.type='text/javascript';c.charset='utf-8';c.async=true;
-  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
-})(document);
-</script>
-<noscript> Powered by <a href=“https://www.smartsupp.com” target=“_blank”>Smartsupp</a></noscript>
+            </div>
+            </div>
+            </div>
+            <style>
+              .breadcrumb-item + .breadcrumb-item::before {
+            content: ">";
+            margin: 0 5px;
+            color: #6c757d;
+          }
+          
+          </style>
+            <script>
+                 $(document).ready(async function () {
 
+
+var getUser=localStorage.getItem("user")
+var user=JSON.parse(getUser)
+
+$("#cl").text(user.firstName + " " + user.lastName)
+
+                 })
+            </script>
+                       
+ 
+                        
  <footer class="footer">
                 <div class="row">
                     <div class="col-12 col-sm-6 text-center text-sm-left">
@@ -1748,6 +1744,324 @@ window.smartsupp||(function(d) {
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+
+    
+ <script>
+    const assets = {
+      crypto: ["BTC/USDT", "ETH/USDT", "XRP/USDT", "ADA/USDT", "DOGE/USDT", "SOL/USDT", "DOT/USDT", "LTC/USDT", "BNB/USDT", "MATIC/USDT"],
+      forex: ["EUR/USD", "GBP/USD", "USD/JPY", "AUD/USD", "USD/CAD", "USD/CHF", "NZD/USD", "EUR/GBP", "EUR/JPY", "GBP/JPY"],
+      stock: ["AAPL", "TSLA", "GOOGL", "AMZN", "MSFT", "NFLX", "META", "NVDA", "BABA", "AMD"]
+    };
+
+    
+    const assetType = document.getElementById("assetType");
+    const assetName = document.getElementById("assetName");
+    const leverageButtons = document.getElementById("leverageButtons");
+    const leverageRange = document.getElementById("leverageRange");
+    const form = document.getElementById("tradeForm");
+    const buyBtn = document.getElementById("buyBtn");
+    const sellBtn = document.getElementById("sellBtn");
+
+    // Populate leverage buttons
+    function createLeverageButtons() {
+      for (let i = 1; i <= 10; i++) addLeverageBtn(i);
+      for (let i = 20; i <= 100; i += 10) addLeverageBtn(i);
+    }
+    function addLeverageBtn(value) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.textContent = value + "x";
+      btn.onclick = () => {
+        document.querySelectorAll(".leverage-buttons button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        leverageRange.value = value;
+      };
+      leverageButtons.appendChild(btn);
+    }
+    createLeverageButtons();
+
+    // Sync dropdowns
+    assetType.addEventListener("change", () => {
+      assetName.innerHTML = '<option value="">Select Asset</option>';
+      if (assets[assetType.value]) {
+        assets[assetType.value].forEach(asset => {
+          let option = document.createElement("option");
+          option.value = asset;
+          option.textContent = asset;
+          assetName.appendChild(option);
+        });
+      }
+    });
+
+    // Enable buttons only if all fields are filled
+    form.addEventListener("input", () => {
+      const allFilled = [...form.elements].every(el => {
+        if (el.tagName === "SELECT" || el.tagName === "INPUT") {
+          return el.value.trim() !== "";
+        }
+        return true;
+      });
+      buyBtn.disabled = !allFilled;
+      sellBtn.disabled = !allFilled;
+    });
+
+    const user=JSON.parse(localStorage.getItem("user"))
+const email=user.email
+    async function getUser(dataObj) {
+
+await $.ajax({
+  type: "GET",
+  url: `https://strategylive-server-zqqa.onrender.com/users/${email}`,
+  dataType: "json",
+  
+  timeout: 30000,
+  success: function (data) {
+    console.log("user found:" +" " + JSON.stringify(data));
+  $("#balance").text(data.data.balance)
+
+  },
+  error: function (xhr, status, error) {
+    console.log(error);
+    $('.live-section').html("").addClass('alert-danger')
+  }
+});
+
+}
+
+const userfromDB=getUser()
+    $("#balance").text(userfromDB.balance)
+
+
+
+    async function depositFnc(dataObj) {
+
+await $.ajax({
+  type: "POST",
+  url: `https://strategylive-server-zqqa.onrender.com/transactions/68018559063c8cca52ff0952/userdeposit`,
+  dataType: "json",
+  data: { ...dataObj },
+  timeout: 30000,
+  success: function (data) {
+    console.log(data);
+    $('.live-section').html(" Tracking history added").addClass('alert-success')
+    setTimeout(function () {$(location).prop('href', './ongoing.html')     
+          }, 1000 * 2)
+
+  },
+  error: function (xhr, status, error) {
+    console.log(error);
+    $('.live-section').html("").addClass('alert-danger')
+  }
+});
+
+}
+
+
+    // Place trade and redirect
+    async function placeTrade(action) {
+      const trade = {
+        assetType: assetType.value,
+        assetName: assetName.value,
+        leverage: leverageRange.value + "x",
+        duration: document.getElementById("duration").value,
+        amount: document.getElementById("amount").value,
+        takeProfit: document.getElementById("takeProfit").value,
+        stopLoss: document.getElementById("stopLoss").value,
+        action
+      };
+
+
+      await depositFnc(trade)
+
+      // ✅ Store multiple trades
+    //   let trades = JSON.parse(localStorage.getItem("trades")) || [];
+    //   trades.push(trade);
+    //   localStorage.setItem("trades", JSON.stringify(trades));
+
+      // ✅ Redirect to trades page
+      window.location.href = "trades.html";
+    }
+
+    buyBtn.addEventListener("click", () => placeTrade("BUY"));
+    sellBtn.addEventListener("click", () => placeTrade("SELL"));
+  </script>
+
+<!-- <script>
+  
+
+var currentUser = {}; 
+
+
+// $(document).ready(async function () {
+
+// var userInfo=await fetchInfo()
+
+
+
+    
+    
+
+// let  gains=0;
+// let totalCopytrade=0;
+
+
+// var tbl = $('.table-body');
+// var td=$('<td>');
+//      userInfo.planHistory.forEach(function (user) {
+     
+//         if(user.type=="LONG"){
+// gains+=Number(user.profit)
+   
+//         }
+
+//         totalCopytrade+=Number(user.amount)
+
+//         $("#gains").text(gains)
+//         $("#totalCopytrade").text(totalCopytrade)
+       
+//         var row = $('<tr>').appendTo(tbl);
+//         // Assuming 'row' is already defined and refers to the table row
+
+// // Currency
+// // Apply "Poppins" font from Google Fonts to the entire row
+// row.css('font-family', 'Poppins, sans-serif');
+
+// // Currency
+// $('<td>').text(`${user.currency}`).appendTo(row);
+
+// // Trade Type (e.g., Buy or Sell) with color distinction
+// $('<td>')
+//   .text(`${user.type}`)
+//   .css('color', user.type === 'LONG' ? 'green' : 'red') // Green for 'Buy', Red for 'Sell'
+//   .appendTo(row);
+
+// // Amount
+// $('<td>')
+//   .text(`$${user.amount}`)
+//   .css('font-weight', 'bold')  // Make the amount bold
+//   .appendTo(row);
+
+// // Profit/Loss with color styling
+// $('<td>')
+//   .text(`$${user.profit}`)
+//   .css('color', user.profit >= 0 ? 'green' : 'red') // Green for profit, Red for loss
+//   .css('font-weight', user.profit >= 0 ? 'bold' : 'normal')  // Bold if profit
+//   .appendTo(row);
+
+// // User Info Name
+// $('<td>')
+//   .text(`${userInfo.name}`)
+//   .css('color', '#007bff')  // Blue color for the name
+//   .appendTo(row);
+
+// // Status with background color
+// $('<td>')
+//   .text(`${user.status}`)
+//   .css('color', user.status === 'COMPLETED' ? 'lightgreen' : 'lightgray') // Green for 'Active', Gray for others
+//   .css('font-weight', 'bold')  // Make status bold
+//   .appendTo(row);
+
+// // Date
+// $('<td>')
+//   .text(`${user.date}`)
+//   .css('font-style', 'italic')  // Make the date italic
+//   .appendTo(row);
+       
+       
+              
+       
+              
+       
+//         tbl.appendTo($(".table"));
+
+       
+      
+
+//       })
+
+
+//       userInfo.planHistory.forEach(function (user) {
+     
+//      if(user.type=="LONG"){
+// gains+=Number(user.profit)
+
+//      }
+
+//      totalCopytrade+=Number(user.amount)
+
+//      $("#gains").text(gains)
+//      $("#totalCopytrade").text(totalCopytrade)
+    
+//      var row = $('<tr>').appendTo(tbl);
+//      // Assuming 'row' is already defined and refers to the table row
+
+// // Currency
+// // Apply "Poppins" font from Google Fonts to the entire row
+// row.css('font-family', 'Poppins, sans-serif');
+
+// // Currency
+// $('<td>').text(`${user.currency}`).appendTo(row);
+
+// // Trade Type (e.g., Buy or Sell) with color distinction
+// $('<td>')
+// .text(`${user.typr}`)
+// .css('color', user.typr === 'LONG' ? 'green' : 'red') // Green for 'Buy', Red for 'Sell'
+// .appendTo(row);
+
+// // Amount
+// $('<td>')
+// .text(`$${user.entryPrice}`)
+// .css('font-weight', 'bold')  // Make the amount bold
+// .appendTo(row);
+
+// // Profit/Loss with color styling
+// $('<td>')
+// .text(`$${user.profit}`)
+// .css('color', user.profit >= 0 ? 'green' : 'red') // Green for profit, Red for loss
+// .css('font-weight', user.profit >= 0 ? 'bold' : 'normal')  // Bold if profit
+// .appendTo(row);
+
+
+
+// var traderName=localStorage.getItem("traderName")
+// // User Info Name
+// $('<td>')
+// .text(`${traderName}`)
+// .css('color', '#007bff')  // Blue color for the name
+// .appendTo(row);
+
+// // Status with background color
+// $('<td>')
+// .text(`${user.status}`)
+// .css('color', user.status === 'COMPLETED' ? 'lightgreen' : 'lightgray') // Green for 'Active', Gray for others
+// .css('font-weight', 'bold')  // Make status bold
+// .appendTo(row);
+
+// // Date
+// $('<td>')
+// .text(`${user.date}`)
+// .css('font-style', 'italic')  // Make the date italic
+// .appendTo(row);
+    
+    
+           
+    
+           
+    
+//      tbl.appendTo($(".table"));
+
+    
+   
+
+//    })
+
+
+//  });
+
+
+
+
+//   </script>
 
 <!-- plugins -->
 <script src="./ongoing_files/vendors.js.download"></script>

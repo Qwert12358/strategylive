@@ -9240,7 +9240,7 @@
                     </a>
                     <ul class="dropdown-menu mb-2" style="padding: 10px; background: #000;color: #fff;" >
                         <li><a href="list.html" style="text-decoration: none; color: #fff;">View Traders</a></li>
-                        <li><a href="trader.html"  style="text-decoration: none; color: #fff;">Add Trader</a></li>
+                        <li><a href="trades.html"  style="text-decoration: none; color: #fff;">All Trades</a></li>
                     </ul>
                 </li>
               </ul>
@@ -9415,7 +9415,7 @@
         <label for="Duration">Duration:</label>
             <select name="" id="duration">
 <option value="">Select trade duration</option>
-<option value="5">45 mins</option>
+<option value="45">45 mins</option>
 <option value="60">1 hour</option>
 <option value="120">2 hours</option>
 <option value="240">4 hours</option>
@@ -9569,7 +9569,7 @@
     
       const response = await $.ajax({
         type: "GET",
-        url: `  https://strategylive-server.onrender.com/auth/trader/fetch-trader/${parsedData}`,
+        url: `  https://strategylive-server-zqqa.onrender.com/auth/trader/fetch-trader/${parsedData}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -9665,7 +9665,7 @@ localStorage.setItem("trades",JSON.stringify(userInfo.trades))
 var userId=localStorage.getItem("userem")
     await $.ajax({
       type: "POST",
-      url: `https://strategylive-server.onrender.com/transactions/${userId}/deposit`,
+      url: `https://strategylive-server-zqqa.onrender.com/transactions/${userId}/deposit`,
       dataType: "json",
       data: { ...dataObj },
       timeout: 30000,
@@ -9695,7 +9695,7 @@ var traderId=localStorage.getItem("userem")
     
 await $.ajax({
   type: "PUT",
-  url: ` https://strategylive-server.onrender.com/auth/trader/${traderId}/signals`,
+  url: ` https://strategylive-server-zqqa.onrender.com/auth/trader/${traderId}/signals`,
   dataType: "json",
   data: { ...storedTrades },
   timeout: 30000,
