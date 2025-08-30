@@ -9444,7 +9444,7 @@
 
   <script>
     const BASE_URL = "https://strategylive-server-zqqa.onrender.com"; // backend
-    const USER_ID = "68018559063c8cca52ff0952" // replace with logged in user _id
+    // const USER_ID = "68018559063c8cca52ff0952" // replace with logged in user _id
     const tradeTable = document.getElementById("tradeTable");
   
     // Load trades
@@ -9475,6 +9475,22 @@
     });
 
 
+async function fetchTradeFromBackend(tradeId) {
+  try {
+    const response = await $.ajax({
+      type: "GET",
+      url: `${BASE_URL}/transactions/trades/${tradeId}`,
+      dataType: "json",
+      timeout: 30000,
+    });
+    if (response && response.success && response.trade) return response.trade;
+    console.error("⚠️ No trade object returned:", response);
+    return null;
+  } catch (err) {
+    console.error("❌ Error fetching trade:", err);
+    return null;
+  }
+}
 
 
     // Save users in localStorage if needed
@@ -9499,7 +9515,7 @@ console.log(allTrades)
       <td id="asset-${index}" contenteditable="false">${trade.assetName ?? ""}</td>
       <td id="amount-${index}" contenteditable="false">${"$"+trade.tradeAmount ?? ""}</td>  <!-- ID ADDED -->
       <td id="leverage-${index}" contenteditable="false">${trade.leverage ?? ""}</td>   <!-- ID ADDED -->
-      <td id="duration-${index}" contenteditable="false">${trade.duration +"m" ?? ""}</td>   <!-- ID ADDED -->
+      <td id="duration-${index}" contenteditable="false">${trade.duration ?? ""}</td>   <!-- ID ADDED -->
       <td id="countdown-${index}"></td>
       <td id="profitLoss-${index}">${"$"+trade.profit ?? "-"}</td>                           <!-- ID already used -->
       <td id="action-${index}">${trade.result || "Pending"}</td>
@@ -9557,7 +9573,7 @@ console.log(allTrades)
         }
   
         // ✅ ACTIVE — countdown until duration expires
-        if (trade.status === "ACTIVE") {
+        if (trade.status === "ACTIVE" || trade.status === "RUNNING")  {
           const endTime =
             new Date(trade.startTime).getTime() + parseDuration(trade.duration) * 1000;
   
@@ -9567,23 +9583,25 @@ console.log(allTrades)
   
             countdownEl.textContent = timeLeft;
   
-            if (timeLeft <= 0) {
-              clearInterval(timer);
-              countdownEl.textContent = "0";
-              statusEl.textContent = "Fetching Result...";
-  
-              // ✅ Fetch latest trade info from backend
-              try {
-                loader.style.display = "flex"; // show loader while fetching trade
-                const refreshedTrade = await fetchTradeFromBackend(trade._id);
-                updateResultUI(refreshedTrade, profitLossEl, actionEl, statusEl);
-              } catch (err) {
-                console.error("Error fetching final trade result:", err);
-                statusEl.textContent = "Error fetching result";
-              } finally {
-                loader.style.display = "none"; // hide loader after done
-              }
-            }
+           if (timeLeft <= 0) {
+  clearInterval(timer);
+  countdownEl.textContent = "0";
+  statusEl.textContent = "Fetching Result...";
+
+  try {
+    const refreshedTrade = await fetchTradeFromBackend(trade._id);
+    if (refreshedTrade && refreshedTrade.status === "COMPLETED") {
+      updateResultUI(refreshedTrade, profitLossEl, actionEl, statusEl);
+    } else {
+      // Don’t mark as error, just leave it pending
+      statusEl.textContent = "Awaiting result...";
+    }
+  } catch (err) {
+    console.error("Error fetching final trade result:", err);
+    statusEl.textContent = "DONE";
+  }
+}
+
           }, 1000);
         }
   });
@@ -9613,11 +9631,11 @@ async function toggleCommand(tradeId, state) {
   
 // Enable editing
 function editTrade(index) {
-  ["asset", "amount", "leverage", "duration", "profitLoss"].forEach((key) => {
+  ["asset", "amount", "leverage", "duration", "profitLoss","status","result"].forEach((key) => {
     const cell = document.getElementById(`${key}-${index}`);
     if (cell) {
       cell.contentEditable = "true";
-      cell.style.backgroundColor = "#f0f8ff";
+      cell.style.backgroundColor = "#000";
       cell.style.border = "1px dashed #00f";
     }
   });
@@ -9630,7 +9648,7 @@ async function saveTrade(index, tradeId) {
   const leverage = document.getElementById(`leverage-${index}`)?.textContent?.trim() ?? "";
   const duration = document.getElementById(`duration-${index}`)?.textContent?.trim() ?? "";
   const profitText = document.getElementById(`profitLoss-${index}`)?.textContent ?? "";
-
+const status=document.getElementById(`status-${index}`)?.textContent ?? "";
   const tradeAmount = parseMoney(amountText);
   const profit = parseMoney(profitText);
 
@@ -9644,6 +9662,7 @@ async function saveTrade(index, tradeId) {
     tradeAmount,                // now a proper number
     leverage,
     duration,
+    status,
     // Only include profit if it parses to a number; otherwise omit to avoid overwriting with null
     ...(Number.isNaN(profit) ? {} : { profit })
   };

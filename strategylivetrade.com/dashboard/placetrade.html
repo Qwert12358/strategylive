@@ -8,6 +8,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Strategylivetrade - User Dashboard</title>
    
 
@@ -1377,11 +1378,11 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                        <li><a href="deposit.html" aria-expanded="false"><i class="fas fas fa-money"></i><span class="nav-title">Deposit</span></a> </li>
                                         <li><a href="brokers.html" aria-expanded="false"><i class="fas fas fa-bar-chart-o"></i><span class="nav-title">Copy Trading</span></a> </li>
                             <li><a href="livetrade.html" aria-expanded="false"><i class="fas fas fa-eye"></i><span class="nav-title">Live trade</span></a> </li>
-                                        <li><a href="my_trades.html" aria-expanded="false"><i class="fas fa-rotate-right"></i><span class="nav-title">Place Trade</span></a> </li>
+                                        <li><a href="placetrade.html" aria-expanded="false"><i class="fas fa-rotate-right"></i><span class="nav-title">Place Trade</span></a> </li>
            
                                        <li><a class="has-arrow" href="javascript:void(0)" aria-expanded="false"><i class="fas fa-suitcase"></i><span class="nav-title">Ongoing-Investments</span></a>
                                 <ul aria-expanded="false" class="collapse">
-                                    <li> <a href="ongoing.html">Ongoing-Investment</a> </li>
+                                    <li> <a href="my_trades.html">Investments</a> </li>
                                     <li> <a href="balance.html">Balance</a> </li>
                                 </ul>
                             </li> 
@@ -1430,7 +1431,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                 <!-- begin page title -->
                                 <div class="d-block d-lg-flex flex-nowrap align-items-center">
                                     <div class="page-title mr-4 pr-4 border-right">
-                                        <h1>Load Trade</h1> 
+                                        <h1>Place Trade</h1> 
                                     </div>
                                     <div class="breadcrumb-bar align-items-center">
                                         <nav>
@@ -1441,7 +1442,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                                 <li class="breadcrumb-item">
                                                     Dashboard
                                                 </li>
-                                                <li class="breadcrumb-item active text-primary" aria-current="page">Load Trade</li>
+                                                <li class="breadcrumb-item active text-primary" aria-current="page">Place Trade</li>
                                             </ol>
                                         </nav>
                                     </div>
@@ -1469,14 +1470,6 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 
 
                              
-
-
-
-
-            <div class="row">
-               
-
-                            
 <style>                     .form-container {
                                 background: #ffffff;
                                 border-radius: 12px;
@@ -1638,13 +1631,15 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
     .buy { background: #28a745; color: #fff; }
     .sell { background: #dc3545; color: #fff; }
   </style>
-                          </head>
-                          <body>
-                          
-                             
-                                <div class="trading-card">
-    <div class="header" style="display: flex;flex-direction: row;">
-      <div class="balance">Balance: $<span id="balance">  </span> </div>
+
+
+
+
+           <div class="trade-container">
+  <!-- Trading Form -->
+  <div class="trading-card">
+    <div class="header">
+      <div class="balance">Balance: $<span id="balance2"></span></div>
       <div class="live">LIVE TRADING</div>
     </div>
 
@@ -1680,7 +1675,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
       <label>Amount</label>
       <input type="number" id="amount" placeholder="Enter trade amount" required>
 
-      <div class="row">
+      <div class="tp-sl">
         <div>
           <label>Take Profit</label>
           <input type="number" id="takeProfit" required>
@@ -1698,16 +1693,12 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
     </form>
   </div>
 
-                            </div>
-                          
-
-
-
-            </div>
-            </div>
-            </div>
-            </div>
-            <style>
+  <!-- TradingView Chart -->
+  <div class="chart-card">
+    <div id="tv-chart"></div>
+  </div>
+</div>
+ <style>
               .breadcrumb-item + .breadcrumb-item::before {
             content: ">";
             margin: 0 5px;
@@ -1744,8 +1735,210 @@ $("#cl").text(user.firstName + " " + user.lastName)
         <!-- end app-wrap -->
     </div>
     <!-- end app -->
+     <style>
+        .trade-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+  width: 100%;
+  flex-wrap: wrap;
+}
 
-    
+/* Trading card */
+.trading-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 400px;
+}
+
+/* Chart */
+.chart-card {
+  flex: 2;
+  min-width: 300px;
+}
+
+#tv-chart {
+  width: 100%;
+  height: 520px;
+}
+
+/* Take Profit / Stop Loss inline */
+.tp-sl {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tp-sl div {
+  flex: 1;
+  min-width: 120px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trade-container {
+    flex-direction: column;
+  }
+
+  .trading-card, 
+  .chart-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #tv-chart {
+    height: 300px; /* shrink chart on mobile */
+  }
+}
+
+     </style>
+
+    <!-- Put this where you want the chart -->
+
+<script>
+  // --- existing vars from your code (assume they already exist) ---
+  // const assetType = document.getElementById("assetType");
+  // const assetName = document.getElementById("assetName");
+  // ...
+  // assets = {...} already defined
+
+  // Add TradingView script (only once)
+  (function loadTV() {
+    if (window.TradingView) return;
+    const s = document.createElement("script");
+    s.src = "https://s3.tradingview.com/tv.js";
+    s.onload = () => console.log("TradingView library loaded");
+    s.onerror = () => console.error("Failed to load TradingView library");
+    document.head.appendChild(s);
+  })();
+
+  // Map from assetType + assetName to TradingView symbol
+  // These defaults work for common tickers:
+  //  - crypto -> BINANCE:BTCUSDT, BINANCE:ETHUSDT, etc.
+  //  - forex  -> FX_IDC:EURUSD, OANDA:EUR_USD (TradingView supports multiple prefixes)
+  //  - stock  -> NASDAQ:AAPL, NYSE:TSLA etc. (best-effort)
+  function mapToTVSymbol(type, name) {
+    if (!type || !name) return null;
+    // crypto pairs come as "BTC/USDT" in your list -> convert to "BINANCE:BTCUSDT"
+    if (type === "crypto") {
+      // prefer USDT pairs -> remove slash
+      const pair = name.replace("/", "");
+      return `BINANCE:${pair}`;
+    }
+
+    // forex names like "EUR/USD" -> use "FX_IDC:EURUSD" (widely available)
+    if (type === "forex") {
+      const pair = name.replace("/", "");
+      return `FX_IDC:${pair}`;
+    }
+
+    // stocks - try common exchanges by checking ticker (very crude fallback)
+    if (type === "stock") {
+      const ticker = name.toUpperCase();
+      // prefer NASDAQ for big tech tickers
+      const nasdaqTickers = ["AAPL","TSLA","GOOGL","AMZN","MSFT","NFLX","META","NVDA","AMD"];
+      if (nasdaqTickers.includes(ticker)) return `NASDAQ:${ticker}`;
+      // otherwise default to NYSE
+      return `NYSE:${ticker}`;
+    }
+
+    // fallback: return name as-is (TradingView might accept)
+    return name;
+  }
+
+  // Clean previous widget
+  function clearTVWidget() {
+    const container = document.getElementById("tv-chart");
+    if (!container) return;
+    // TradingView creates an iframe inside container — remove all children
+    while (container.firstChild) container.removeChild(container.firstChild);
+    // Also, remove global tvWidget if set (defensive)
+    try {
+      if (window.tvWidget && typeof window.tvWidget.remove === "function") {
+        window.tvWidget.remove();
+        window.tvWidget = null;
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  // Create TradingView chart for a symbol
+  function createTVChart(symbol) {
+    const container = document.getElementById("tv-chart");
+    if (!container) return;
+
+    if (!window.TradingView) {
+      // script not loaded yet — try again shortly
+      setTimeout(() => createTVChart(symbol), 300);
+      return;
+    }
+
+    clearTVWidget();
+
+    // store on window so we can remove later if needed
+    window.tvWidget = new TradingView.widget({
+      autosize: true,
+      symbol: symbol,
+      interval: "1",            // 1 minute default; user can change in widget UI
+      timezone: "Etc/UTC",
+      theme: "light",
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#f1f3f6",
+      enable_publishing: false,
+      allow_symbol_change: true,
+      container_id: "tv-chart",
+      studies: ["EMA@tv-basicstudies","RSI@tv-basicstudies"] // optional studies
+    });
+  }
+
+  // Wire assetName change -> update chart
+  assetName.addEventListener("change", () => {
+    const type = assetType.value;
+    const name = assetName.value;
+    const symbol = mapToTVSymbol(type, name);
+    if (!symbol) {
+      clearTVWidget();
+      return;
+    }
+    createTVChart(symbol);
+  });
+
+  // Also update chart if assetType changes and assetName re-populates
+  assetType.addEventListener("change", () => {
+    // small delay so assetName options are populated first
+    setTimeout(() => {
+      const name = assetName.value;
+      if (name) {
+        const symbol = mapToTVSymbol(assetType.value, name);
+        if (symbol) createTVChart(symbol);
+      } else {
+        clearTVWidget();
+      }
+    }, 40);
+  });
+
+  // On page load, if there's a pre-selected assetName, show chart
+  window.addEventListener("DOMContentLoaded", () => {
+    const initial = assetName.value;
+    if (initial) {
+      const symbol = mapToTVSymbol(assetType.value, initial);
+      if (symbol) createTVChart(symbol);
+    }
+  });
+
+  // Optional: allow a user to click a button to open larger TradingView popup
+  function openLargeChart(symbol) {
+    // TradingView has standalone embeddable options — simplest: open TradingView chart page
+    const url = `https://www.tradingview.com/symbols/${symbol.replace(":", "-")}/`;
+    window.open(url, "_blank");
+  }
+
+  // Expose openLargeChart if you want a button to call it
+  window.openLargeChart = openLargeChart;
+</script>
+
  <script>
     const assets = {
       crypto: ["BTC/USDT", "ETH/USDT", "XRP/USDT", "ADA/USDT", "DOGE/USDT", "SOL/USDT", "DOT/USDT", "LTC/USDT", "BNB/USDT", "MATIC/USDT"],
@@ -1817,7 +2010,7 @@ await $.ajax({
   timeout: 30000,
   success: function (data) {
     console.log("user found:" +" " + JSON.stringify(data));
-  $("#balance").text(data.data.balance)
+  $("#balance2").text(data.data.balance)
 
   },
   error: function (xhr, status, error) {
@@ -1828,23 +2021,29 @@ await $.ajax({
 
 }
 
+
 const userfromDB=getUser()
-    $("#balance").text(userfromDB.balance)
+    // $("#balance").text(userfromDB.balance)
 
 
 
     async function depositFnc(dataObj) {
+        const user=JSON.parse(localStorage.getItem("user"))
+        const user_Id=user._id
+console.log(dataObj);
 
 await $.ajax({
   type: "POST",
-  url: `https://strategylive-server-zqqa.onrender.com/transactions/68018559063c8cca52ff0952/userdeposit`,
+  url: `https://strategylive-server-zqqa.onrender.com/transactions/${user_Id }/userdeposit`,
   dataType: "json",
   data: { ...dataObj },
   timeout: 30000,
   success: function (data) {
     console.log(data);
     $('.live-section').html(" Tracking history added").addClass('alert-success')
-    setTimeout(function () {$(location).prop('href', './ongoing.html')     
+     
+  alert("Trade placed successfully!")
+    setTimeout(function () {$(location).prop('href', './my_trades.html')     
           }, 1000 * 2)
 
   },
@@ -1879,7 +2078,9 @@ await $.ajax({
     //   localStorage.setItem("trades", JSON.stringify(trades));
 
       // ✅ Redirect to trades page
-      window.location.href = "trades.html";
+
+    
+      window.location.href = "my_trades.html";
     }
 
     buyBtn.addEventListener("click", () => placeTrade("BUY"));
