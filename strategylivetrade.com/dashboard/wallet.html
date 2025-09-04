@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crypto Wallet Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #151923;
+      --card-hover: #1b2130;
+      --text: #e9edf1;
+      --muted: #a8b0bd;
+      --accent: #4ea1ff;
+      --shadow: rgba(0,0,0,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      background: radial-gradient(1200px 800px at 10% -10%, #1b2130 0%, #0f1115 40%, #0b0d12 100%), var(--bg);
+      color: var(--text);
+    }
+    h1 { text-align:center; margin: 0 0 18px; font-weight: 700; }
+    .sub { text-align:center; color: var(--muted); margin-bottom: 24px; }
+
+    /* Grid: 2 columns on mobile, 3 on desktop */
+    .wallet-grid {
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .wallet-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+    }
+
+    /* Card (use <button> for accessibility) */
+    .wallet-card {
+      appearance: none; border: 0; background: var(--card); color: var(--text); cursor: pointer;
+      border-radius: 16px; padding: 18px; text-align:center; box-shadow: 0 6px 18px var(--shadow);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+      min-height: 150px;
+    }
+    .wallet-card:hover, .wallet-card:focus-visible {
+      background: var(--card-hover); transform: translateY(-2px);
+      outline: 2px solid rgba(78,161,255,.25);
+      box-shadow: 0 10px 26px var(--shadow);
+    }
+    .name { font-size: 14px; font-weight: 600; line-height: 1.2; }
+    .muted { font-size: 12px; color: var(--muted); }
+
+    /* Avatar icons (letter-based, no external images) */
+    .avatar {
+      --h: 210; /* hue injected inline per-card */
+      width: 64px; height: 64px; border-radius: 18px;
+      background: conic-gradient(from 180deg, hsl(var(--h) 90% 60%) 0 25%, hsl(calc(var(--h) + 40) 90% 55%) 0 50%, hsl(calc(var(--h) + 80) 90% 50%) 0 75%, hsl(calc(var(--h) + 120) 80% 47%) 0 100%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08), 0 8px 18px rgba(0,0,0,.35);
+      display:grid; place-items:center;
+      position: relative;
+    }
+    .avatar::before {
+      content: attr(data-initials);
+      display:block;
+      font-weight: 800; font-size: 20px; letter-spacing: .5px;
+      color: #0d1020;
+      background: rgba(255,255,255,.85);
+      padding: 6px 10px; border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0,0,0,.25), inset 0 0 0 1px rgba(0,0,0,.06);
+    }
+
+    /* Modal */
+    .modal {
+      position: fixed; inset: 0;
+      background: rgba(3,6,12,.6);
+      display: none; align-items:center; justify-content:center;
+      padding: 16px; z-index: 50;
+    }
+    .modal[open] { display:flex; }
+    dialog { border:0; padding:0; background: transparent; }
+    .sheet {
+      background: #141a25; border-radius: 18px; width: 100%; max-width: 420px; padding: 18px 18px 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+    .sheet-head { display:flex; align-items:center; gap:12px; margin-bottom: 12px; }
+    .sheet-title { font-size: 18px; font-weight: 700; display:flex; align-items:center; gap:10px; }
+    .sheet-sub { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+    .actions { display:flex; gap:10px; }
+    .btn {
+      appearance:none; border:0; cursor:pointer;
+      padding: 12px 14px; border-radius: 12px; font-weight:700;
+    }
+    .btn.primary { background: var(--accent); color: #0a0d16; flex: 1; }
+    .btn.ghost { background: #0f131c; color: var(--text); }
+    .x {
+      margin-left: auto; background: transparent; color: var(--muted); border:0; cursor: pointer; font-size: 20px;
+    }
+
+    /* Optional: When you later provide logo images, this class will show them */
+    .logo-img {
+      width: 36px; height: 36px; border-radius: 10px; display:none; object-fit: contain; background:#0c0f17;
+    }
+    .has-logo .logo-img { display:block; }
+    .has-logo .avatar { display:none; }
+  </style>
+</head>
+<body>
+  <h1>Connect a Wallet</h1>
+  <p class="sub">Tap a wallet to continue. Grid is 2×2 on mobile, 3×3 on desktop.</p>
+
+  <div class="wallet-grid" id="walletGrid" aria-live="polite"></div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <dialog id="dialog">
+      <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="walletTitle">
+        <div class="sheet-head">
+          <div class="avatar" id="modalAvatar" aria-hidden="true" data-initials="WW" style="--h:210"></div>
+          <img id="modalLogo" class="logo-img" alt="">
+          <div class="sheet-title" id="walletTitle">Wallet</div>
+          <button class="x" id="closeBtn" aria-label="Close">✕</button>
+        </div>
+        <div class="sheet-sub" id="walletHint">Use this wallet to connect to the dApp.</div>
+        <div class="actions">
+          <button class="btn primary" id="connectBtn">Connect Wallet</button>
+          <button class="btn ghost" id="cancelBtn">Cancel</button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+
+  <script>
+    // 50 real wallets (names only; no external images to avoid broken URLs)
+    const WALLETS = [
+      "MetaMask","Trust Wallet","Coinbase Wallet","Ledger Live","Trezor Suite",
+      "Exodus","Phantom","Rainbow","SafePal","Atomic Wallet",
+      "MyEtherWallet","Coinomi","Guarda","Edge","Electrum",
+      "Wasabi Wallet","BlueWallet","BRD Wallet","Argent","ZenGo",
+      "Keplr","Terra Station","Solflare","XDEFI Wallet","imToken",
+      "MathWallet","TokenPocket","Bitget Wallet","OKX Wallet","Binance Web3 Wallet",
+      "KuCoin Wallet","Coin98","Blocto","TON Keeper","TronLink",
+      "Safe (Gnosis Safe)","Frame Wallet","Rabby Wallet","Core Wallet (Avalanche)","OneKey",
+      "Nami Wallet","Yoroi","Daedalus","Flint Wallet","Petra Wallet (Aptos)",
+      "Martian Wallet (Aptos)","Pontem Wallet (Aptos)","Suiet Wallet (Sui)","Ethos Wallet (Sui)","SubWallet (Polkadot)"
+    ];
+
+    const grid = document.getElementById("walletGrid");
+    const modal = document.getElementById("modal");
+    const dialog = document.getElementById("dialog");
+    const modalAvatar = document.getElementById("modalAvatar");
+    const modalLogo = document.getElementById("modalLogo");
+    const title = document.getElementById("walletTitle");
+    const hint = document.getElementById("walletHint");
+    const closeBtn = document.getElementById("closeBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const connectBtn = document.getElementById("connectBtn");
+
+    // Utility: initials from name
+    function initials(name) {
+      const parts = name.replace(/\(.*?\)/g,"").trim().split(/\s+/).slice(0,2);
+      return parts.map(p => p[0]).join("").toUpperCase();
+    }
+
+    // Build the grid (2 columns mobile, 3 desktop via CSS)
+    WALLETS.forEach((name, i) => {
+      const card = document.createElement("button");
+      card.className = "wallet-card";
+      card.setAttribute("aria-label", `Select ${name}`);
+      card.dataset.name = name;
+
+      // Color hue based on index for variety
+      const hue = (i * 31) % 360;
+
+      // Avatar (letter icon)
+      const av = document.createElement("div");
+      av.className = "avatar";
+      av.style.setProperty("--h", hue);
+      av.setAttribute("data-initials", initials(name));
+      card.appendChild(av);
+
+      // If you later add a local logo path, set card.dataset.icon = "logos/name.svg"
+      // and uncomment the following to display it automatically.
+      if (card.dataset.icon) {
+        const img = document.createElement("img");
+        img.className = "logo-img";
+        img.src = card.dataset.icon;
+        img.alt = `${name} logo`;
+        card.classList.add("has-logo");
+        card.appendChild(img);
+      }
+
+      // Label
+      const label = document.createElement("div");
+      label.className = "name";
+      label.textContent = name;
+      card.appendChild(label);
+
+      // (Optional) mini helper
+      // const mini = document.createElement("div");
+      // mini.className = "muted";
+      // mini.textContent = "Wallet";
+      // card.appendChild(mini);
+
+      // Open modal on click
+      card.addEventListener("click", () => openModal(name, hue, card.dataset.icon || null));
+      grid.appendChild(card);
+    });
+
+    function openModal(name, hue, iconPath) {
+      // Swap avatar/logo depending on whether an icon path exists
+      if (iconPath) {
+        modalLogo.src = iconPath;
+        modalLogo.alt = `${name} logo`;
+        modalLogo.parentElement.classList.add("has-logo");
+      } else {
+        modalLogo.removeAttribute("src");
+        modalLogo.alt = "";
+        modalLogo.parentElement.classList.remove("has-logo");
+        modalAvatar.style.setProperty("--h", hue);
+        modalAvatar.setAttribute("data-initials", initials(name));
+      }
+
+      title.textContent = name;
+      hint.textContent = `Connect to ${name} to continue.`;
+      modal.setAttribute("open", "");
+      dialog.showModal();
+      connectBtn.focus();
+    }
+
+    function closeModal() {
+      dialog.close();
+      modal.removeAttribute("open");
+    }
+
+    // Close interactions
+    closeBtn.addEventListener("click", closeModal);
+    cancelBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    // Stub: Connect action (replace with your real connect flow)
+    connectBtn.addEventListener("click", () => {
+      alert(`Connecting ${title.textContent}...`);
+      closeModal();
+    });
+
+    /* ===== HOW TO ADD REAL LOGOS LATER (offline & reliable) =====
+       1) Put logo files in a local "logos/" folder next to this HTML file.
+       2) After the grid is created above, loop through grid children and set dataset.icon
+          based on the name, e.g. if you have "logos/metamask.svg":
+            if (name === "MetaMask") card.dataset.icon = "logos/metamask.svg";
+       3) The card will automatically show the image instead of the letter avatar.
+    */
+  </script>
+</body>
+</html>
