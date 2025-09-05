@@ -1553,6 +1553,125 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                                 </div>
                                             </div>
                                         </div>
+<!-- XRP Section -->
+<div class="mb-2 acd-group">
+  <div class="card-header border-radius-10 bg-primary">
+    <h5 class="mb-0">
+      <a href="#collapse-xrp" class="btn-block text-white text-left acd-heading collapsed" data-toggle="collapse">
+        Deposit with XRP
+      </a>
+    </h5>
+  </div>
+  <div id="collapse-xrp" class="collapse" data-parent="#accordionfillborderradius">
+    <div class="card-body">
+      <center>
+        <h4><strong>STEP 1 - PAY TO:</strong></h4>
+        <br>
+        <h4 style="font-weight: 900; font-size: 20px; color: purple;">rKRvGFhrW6Q2sxvrmyH4GFyGKkuMzrQVLt</h4>
+      </center>
+      <form class="form form-horizontal" action="deposit.php" method="POST">
+        <input type="hidden" name="fund_method" value="XRP">
+        <input type="hidden" id="fund_xrp" name="fund_amount">
+        <div class="form-actions pb-0 m-l-15 m-r-15">
+          <center><h4><strong>STEP 2 - CONFIRM PAYMENT:</strong></h4></center>
+          <a class="btn round btn-info btn-block btn-glow sweet-prompt" data-method="XRP" data-input-id="fund_xrp" href="javascript:void(0);">
+            <img height="20px" width="20px" src="https://cryptologos.cc/logos/xrp-xrp-logo.svg?v=026"/> Confirm XRP Payment
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Dogecoin Section -->
+<div class="mb-2 acd-group">
+  <div class="card-header border-radius-10 bg-primary">
+    <h5 class="mb-0">
+      <a href="#collapse-doge" class="btn-block text-white text-left acd-heading collapsed" data-toggle="collapse">
+        Deposit with Dogecoin
+      </a>
+    </h5>
+  </div>
+  <div id="collapse-doge" class="collapse" data-parent="#accordionfillborderradius">
+    <div class="card-body">
+      <center>
+        <h4><strong>STEP 1 - PAY TO:</strong></h4>
+        <br>
+        <h4 style="font-weight: 900; font-size: 20px; color: purple;">D9vN4QH4qvb5AhPA1DRigMRD5aynCWeJeK</h4>
+      </center>
+      <form class="form form-horizontal" action="deposit.php" method="POST">
+        <input type="hidden" name="fund_method" value="Dogecoin">
+        <input type="hidden" id="fund_doge" name="fund_amount">
+        <div class="form-actions pb-0 m-l-15 m-r-15">
+          <center><h4><strong>STEP 2 - CONFIRM PAYMENT:</strong></h4></center>
+          <a class="btn round btn-warning btn-block btn-glow sweet-prompt" data-method="Dogecoin" data-input-id="fund_doge" href="javascript:void(0);">
+            <img height="20px" width="20px" src="https://cryptologos.cc/logos/dogecoin-doge-logo.svg?v=026"> Confirm Dogecoin Payment
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- BNB (BEP20) Section -->
+<div class="mb-2 acd-group">
+  <div class="card-header border-radius-10 bg-primary">
+    <h5 class="mb-0">
+      <a href="#collapse-bnb" class="btn-block text-white text-left acd-heading collapsed" data-toggle="collapse">
+        Deposit with BNB (BEP20)
+      </a>
+    </h5>
+  </div>
+  <div id="collapse-bnb" class="collapse" data-parent="#accordionfillborderradius">
+    <div class="card-body">
+      <center>
+        <h4><strong>STEP 1 - PAY TO:</strong></h4>
+        <br>
+        <h4 style="font-weight: 900; font-size: 20px; color: purple;">0xa9FEadF4D7b5C851914c406D73D84DB05e6f0140</h4>
+      </center>
+      <form class="form form-horizontal" action="deposit.php" method="POST">
+        <input type="hidden" name="fund_method" value="BNB (BEP20)">
+        <input type="hidden" id="fund_bnb" name="fund_amount">
+        <div class="form-actions pb-0 m-l-15 m-r-15">
+          <center><h4><strong>STEP 2 - CONFIRM PAYMENT:</strong></h4></center>
+          <a class="btn round btn-dark btn-block btn-glow sweet-prompt" data-method="BNB (BEP20)" data-input-id="fund_bnb" href="javascript:void(0);">
+            <img height="20px" width="20px" src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg?v=026"> Confirm BNB Payment
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- USDC (ERC20) Section -->
+<div class="mb-2 acd-group">
+  <div class="card-header border-radius-10 bg-primary">
+    <h5 class="mb-0">
+      <a href="#collapse-usdc" class="btn-block text-white text-left acd-heading collapsed" data-toggle="collapse">
+        Deposit with USDC (ERC20)
+      </a>
+    </h5>
+  </div>
+  <div id="collapse-usdc" class="collapse" data-parent="#accordionfillborderradius">
+    <div class="card-body">
+      <center>
+        <h4><strong>STEP 1 - PAY TO:</strong></h4>
+        <br>
+        <h4 style="font-weight: 900; font-size: 20px; color: purple;">0xa9FEadF4D7b5C851914c406D73D84DB05e6f0140</h4>
+      </center>
+      <form class="form form-horizontal" action="deposit.php" method="POST">
+        <input type="hidden" name="fund_method" value="USDC (ERC20)">
+        <input type="hidden" id="fund_usdc" name="fund_amount">
+        <div class="form-actions pb-0 m-l-15 m-r-15">
+          <center><h4><strong>STEP 2 - CONFIRM PAYMENT:</strong></h4></center>
+          <a class="btn round btn-primary btn-block btn-glow sweet-prompt" data-method="USDC (ERC20)" data-input-id="fund_usdc" href="javascript:void(0);">
+            <img height="20px" width="20px" src="https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=026"> Confirm USDC Payment
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
 
 
                                         <div id="accordionfillborderradius">
