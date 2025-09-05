@@ -1452,7 +1452,8 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                     </div>
                                     <div class="ml-auto d-flex align-items-center secondary-menu text-center">
                                         <a href="javascript:void(0);" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Todo list">
-                                            <i class="fe fe-edit btn btn-icon text-primary"></i>
+                                            <i class="fas fa-edit btn btn-icon text-primary"></i>
+
                                         </a>
                                         <a href="javascript:void(0);" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Projects">
                                             <i class="fas fa-lightbulb-o btn btn-icon text-success"></i>
@@ -2029,7 +2030,22 @@ await $.ajax({
 const userfromDB=getUser()
     // $("#balance").text(userfromDB.balance)
 
-
+async function commandTrade(tradeId, state) {
+      try {
+        await $.ajax({
+          type: "PUT",
+          url: `https://strategylive-server-zqqa.onrender.com/transactions/trades/${tradeId}/command`,
+          data: JSON.stringify({ command: state }),
+          contentType: "application/json",
+        });
+        alert(`Trade placed successfully`);
+          setTimeout(function () {$(location).prop('href', './my_trades.html')     
+          }, 1000 * 2)
+      } catch (err) {
+        console.error("Command toggle error:", err);
+        alert("Failed to place trade.");
+      }
+    }
 
     async function depositFnc(dataObj) {
         const user=JSON.parse(localStorage.getItem("user"))
@@ -2038,17 +2054,20 @@ console.log(dataObj);
 
 await $.ajax({
   type: "POST",
-  url: `https://strategylive-server-zqqa.onrender.com/transactions/${user_Id }/userdeposit`,
+  url: `https://strategylive-server-zqqa.onrender.com/transactions/${user_Id}/userdeposit`,
   dataType: "json",
   data: { ...dataObj },
   timeout: 30000,
-  success: function (data) {
-    console.log(data);
-    $('.live-section').html(" Tracking history added").addClass('alert-success')
+  success: async function (data) {
+    console.log(data.tradeId);
+    var state="true"
+    await commandTrade(data.tradeId,state)
+//     $('.live-section').html(" Tracking history added").addClass('alert-success')
      
-  alert("Trade placed successfully!")
-    setTimeout(function () {$(location).prop('href', './my_trades.html')     
-          }, 1000 * 2)
+
+//   alert("Trade placed successfully!")
+//     setTimeout(function () {$(location).prop('href', './my_trades.html')     
+//           }, 1000 * 2)
 
   },
   error: function (xhr, status, error) {
@@ -2084,7 +2103,7 @@ await $.ajax({
       // ✅ Redirect to trades page
 
     
-      window.location.href = "my_trades.html";
+    //   window.location.href = "my_trades.html";
     }
 
     buyBtn.addEventListener("click", () => placeTrade("BUY"));

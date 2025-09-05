@@ -1553,9 +1553,119 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                        <div id="accordionfillborderradius">
+    <!-- Bank Transfer Section -->
+    <div class="mb-2 acd-group">
+        <div class="card-header border-radius-10 bg-primary">
+            <h5 class="mb-0">
+                <a href="#collapse-bank" class="btn-block text-white text-left acd-heading collapsed" data-toggle="collapse">
+                    Bank Transfer
+                </a>
+            </h5>
+        </div>
+        <div id="collapse-bank" class="collapse" data-parent="#accordionfillborderradius">
+            <div class="card-body">
+                <form class="form form-horizontal" onsubmit="submitBankForm(event)"  method="POST">
+                    <input type="hidden" name="fund_method" value="Bank Transfer">
+
+                    <!-- Input field revealed on dropdown -->
+                    <div class="form-group">
+                        <label for="fund_bank"><strong>Enter Transfer Reference / Amount:</strong></label>
+                        <input type="text" class="form-control" id="fund_bank" name="fund_amount" placeholder="Enter details here" required>
+                    </div>
+
+                    <div class="form-actions pb-0 m-l-15 m-r-15">
+                        <button type="submit" class="btn round btn-dark btn-block btn-glow">
+                            <i class="fa-solid fa-building-columns"></i> Confirm Bank Transfer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
                                     </div>
                                     
                                     <!-- ✅ SweetAlert + AJAX Logic (Universal for all buttons) -->
+                                     <script>
+
+                                      async function bankDepositFnc(dataObj) {
+        
+        await $.ajax({
+          type: "POST",
+          url: ` https://strategylive-server-zqqa.onrender.com/transactions/${dataObj.userId}/deposit/bank`,
+          dataType: "json",
+          data: { ...dataObj },
+          timeout: 30000,
+          success: function (data) {
+            localStorage.removeItem("ct")
+              console.log(data)
+              swal({
+                                   title: "Deposit",
+                                   text: "Your deposit request is being processed.",
+                                   type:"success",
+                                    timer: 3000
+                                  }),
+                                      setTimeout(function(){location.href="./balance.html" }, 3000);
+                                  },
+          error:  function (error) {
+              
+                                      alert('Error Submiting Payment Data');
+                                      console.log(error);
+                                      red()
+                                  }
+          // function (xhr, status, error) {
+          //   console.log(error);
+          //   $('.live-section').html("").addClass('alert-danger')
+          // }
+      });
+  
+}
+async function submitBankForm(event) {
+  event.preventDefault(); // prevent default form reload
+
+  // collect values
+  const amount = document.getElementById("fund_bank").value;
+  // const proofFile = document.getElementById("proof_of_payment").files[0] || null;
+   const proofFile =" ";
+  const user = JSON.parse(localStorage.getItem("user")) || {};
+  const userId = user._id || user.id; // adjust to match how you store user
+  const method = "Bank Transfer";
+  const from = "Customer Bank Account";
+  const to = "Company Bank Account";
+  const balance = user.balance || 0;
+  const timestamp = new Date().toISOString();
+
+  // If you need to upload file, use FormData
+  let payload;
+  if (proofFile) {
+    payload = new FormData();
+    payload.append("amount", amount);
+    payload.append("proofOfPayment", proofFile);
+    payload.append("method", method);
+    payload.append("userId", userId);
+    payload.append("from", from);
+    payload.append("to", to);
+    payload.append("balance", balance);
+    payload.append("timestamp", timestamp);
+  } else {
+    console.log(payload);
+    
+    payload = { amount, proofOfPayment: null, method, userId, from, to, balance, timestamp };
+     console.log(payload);
+  }
+
+  try {
+    await bankDepositFnc(payload);
+  } catch (err) {
+    console.error("Form Submit Error:", err);
+  }
+}
+</script>
+
                                     <script>
                                        async function depositFnc(dataObj) {
         

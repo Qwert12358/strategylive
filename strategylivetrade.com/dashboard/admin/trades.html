@@ -9614,6 +9614,8 @@ function parseMoney(text) {
   const cleaned = String(text).replace(/[^\d.-]/g, ""); // remove non-numeric
   return cleaned === "" ? NaN : Number(cleaned);
 }
+
+
 async function toggleCommand(tradeId, state) {
       try {
         await $.ajax({
