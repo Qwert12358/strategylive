@@ -475,8 +475,10 @@ display: block;
             
                         $("#email").html(userInfo.email);
                         $("#balance").html(userInfo.balance);
+                        $("#balancedash").html("$"+userInfo.balance);
                        
                         $("#profit").html(userInfo.profit);
+                         $("#profitdash").html("+$"+userInfo.profit);
 let openTrades=0
 let closedTrades=0
 let wonTrades=0
@@ -606,8 +608,10 @@ let lostTrades=0
     flex-direction: column;
     gap: 16px;
   }
+  .dashboard-row .card {
+    flex: 1; /* ✅ only first-row cards stretch */
+  }
   .card {
-    flex: 1;
     padding: 16px;
     border-radius: 8px;
   }
@@ -631,6 +635,19 @@ let lostTrades=0
   .ratio  { background:#ecfdf5; border:1px solid #6ee7b7; }
   .ratio h3, .ratio .value { color:#047857; }
 
+  /* New Balance/Profit card */
+  .summary {
+    background:#fff7ed;
+    border:1px solid #fdba74;
+    display: flex;
+    justify-content: space-between; /* 👈 pushes them apart */
+    align-items: center;
+  }
+  .summary h3, .summary .value { color:#c2410c; }
+  .summary .item h3 {
+    margin-bottom: 4px;
+  }
+
   @media (min-width: 768px) {
     .dashboard-row { flex-direction: row; }
   }
@@ -648,6 +665,56 @@ let lostTrades=0
   <div class="card ratio">
     <h3>Win/Loss Ratio</h3>
     <div class="value" id="winLoss">2.1</div>
+  </div>
+</div>
+
+<!-- 4th card spanning full width -->
+<style>
+  .card.summary {
+    background-color: #f4f7fa;
+    border: 1px solid #93c5fd;
+    display: flex;                /* ✅ corrected */
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 12px;
+    flex-wrap: wrap;              /* ✅ allows wrapping if too tight */
+  }
+
+  .card.summary h3 {
+    color: #055656;
+    margin: 0 0 4px;
+    font: 600 12px/1.2 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+
+  .card.summary .value {
+    color: #6ee7b7;
+    font: 700 24px/1 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  }
+
+  /* ✅ Responsive adjustments */
+  @media (max-width: 600px) {
+    .card.summary {
+      flex-direction: column;     /* stack items */
+      align-items: flex-start;    /* left-align */
+    }
+    .card.summary h3 {
+      font-size: 11px;
+    }
+    .card.summary .value {
+      font-size: 18px;            /* smaller values on mobile */
+    }
+  }
+</style>
+
+<div class="card summary" style="display: flex;flex-direction: row; justify-content: space-between;">
+  <div class="item">
+    <h3>Balance</h3>
+    <div class="value" id="balancedash">...</div>
+  </div>
+  <div class="item">
+    <h3>Profit</h3>
+    <div class="value" id="profitdash">...</div>
   </div>
 </div>
 
