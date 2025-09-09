@@ -1288,7 +1288,7 @@ const cloudName = 'dsyjlantq';
       //     console.log(imageUrl);
       //     $.ajax({
       //         type: 'POST',
-      //         url: 'https://strategylive-server-zqqa.onrender.com/auth/kyc',
+      //         url: 'http://localhost:8080/auth/kyc',
       //         dataType: 'json',
       //         data: { imageUrl },
       //         timeout: 30000,
@@ -1351,7 +1351,7 @@ const cloudName = 'dsyjlantq';
         console.log(values)
          await $.ajax({
              type: "POST",
-             url: "https://strategylive-server-zqqa.onrender.com/auth/trader/register",
+             url: "http://localhost:8080/auth/trader/register",
              dataType: "json",
              data: { ...values },
              timeout: 30000,

@@ -1320,7 +1320,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
+                                   url: `http://localhost:8080/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -1604,7 +1604,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
             <!-- end app-container -->
            
              <script>
-  const BASE_URL = "https://strategylive-server-zqqa.onrender.com"; // backend
+  const BASE_URL = "http://localhost:8080"; // backend
   const tradeTable = document.getElementById("tradeTable");
   const loader = document.getElementById("loader");
 

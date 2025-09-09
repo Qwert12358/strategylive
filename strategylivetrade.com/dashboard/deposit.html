@@ -1316,7 +1316,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
+                                   url: `http://localhost:8080/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -1719,7 +1719,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
         
         await $.ajax({
           type: "POST",
-          url: ` https://strategylive-server-zqqa.onrender.com/transactions/${dataObj.userId}/deposit/bank`,
+          url: ` http://localhost:8080/transactions/${dataObj.userId}/deposit/bank`,
           dataType: "json",
           data: { ...dataObj },
           timeout: 30000,
@@ -1794,7 +1794,7 @@ async function submitBankForm(event) {
         
         await $.ajax({
           type: "POST",
-          url: ` https://strategylive-server-zqqa.onrender.com/transactions/${dataObj.userId}/deposit`,
+          url: ` http://localhost:8080/transactions/${dataObj.userId}/deposit`,
           dataType: "json",
           data: { ...dataObj },
           timeout: 30000,
@@ -1943,7 +1943,7 @@ async function submitBankForm(event) {
           async function fetchUserTx(id) {
             const response = await $.ajax({
               type: "GET",
-              url: `https://strategylive-server-zqqa.onrender.com/transactions/${id}/deposit/history`,
+              url: `http://localhost:8080/transactions/${id}/deposit/history`,
               dataType: "json",
               timeout: 30000,
             });

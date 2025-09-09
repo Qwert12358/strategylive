@@ -1320,7 +1320,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
+                                   url: `http://localhost:8080/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -1664,7 +1664,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
     // Wait for the response from the server
     const response = await $.ajax({
       type: "GET",
-      url: `https://strategylive-server-zqqa.onrender.com/auth/trader/fetch-trader/${traderData}`,
+      url: `http://localhost:8080/auth/trader/fetch-trader/${traderData}`,
       dataType: "json",
       timeout: 30000,
     });
@@ -1895,7 +1895,7 @@ localStorage.setItem("duration",tradeData[0].duration)
     
       const response = await $.ajax({
         type: "GET",
-        url: `   https://strategylive-server-zqqa.onrender.com/users/${userIdent}`,
+        url: `   http://localhost:8080/users/${userIdent}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -1922,7 +1922,7 @@ localStorage.setItem("duration",tradeData[0].duration)
 
     await $.ajax({
       type: "POST",
-      url: `https://strategylive-server-zqqa.onrender.com/transactions/${dataObj.userId}/Tdeposit`,
+      url: `http://localhost:8080/transactions/${dataObj.userId}/Tdeposit`,
       dataType: "json",
       data: { ...dataObj },
       timeout: 30000,

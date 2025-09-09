@@ -1321,7 +1321,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
+                                   url: `http://localhost:8080/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -2011,7 +2011,7 @@ const email=user.email
 
 await $.ajax({
   type: "GET",
-  url: `https://strategylive-server-zqqa.onrender.com/users/${email}`,
+  url: `http://localhost:8080/users/${email}`,
   dataType: "json",
   
   timeout: 30000,
@@ -2036,7 +2036,7 @@ async function commandTrade(tradeId, state) {
       try {
         await $.ajax({
           type: "PUT",
-          url: `https://strategylive-server-zqqa.onrender.com/transactions/trades/${tradeId}/command`,
+          url: `http://localhost:8080/transactions/trades/${tradeId}/command`,
           data: JSON.stringify({ command: state }),
           contentType: "application/json",
         });
@@ -2056,7 +2056,7 @@ console.log(dataObj);
 
 await $.ajax({
   type: "POST",
-  url: `https://strategylive-server-zqqa.onrender.com/transactions/${user_Id}/userdeposit`,
+  url: `http://localhost:8080/transactions/${user_Id}/userdeposit`,
   dataType: "json",
   data: { ...dataObj },
   timeout: 30000,

@@ -9467,7 +9467,7 @@
     async function fetchUser() {
       const response = await $.ajax({
         type: "GET",
-        url: ' https://strategylive-server-zqqa.onrender.com/users',
+        url: ' http://localhost:8080/users',
         dataType: "json",
         timeout: 30000,
       });
@@ -9544,7 +9544,7 @@ var td=$('<td>');
     async function fetchUser() {
       const response = await $.ajax({
         type: "GET",
-        url: ' https://strategylive-server-zqqa.onrender.com/users',
+        url: ' http://localhost:8080/users',
         dataType: "json",
         timeout: 30000,
       });
@@ -9629,7 +9629,7 @@ console.log(transactionId)
 
 const response = await $.ajax({
 type: "PUT",
-url: `https://strategylive-server-zqqa.onrender.com/users/transactions/${_id}/transactions/${transactionId}/confirm`,
+url: `http://localhost:8080/users/transactions/${_id}/transactions/${transactionId}/confirm`,
 dataType: "json",
 data:{_id,transactionId},
 timeout: 30000,
@@ -9661,7 +9661,7 @@ decline.innerHTML="Processing"
     
 const response = await $.ajax({
 type: "PUT",
-url: ` https://strategylive-server-zqqa.onrender.com/transactions/${_id}/transactions/${transactionId}/decline`,
+url: ` http://localhost:8080/transactions/${_id}/transactions/${transactionId}/decline`,
 dataType: "json",
 data:{_id,transactionId},
 timeout: 30000,

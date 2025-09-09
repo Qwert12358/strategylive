@@ -448,7 +448,7 @@ display: block;
             
                         const response = await $.ajax({
                             type: "GET",
-                            url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
+                            url: `http://localhost:8080/users/${userFromLS.email}`,
                             dataType: "json",
                             timeout: 30000,
                             success: async function (data) {
