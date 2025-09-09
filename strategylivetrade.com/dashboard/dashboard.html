@@ -448,7 +448,7 @@ display: block;
             
                         const response = await $.ajax({
                             type: "GET",
-                            url: `http://localhost:8080/users/${userFromLS.email}`,
+                            url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
                             dataType: "json",
                             timeout: 30000,
                             success: async function (data) {
@@ -664,7 +664,7 @@ let lostTrades=0
   </div>
   <div class="card ratio">
     <h3>Win/Loss Ratio</h3>
-    <div class="value" id="winLoss">2.1</div>
+    <div class="value" id="winLoss"></div>
   </div>
 </div>
 

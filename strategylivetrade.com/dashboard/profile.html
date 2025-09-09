@@ -1315,7 +1315,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `http://localhost:8080/users/${userFromLS.email}`,
+                                   url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -1551,7 +1551,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
   
     const response = await $.ajax({
       type: "GET",
-      url: ` http://localhost:8080/users/${userFromLS.email}`,
+      url: ` https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
       dataType: "json",
       timeout: 30000,
       success: async function (data) {
@@ -1593,7 +1593,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
    const parseUser=JSON.parse(user)
     const response = await $.ajax({
       type: "PUT",
-      url: ` http://localhost:8080/users/${parseUser._id}/profile/update`,
+      url: ` https://strategylive-server-zqqa.onrender.com/users/${parseUser._id}/profile/update`,
       dataType: "json",
       data: { firstName, lastName, email },
       timeout: 30000,

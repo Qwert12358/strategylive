@@ -1321,7 +1321,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                                const response = await $.ajax({
                                    type: "GET",
-                                   url: `http://localhost:8080/users/${userFromLS.email}`,
+                                   url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
                                    dataType: "json",
                                    timeout: 30000,
                                    success: async function (data) {
@@ -1738,7 +1738,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
   console.log();(imageUrl,owner,docNum);
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:8080/auth/kyc',
+    url: 'https://strategylive-server-zqqa.onrender.com/auth/kyc',
     dataType: 'json',
     data: { imageUrl,owner,docNum },
     timeout: 30000,
@@ -1835,7 +1835,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
   console.log(firstName);
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:8080/transactions/kyc/alert',
+    url: 'https://strategylive-server-zqqa.onrender.com/transactions/kyc/alert',
     dataType: 'json',
     data: { firstName },
     timeout: 30000,
@@ -1881,7 +1881,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
   
       const response = await $.ajax({
         type: "GET",
-        url: `http://localhost:8080/users/owner/${userFromLS.email}`,
+        url: `https://strategylive-server-zqqa.onrender.com/users/owner/${userFromLS.email}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -1946,7 +1946,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
   
       const response = await $.ajax({
         type: "GET",
-        url: `http://localhost:8080/users/owner/${userFromLS.email}`,
+        url: `https://strategylive-server-zqqa.onrender.com/users/owner/${userFromLS.email}`,
         dataType: "json",
         timeout: 30000,
         success: async function (data) {
@@ -1993,7 +1993,7 @@ $("#cl").text(user.firstName + " " + user.lastName)
   
   $.ajax({
     type: 'POST',
-    url: 'http://localhost:8080/transactions/kyc/alert',
+    url: 'https://strategylive-server-zqqa.onrender.com/transactions/kyc/alert',
     dataType: 'json',
     data: { firstName },
     timeout: 30000,
