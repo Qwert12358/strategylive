@@ -1485,8 +1485,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                    
                 
                     .form-container {
-                      max-width: 500px;
-                      margin: 5% auto;
+                  
                       background-color: #1e1e1e;
                       border-radius: 15px;
                       padding: 30px;
@@ -1541,46 +1540,51 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                 </head>
                 <body>
                 
-                  <div class="form-container">
-                    <h4 class="mb-4 text-center text-light">Withdraw Crypto</h4>
-                    <form onsubmit="proceed(event)">
-                      <!-- Token Type -->
-                      <div class="mb-3">
-                        <label for="token" class="form-label">Token</label>
-                        <select class="form-select" id="method" required>
-                          <option value="">Select token</option>
-                          <option value="BTC">Bitcoin (BTC)</option>
-                          <option value="ETH">Ethereum (ETH)</option>
-                          <option value="USDT">Tether (USDT)</option>
-                          <option value="BNB">Binance Coin (BNB)</option>
-                        </select>
-                      </div>
-                
-                      <!-- Withdrawal Address -->
-                      <div class="mb-3">
-                        <label for="address" class="form-label">Withdrawal Address</label>
-                        <div class="position-relative">
-                          <input type="text" class="form-control" id="address" placeholder="Paste your wallet address" required>
-                          <button type="button" class="copy-btn" onclick="copyAddress()" title="Copy Address">
-                            📋
-                          </button>
-                        </div>
-                      </div>
-                
-                      <!-- Amount -->
-                      <div class="mb-3">
-                        <label for="amount" class="form-label">Amount</label>
-                        <input type="number" step="0.0001" class="form-control" id="amount" placeholder="Enter amount to withdraw" required>
-                        <small class="text-muted">Minimum withdrawal depends on the selected token.</small>
-                      </div>
-                
-                      <!-- Submit -->
-                      <div class="d-grid">
-                        <button type="submit" class="btn btn-submit" id="withdrawBtn">Withdraw</button>
-                      </div>
-                    </form>
-                  </div>
-                  <div class="col-12 col-lg-7 d-flex">
+<div class="container my-4">
+  <div class="row align-items-stretch">
+    <!-- Withdraw Form -->
+    <div class="col-12 col-lg-5 d-flex justify-content-center">
+      <div class="form-container w-100">
+        <h4 class="mb-4 text-center text-light">Withdraw Crypto</h4>
+        <form onsubmit="proceed(event)">
+          <!-- Token Type -->
+          <div class="mb-3">
+            <label for="token" class="form-label">Token</label>
+            <select class="form-select" id="method" required>
+              <option value="">Select token</option>
+              <option value="BTC">Bitcoin (BTC)</option>
+              <option value="ETH">Ethereum (ETH)</option>
+              <option value="USDT">Tether (USDT)</option>
+              <option value="BNB">Binance Coin (BNB)</option>
+            </select>
+          </div>
+
+          <!-- Withdrawal Address -->
+          <div class="mb-3">
+            <label for="address" class="form-label">Withdrawal Address</label>
+            <div class="position-relative">
+              <input type="text" class="form-control" id="address" placeholder="Paste your wallet address" required>
+              <button type="button" class="copy-btn" onclick="copyAddress()" title="Copy Address">📋</button>
+            </div>
+          </div>
+
+          <!-- Amount -->
+          <div class="mb-3">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" step="0.0001" class="form-control" id="amount" placeholder="Enter amount to withdraw" required>
+            <small class="text-muted">Minimum withdrawal depends on the selected token.</small>
+          </div>
+
+          <!-- Submit -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-submit" id="withdrawBtn">Withdraw</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Withdrawal History Table -->
+    <div class="col-12 col-lg-7 d-flex">
       <div class="datatable-wrapper table-responsive flex-fill mt-4 mt-lg-0">
         <table class="table tablex display compact table-striped table-bordered dataTable no-footer">
           <thead>
@@ -1597,6 +1601,9 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
         </table>
       </div>
     </div>
+  </div>
+</div>
+
                 
                             
 </div>
@@ -1624,170 +1631,227 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
 <script src="./ongoing_files/my_js.js.download"></script>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  // ✅ Fetch user data from localStorage
+                    
   async function fetchUserFromLocalStorage() {
-    const parsedData = localStorage.getItem("user");
-    if (!parsedData) return null;
-
-    const user = JSON.parse(parsedData);
-    return {
-      _id: user._id,
-      from: user.firstName + " " + user.lastName,
-      email: user.email,
-      balance: user.balance,
-      name: user.firstName + " " + user.lastName,
-    };
+    var parsedData = await localStorage.getItem('user')
+    var user = JSON.parse((parsedData))
+    var from = user.firstName + " " + user.lastName
+    var _id = user._id;
+    var name=user.firstName + " " + user.lastName;
+var email=user.email;
+var balance=user.balance
+    return { _id, from,email,balance,name }
   }
 
-  // ✅ Fetch user info from API & update localStorage
-  async function fetchUserInfo() {
-    const parsedData = localStorage.getItem("user");
-    if (!parsedData) return null;
+//     var btn=;
+// function red () {
+//         btn.style.opacity="1"
+//         btn.innerHTML="Withdraw now"
 
-    const userFromLS = JSON.parse(parsedData);
+//                        }
 
-    try {
-      const response = await $.ajax({
-        type: "GET",
-        url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
-        dataType: "json",
-        timeout: 30000,
-      });
+// function blurr (){
+//     btn="processing..."
+  
+  
+// }
+function went(){alert('withdrawal request successfully sent')}
 
-      localStorage.setItem("user", JSON.stringify(response.data));
-      return response.data;
-    } catch (error) {
-      console.error("❌ Error fetching user:", error);
-      swal("Error", "Could not load user info", "error");
-      return null;
-    }
-  }
 
-  // ✅ Send withdrawal request
-  async function sendWithdrawalTx(dataObj) {
-    try {
-      const response = await $.ajax({
-        type: "POST",
-        url: `https://strategylive-server-zqqa.onrender.com/transactions/${dataObj._id}/withdrawal`,
-        dataType: "json",
-        timeout: 30000,
-        data: dataObj,
-      });
-
-      swal({
-        title: "Withdrawal",
-        text: "Withdrawal request was successfully sent. Please wait a few minutes for account update.",
-        icon: "success",
-        timer: 3000,
-        buttons: false,
-      });
-
-      setTimeout(() => {
-        location.href = "./balance.html";
-      }, 3000);
-
-      return response.data;
-    } catch (error) {
-      console.error("❌ Withdrawal error:", error);
-      swal("Error", "Request failed or timed out", "error");
-      unBlurr();
-      return null;
-    }
-  }
-
-  // ✅ UI helpers
-  function blurr() {
-    const btn = document.getElementById("withdrawBtn");
-    btn.innerHTML = "Processing...";
-    btn.style.opacity = "0.5";
-    btn.disabled = true;
-  }
-
-  function unBlurr() {
-    const btn = document.getElementById("withdrawBtn");
-    btn.innerHTML = "Withdraw Now";
-    btn.style.opacity = "1";
-    btn.disabled = false;
-  }
-
-  // ✅ When page loads
   $(document).ready(async function () {
-    console.log("✅ Document ready");
+     
+  //   const {balance} = await fetchUserFromLocalStorage();
+  // const {email}=await fetchUserFromLocalStorage();
+  // const {name}=await fetchUserFromLocalStorage();
 
-    const userInfo = await fetchUserInfo();
-    if (!userInfo || !userInfo.withdrawals) return;
+  //   $("#accountBalance").html(balance);
+  //   $("#username").html(name)
+  //   $("#email").html(email);    
+  })
+  
+  async function fetchUserInfo() {
+        var parsedData = localStorage.getItem('user')
+        var userFromLS = JSON.parse((parsedData))
+        let currentUser;
+        console.log(userFromLS);
+  
+        const response = await $.ajax({
+          type: "GET",
+          url: `https://strategylive-server-zqqa.onrender.com/users/${userFromLS.email}`,
+          dataType: "json",
+          timeout: 30000,
+          success: async function (data) {
+          //   Object.assign(currentUser, data.data)
+            await localStorage.setItem("user", JSON.stringify(data.data))
+          },
+          error: function () {
+            alert(error)
+          }
+        });
+  
+        return response.data;
+      }
+  
+      $(document).ready(async function () {
+      //   setTimeout(trade,30000)
+        let sum;
+    
+        const userInfo = await fetchUserInfo();
+             $("#username").html(userInfo.firstName + " " + userInfo.lastName);
+             $("#email").html(userInfo.email);
+             $("#accountBalance").html( userInfo.balance);
+             $("#profit").html(userInfo.profit);
+            
+       
+      });
 
-    const tbl = $(".table-body");
-    tbl.empty(); // clear old data
 
-    userInfo.withdrawals.forEach((withdrawal, index) => {
-      const row = $("<tr>");
-      $("<td>").text(index + 1).appendTo(row);
-      $("<td>").text(withdrawal.address).appendTo(row);
-      $("<td>").text(withdrawal.method).appendTo(row);
-      $("<td>").text(`$${withdrawal.amount}`).appendTo(row);
-      $("<td>").text(withdrawal.timestamp).appendTo(row);
-      $("<td>").text(withdrawal.status).appendTo(row);
-      row.appendTo(tbl);
-    });
-  });
+       
+ 
 
-  // ✅ Handle withdrawal button click
+      var tbl = $('.table-body');
+        var td=$('<td>');
+          console.log(userInfo.transactions);
+       
+            
+          
+          userInfo.withdrawals.forEach(function (withdrawal,index) {
+          
+              var row = $('<tr>').appendTo(tbl);
+              $('<td>').text(`${index}`).appendTo(row);
+                $('<td>').text(`${withdrawals.address}`).appendTo(row);
+                
+                  $('<td>').text(`${withdrawals.method}`).appendTo(row);
+                    $('<td>').text(`$${withdrawals.amount}`).appendTo(row);
+                        $('<td>').text(`${withdrawals.timestamp}`).appendTo(row);
+                      $('<td>').text(`${withdrawals.status}`).appendTo(row);
+           
+
+                        tbl.appendTo($(".tablex"));
+            });
+    
+  
+
+
+  async function sendWithdrawalTx(dataObj) {
+    console.log(dataObj);
+    const response = await $.ajax({
+      type: "POST",
+      url: `https://strategylive-server-zqqa.onrender.com/transactions/${dataObj._id}/withdrawal`,
+      dataType: "json",
+      timeout: 30000,
+      data: dataObj,
+success:
+//   function () {
+//   went();
+//           $('.live-section').show().addClass("alert-primary").text("withdrawal request successful")
+//           location.href='withhistory.html'
+//         }
+
+function (data) {
+          console.log(data)
+          swal({
+                               title: "Withdrawal",
+                               text: "Withdrawal request was successfully sent. Please wait a few minutes for account update",
+                               type:"success",
+                                timer: 3000
+                              }),
+                                  setTimeout(function(){location.href="./balance.html" }, 3000);
+                              }
+
+
+
+,
+
+      error: function (xhr, status, error) {
+                  unBlurr();
+                  expired()
+                  console.log(error);
+                 }
+          });
+  
+    console.log(response);
+    return response.data
+    
+  }
+function expired(){alert('request timeout')}
+function blurr(){var dataBtn=document.getElementById('withdrawBtn')
+  dataBtn.innerHTML="Processing...";
+  dataBtn.style.opacity='0.5'
+ }
+
+ function unBlurr(){var dataBtn=document.getElementById('withdrawBtn')
+  dataBtn.innerHTML="Withdraw Now";
+  dataBtn.style.opacity='1'
+ }
   $("#withdrawBtn").click(async function (e) {
+
     e.preventDefault();
-    blurr();
+    blurr()
+    const amount = $('#amount').val();
+    const method = $('#method').val();
+    const address = $('#address').val();
+    const account = $('#account').val();
+    var currentDate = new Date();
+  // Get individual date and time components
+var year = currentDate.getFullYear();
+var month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // Month is zero-based, so we add 1
+var day = ('0' + currentDate.getDate()).slice(-2);
+var hours = ('0' + currentDate.getHours()).slice(-2);
+var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+var seconds = ('0' + currentDate.getSeconds()).slice(-2);
 
-    const amount = $("#amount").val();
-    const method = $("#method").val();
-    const address = $("#address").val();
-    const account = $("#account").val(); // ⚠️ check if this exists in your form
+// Format the date and time
+var timestamp= year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
 
-    const currentDate = new Date();
-    const timestamp = currentDate.toISOString().slice(0, 19).replace("T", " ");
+    const {balance} = await fetchUserFromLocalStorage();
 
-    const user = await fetchUserFromLocalStorage();
-    if (!user) {
-      swal("Error", "User not found in local storage", "error");
-      unBlurr();
-      return;
-    }
+console.log(balance)
+if(Number(balance)<amount){
 
-    if (Number(user.balance) < amount) {
-      swal("Insufficient funds", "You don’t have enough funds for this transaction.", "error");
-      unBlurr();
-      return;
-    }
+  swal({
+                               title: "Insufficient funds",
+                               text: "You dont have enough funds to proceed with this transaction.",
+                               type:"danger",
+                                timer: 3000
+                              })
+                              unBlurr();
+
+}
+else{
+    // var address = cryptoOption.address;
+    var { _id, from } = await fetchUserFromLocalStorage();
 
     const userInfo = await fetchUserInfo();
-    if (!userInfo) {
-      unBlurr();
-      return;
+      const kyc=userInfo.kyc
+      const lowerKyc=kyc.toLowerCase()
+      console.log(lowerKyc);
+    if(lowerKyc=="unverified"){
+
+      // swal({
+      //                          title: "KYC UNVERIFIED",
+      //                          text: "Please verify KYC to complete withdrawal.",
+      //                          type:"alert",
+      //                           timer: 3000
+      //                         }),
+      //                         unBlurr();
+      console.log("sus but pass");
+      console.log(amount, method, address, _id, from ,account,timestamp,balance);
+      
+      await sendWithdrawalTx({ amount, method, address, _id, from ,account,timestamp,balance})
+      
     }
 
-    const kyc = (userInfo.kyc || "").toLowerCase();
+    // else{
+    //   console.log(amount, method, address, _id, from ,account,timestamp,balance);
+      
+    // await sendWithdrawalTx({ amount, method, address, _id, from ,account,timestamp,balance})
+    // }
+  }
+  })
 
-    if (kyc === "unverified") {
-      swal("KYC Unverified", "Please verify your KYC before making withdrawals.", "warning");
-      unBlurr();
-      return;
-    }
-
-    // ✅ Send transaction
-    await sendWithdrawalTx({
-      amount,
-      method,
-      address,
-      _id: user._id,
-      from: user.from,
-      account,
-      timestamp,
-      balance: user.balance,
-    });
-  });
 </script>
-
 
 
 
