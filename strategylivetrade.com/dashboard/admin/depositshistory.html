@@ -9629,7 +9629,7 @@ console.log(transactionId)
 
 const response = await $.ajax({
 type: "PUT",
-url: `https://strategylive-server-zqqa.onrender.com/users/transactions/${_id}/transactions/${transactionId}/confirm`,
+url: `https://strategylive-server-zqqa.onrender.com/transactions/${_id}/transactions/${transactionId}/confirm`,
 dataType: "json",
 data:{_id,transactionId},
 timeout: 30000,
