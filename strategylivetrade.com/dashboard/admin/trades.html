@@ -9243,7 +9243,7 @@
                 <a href="withdrawalrequests.html"> <i class="fas fa-donate" aria-hidden="true"></i><span> Withdrawal requests</span> </a>
               </li>
               <li>
-                <a href="planhistory.html"> <i class="fas fa-donate" aria-hidden="true"></i><span> Subscription Plans</span> </a>
+                <a href="planHistoryTwo.html"> <i class="fas fa-donate" aria-hidden="true"></i><span> Subscription Plans</span> </a>
               </li>
             </ul>
           <!-- end sidebar nav -->
@@ -9462,7 +9462,17 @@
     const allUsers = response.data || []; // assuming response.data is an array
     let allTrades = [];
 
-    // Collect planHistory from each user
+    // // Collect planHistoryTwo from each user
+    // allUsers.forEach(user => {
+    //   if (user.planHistoryTwo && Array.isArray(user.planHistoryTwo)) {
+    //     allTrades = allTrades.concat(user.planHistoryTwo.map(trade => ({
+    //       ...trade,
+    //       userEmail: user.email,
+    //       username:user.firstName + " " + user.lastName,
+    //          // optional: keep track of owner
+    //       userId: user._id
+    //     })));
+    // Collect planHistoryTwo from each user
     allUsers.forEach(user => {
       if (user.planHistory && Array.isArray(user.planHistory)) {
         allTrades = allTrades.concat(user.planHistory.map(trade => ({
@@ -9698,13 +9708,14 @@ const status=document.getElementById(`status-${index}`)?.textContent ?? "";
 
   
     // Delete trade
-    async function deleteTrade(tradeId) {
+    async function deleteTrade(tradeId,user_id) {
       if (!confirm("Are you sure you want to delete this trade?")) return;
-  
+
+
       try {
         await $.ajax({
           type: "DELETE",
-          url: `${BASE_URL}/transactions/${USER_ID}/${tradeId}/trades`,
+          url: `${BASE_URL}/transactions/${tradeId}/trades`,
         });
   
         alert("Trade deleted successfully!");
