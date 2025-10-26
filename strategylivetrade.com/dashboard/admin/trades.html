@@ -9520,37 +9520,31 @@ console.log(allTrades)
     function renderTrades(trades) {
   tradeTable.innerHTML = "";
 
-  trades.forEach((trade, index,username) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-     <td id="" contenteditable="false">${username[0].username ?? ""}</td>
-      <td id="asset-${index}" contenteditable="false">${trade.assetName ?? ""}</td>
-      <td id="amount-${index}" contenteditable="false">${"$"+trade.tradeAmount ?? ""}</td>  <!-- ID ADDED -->
-      <td id="leverage-${index}" contenteditable="false">${trade.leverage ?? ""}</td>   <!-- ID ADDED -->
-      <td id="duration-${index}" contenteditable="false">${trade.duration ?? ""}</td>   <!-- ID ADDED -->
-      <td id="countdown-${index}"></td>
-      <td id="profitLoss-${index}">${"$"+trade.profit ?? "-"}</td>                           <!-- ID already used -->
-      <td id="action-${index}">${trade.result || "Pending"}</td>
-      <td id="status-${index}">${trade.status}</td>
-     <td>
-  <button onclick="toggleCommand('${trade._id}', 'false')" 
-    ${trade.command === "false" ? "disabled" : ""}>
-    False
-  </button>
-  <button onclick="toggleCommand('${trade._id}', 'true')" 
-    ${trade.command === "true" ? "disabled" : ""}>
-   
-  </button>
-  <button onclick="toggleCommand('${trade._id}', 'declined')" 
-    ${trade.command === "declined" ? "disabled" : ""}>
-    ${trade.command === "declined" ? "Declined" : "Decline"}
-  </button>
-</td>
- <td>
-        <button onclick="editTrade(${index}, '${trade._id}')">Edit</button>
-        <button onclick="saveTrade(${index}, '${trade._id}')">Save</button>
-        <button onclick="deleteTrade('${trade._id}')">Delete</button>
-      </td>
+ trades.forEach((trade, index) => {
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td>${trade.username ?? ""}</td>
+    <td id="asset-${index}" contenteditable="false">${trade.assetName ?? ""}</td>
+    <td id="amount-${index}" contenteditable="false">${"$" + (trade.tradeAmount ?? "")}</td>
+    <td id="leverage-${index}" contenteditable="false">${trade.leverage ?? ""}</td>
+    <td id="duration-${index}" contenteditable="false">${trade.duration ?? ""}</td>
+    <td id="countdown-${index}"></td>
+    <td id="profitLoss-${index}">${"$" + (trade.profit ?? "-")}</td>
+    <td id="action-${index}">${trade.result || "Pending"}</td>
+    <td id="status-${index}">${trade.status ?? ""}</td>
+    <td>
+      <button onclick="toggleCommand('${trade._id}', 'false')" ${trade.command === "false" ? "disabled" : ""}>False</button>
+      <button onclick="toggleCommand('${trade._id}', 'true')" ${trade.command === "true" ? "disabled" : ""}>True</button>
+      <button onclick="toggleCommand('${trade._id}', 'declined')" ${trade.command === "declined" ? "disabled" : ""}>
+        ${trade.command === "declined" ? "Declined" : "Decline"}
+      </button>
+    </td>
+    <td>
+      <button onclick="editTrade(${index}, '${trade._id}')">Edit</button>
+      <button onclick="saveTrade(${index}, '${trade._id}')">Save</button>
+      <button onclick="deleteTrade('${trade._id}')">Delete</button>
+    </td>
+  
     `;
     tradeTable.appendChild(row);
 
