@@ -1436,7 +1436,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                                 <!-- begin page title -->
                                 <div class="d-block d-lg-flex flex-nowrap align-items-center">
                                     <div class="page-title mr-4 pr-4 border-right">
-                                        <h1>Ongoing-Investments</h1> 
+                                        <h1>My Trades</h1> 
                                     </div>
                                     <div class="breadcrumb-bar align-items-center">
                                         <nav>
@@ -1497,6 +1497,7 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
                 <table  class="table tablex display compact  table-striped table-bordered dataTable no-footer" >
         <thead>
           <tr>
+            <th>Trader</th>
             <th>Asset</th>
             <th>Amount</th>
             <th>Leverage</th>
@@ -1691,12 +1692,13 @@ body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relati
     timers.clear();
 
     tradeTable.innerHTML = ""; // clear old rows
-
+var traderName=localStorage.getItem("traderName")
     trades.forEach((trade) => {
       const id = trade._id; // use trade._id so indexes don't shift
       const row = document.createElement("tr");
 
       row.innerHTML = `
+       <td>${traderName ?? "-"}</td>
         <td>${trade.assetName ?? "-"}</td>
         <td>$${Number(trade.tradeAmount || 0)}</td>
         <td>${trade.leverage ?? "-"}</td>
