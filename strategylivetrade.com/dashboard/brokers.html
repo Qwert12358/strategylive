@@ -1694,104 +1694,108 @@ $(document).ready(async function () {
     });
 
     // Delegated event handler for copy trade buttons
-    $(document).on('click', '.copy-trade-btn', async function () {
-        const index = $(this).data('index');
-        const element = traders[index]; // Access the corresponding trader
-        const pickUser=localStorage.getItem("user")
-        const user = JSON.parse(pickUser);
-        const traderName = element.name;
-localStorage.setItem("pendingTraderId",element._id)
-        localStorage.setItem("traderName", traderName);
+   $(document).on('click', '.copy-trade-btn', async function () {
+  try {
+    const index = $(this).data('index');
+    if (index === undefined || !traders[index]) {
+      console.error("Invalid trader index:", index);
+      return;
+    }
 
-        swal({
-            title: `You are about to copy trade ${traderName}?`,
-            text: `Broker Trade Range: ${element.range} Your balance: ${user.balance}`,
-            type: 'input',
-            showCancelButton: true,
-            closeOnConfirm: false,
-            animation: 'slide-from-top',
-            inputPlaceholder: 'Enter Amount To Trade With'
-        }, async function (inputValue) {
-            if (inputValue === false) return;
+    const element = traders[index];
 
-            if (inputValue === '') {
-                swal.showInputError('Enter Amount for Trade!');
-                return;
-            }
+    const pickUser = localStorage.getItem("user");
+    if (!pickUser) {
+      swal("Session Error", "Please login again.", "error");
+      return;
+    }
 
-            const amount = Number(inputValue);
-            localStorage.setItem("tradingsum", amount);
+    const user = JSON.parse(pickUser);
+    if (!user || !user._id) {
+      swal("Session Error", "Invalid user data.", "error");
+      return;
+    }
 
-            const copyMinimumDep = Number(localStorage.getItem("minLimit"));
-            const copySubName = "copytrading:Stock Strategies & Trade Alerts";
+    const traderName = element.name;
+    localStorage.setItem("pendingTraderId", element._id);
+    localStorage.setItem("traderName", traderName);
 
-            const dataObj = {
-                userId: user._id,
-                copysubamount: amount,
-                copysubname: copySubName,
-                from: user.firstName,
-                to: user.email,
-                trader: traderName,
-                timestamp: new Date(),
-                info: "4-5 trades a week" // consider making this dynamic
-            };
+    swal({
+      title: `You are about to copy trade ${traderName}?`,
+      text: `Broker Trade Range: ${element.range} | Your balance: ${user.balance}`,
+      type: 'input',
+      showCancelButton: true,
+      closeOnConfirm: false,
+      animation: 'slide-from-top',
+      inputPlaceholder: 'Enter Amount To Trade With'
+    }, async function (inputValue) {
 
-            if (amount > Number(user.balance)) {
-                swal({
-                    title: "Insufficient Balance",
-                    text: "You do not have enough balance for this plan. Please top up and try again.",
-                    type: "error",
-                    timer: 3000
-                });
-                return;
-            }
+      if (inputValue === false) return;
 
-            if (amount < copyMinimumDep) {
-                swal({
-                    title: "Invalid Subscription Amount",
-                    text: `Amount must be at least ${copyMinimumDep}`,
-                    type: "error",
-                    timer: 3000
-                });
-                return;
-            }
+      if (!inputValue || isNaN(inputValue)) {
+        swal.showInputError('Please enter a valid number');
+        return;
+      }
 
-            try {
-                await $.ajax({
-                    type: "POST",
-                    url: ` https://strategylive-server-zqqa.onrender.com/transactions/${dataObj.userId}/auto`,
-                    dataType: "json",
-                    data: dataObj,
-                    timeout: 30000,
-                    success: function (data) {
-                        localStorage.removeItem("ct");
-                        localStorage.setItem("indicator", "indicator");
+      const amount = Number(inputValue);
+      localStorage.setItem("tradingsum", amount);
 
-                        const seek = localStorage.getItem("pendingTraderId");
-                        localStorage.setItem("traderId", seek);
+      const copyMinimumDep = Number(localStorage.getItem("minLimit")) || 0;
+      const copySubName = "copytrading:Stock Strategies & Trade Alerts";
 
-                        swal({
-                            title: "Success",
-                            text: "Copytrading subscription successful.",
-                            type: "success",
-                            timer: 3000
-                        });
+      if (amount > Number(user.balance)) {
+        swal("Insufficient Balance", "You do not have enough balance.", "error");
+        return;
+      }
 
-                        setTimeout(function () {
-                            location.href = "./brokers.html";
-                        }, 3000);
-                    },
-                    error: function (error) {
-                        alert('Error submitting payment data.');
-                        console.error(error);
-                        if (typeof stopProcess === 'function') stopProcess();
-                    }
-                });
-            } catch (err) {
-                console.error("Unexpected error during AJAX:", err);
-            }
-        });
+      if (amount < copyMinimumDep) {
+        swal("Invalid Amount", `Minimum is ${copyMinimumDep}`, "error");
+        return;
+      }
+
+      const dataObj = {
+        userId: user._id,
+        copysubamount: amount,
+        copysubname: copySubName,
+        from: user.firstName,
+        to: user.email,
+        trader: traderName,
+        timestamp: new Date().toISOString(), // ✅ FIXED
+        info: "4-5 trades a week"
+      };
+
+      await $.ajax({
+        type: "POST",
+        url: `https://strategylive-server-zqqa.onrender.com/transactions/${user._id}/auto`, // ✅ FIXED
+        dataType: "json",
+        data: dataObj,
+        timeout: 30000,
+        success: function () {
+          localStorage.removeItem("ct");
+          localStorage.setItem("indicator", "indicator");
+
+          const seek = localStorage.getItem("pendingTraderId");
+          localStorage.setItem("traderId", seek);
+
+          swal("Success", "Copytrading subscription successful.", "success");
+
+          setTimeout(() => {
+            location.href = "./brokers.html";
+          }, 2500);
+        },
+        error: function (xhr) {
+          console.error("AJAX Error:", xhr.responseText);
+          swal("Error", "Failed to submit payment data.", "error");
+        }
+      });
     });
+
+  } catch (err) {
+    console.error("Fatal copy trade error:", err);
+    swal("Error", "Something went wrong. Try again.", "error");
+  }
+});
+
 });
 
                     </script>
