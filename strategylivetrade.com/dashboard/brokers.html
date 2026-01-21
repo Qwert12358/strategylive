@@ -1655,7 +1655,7 @@ $(document).ready(async function () {
                     </div>
                 </td>
                 <td>${element.trades}</td>
-                <td>${element.range}</td>
+                <td>${element.profit}</td>
                 <td>Long Term Trade</td>
                 <td>100%</td>
                 <td>${element.returns}</td>
@@ -1740,7 +1740,7 @@ $(document).ready(async function () {
       const amount = Number(inputValue);
       localStorage.setItem("tradingsum", amount);
 
-      const copyMinimumDep = Number(localStorage.getItem("minLimit")) || 0;
+      const copyMinimumDep = Number(element.range) || 0;
       const copySubName = "copytrading:Stock Strategies & Trade Alerts";
 
       if (amount > Number(user.balance)) {
